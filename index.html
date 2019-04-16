@@ -1,0 +1,338 @@
+<html>
+    <script type="text/javascript" src="char_gen.js"></script>
+    <link rel="stylesheet" href="css.css">
+  <head>
+    <title>Character Sheet</title>
+  </head>
+    <header class="debug">Debug Stuff</header>
+    <section>
+      <div>
+        <label>Character Name: </label><input id="char-name-entry" oninput="nameEntry()">
+      </div>
+    </section>
+    <section class="char-info-box">
+      <div>
+        <label>Class: </label> <select id="class-entry" oninput="classEntry()">
+          <option></option>
+          <option>Envoy</option>
+          <option>Mechanic</option>
+          <option>Mystic</option>
+          <option>Operative</option>
+          <option>Solarian</option>
+          <option>Soldier</option>
+          <option>Technomancer</option>
+        </select>
+        <label>Level: </label> <input type="number" id="level-entry" min="1" max="20" oninput="levelEntry()">
+        <label>Race: </label> <select id="race-entry"  oninput="raceEntry()">
+          <option></option>
+          <option>Android</option>
+          <option>Human</option>
+          <option>Kasatha</option>
+          <option>Lashunta (Damaya)</option>
+          <option>Lashunta (Korasha)</option>
+          <option>Shirren</option>
+          <option>Vesk</option>
+          <option>Ysoki</option>
+          <option>Astrazoan</option>
+          <option>Bantrid</option>
+          <option>Borais</option>
+          <option>Khizar</option>
+          <option>SRO (Small)</option>
+          <option>SRO (Medium)</option>
+          <option>Strix</option>
+        </select>
+        <label>Theme: </label> <select id="theme-entry" oninput="themeEntry()">
+          <option></option>
+          <option>Ace Pilot</option>
+          <option>Bounty Hunter</option>
+          <option>Icon</option>
+          <option>Mercenary</option>
+          <option>Outlaw</option>
+          <option>Priest</option>
+          <option>Scholar</option>
+          <option>Spacefarer</option>
+          <option>Xenoseeker</option>
+          <option>Solar Disciple</option>
+          <option>Roboticist</option>
+          <option>Wild Warden</option>
+          <option>Corporate Agent</option>
+          <option>Gladiator</option>
+          <option>Cyberborn</option>
+          <option>Tempered Pilgrim</option>
+          <option>Space Pirate</option>
+          <option>Death-Touched</option>
+          <option>Dragonblood</option>
+          <option>Dream Prophet</option>
+          <option>Biotechnician</option>
+          <option>Xenoarchaeologist</option>
+          <option>Cultist</option>
+          <option>Xenoseeker</option>
+          <option>Themeless</option>
+        </select>
+        <label for="gender-id">Gender: </label> <select id="gender-entry" oninput="genderEntry()">
+          <option></option>
+          <option>Male</option>
+          <option>Female</option>
+          <span class="host-gender"><option>Host (Shirren only)</option>
+        </select>
+      </div>
+      <div>
+        <label>Alignment: </label> <select id="alignment-entry" oninput="alignEntry()">
+          <option></option>
+          <option>Chaotic Evil</option>
+          <option>Chaotic Neutral</option>
+          <option>Chaotic Good</option>
+          <option>Neutral Evil</option>
+          <option>True Neutral</option>
+          <option>Neutral Good</option>
+          <option>Lawful Evil</option>
+          <option>Lawful Neutral</option>
+          <option>Lawful Good</option>
+        </select>
+        <label>Deity: </label> <select id="deity-entry" oninput="deityEntry()">
+          <option>None</option>
+          <option>Abadar</option>
+          <option>Angradd</option>
+          <option>Arshea</option>
+          <option>Asmodeus</option>
+          <option>Besmara</option>
+          <option>Black Butterfly</option>
+          <option>Calistria</option>
+          <option>Damoritosh</option>
+          <option>Desna</option>
+          <option>Eldest</option>
+          <option>Eloritu</option>
+          <option>Groetus</option>
+          <option>Hylax</option>
+          <option>Ibra</option>
+          <option>Iomedae</option>
+          <option>Lamashtu</option>
+          <option>Lao Shu Po</option>
+          <option>Lissala</option>
+          <option>Nyarlathotep</option>
+          <option>Pharasma</option>
+          <option>Sarenrae</option>
+          <option>Talavet</option>
+          <option>The Devourer</option>
+          <option>Triune</option>
+          <option>Urgathoa</option>
+          <option>Weydan</option>
+          <option>Yaraesa</option>
+          <option>Zon-Kuthon</option>
+        </select>
+        <label>Homeworld: </label> <select id="homeworld-entry" oninput="homeworldEntry()">
+          <option>Unknown</option>
+          <option>Aballon</option>
+          <option>Absalom Station</option>
+          <option>Akiton</option>
+          <option>Apostae</option>
+          <option>Arquand</option>
+          <option>Arshalin</option>
+          <option>Aucturn</option>
+          <option>Azlanti Star Empire</option>
+          <option>Barrow</option>
+          <option>Bretheda</option>
+          <option>Castrovel</option>
+          <option>Daegox 4</option>
+          <option>Daimalko</option>
+          <option>Elytrio</option>
+          <option>Eox</option>
+          <option>Heicoron IV</option>
+          <option>Idari</option>
+          <option>Jedarat</option>
+          <option>Liavara</option>
+          <option>Lothun</option>
+          <option>Nakondis</option>
+          <option>Nejeor VI</option>
+          <option>New Thespera</option>
+          <option>Orikolai</option>
+          <option>Orry</option>
+          <option>Outpost Zed</option>
+          <option>Preluria</option>
+          <option>Primoria</option>
+          <option>Ratheren</option>
+          <option>Riven Shroud</option>
+          <option>Sepres VI</option>
+          <option>Shadari</option>
+          <option>Shimrinsara</option>
+          <option>Silselrik</option>
+          <option>Tabori Cluster</option>
+          <option>The Diaspora</option>
+          <option>The Drift</option>
+          <option>The Sun</option>
+          <option>The Veskarium</option>
+          <option>Triaxus</option>
+          <option>Urrakar</option>
+        </select>
+        <label>Player Name: </label><input name="player-entry" oninput="playerEntry()">
+      </div>
+      <section>
+        <div>
+          <label>STR</label> <input type="number" id="str-PB" value="0" oninput="pointBuyEntry()">
+        </div>
+        <div>
+          <label>DEX</label> <input type="number" id="dex-PB" value="0" oninput="pointBuyEntry()">
+        </div>
+        <div>
+          <label>CON</label> <input type="number" id="con-PB" value="0" oninput="pointBuyEntry()">
+        </div>
+        <div>
+          <label>INT</label> <input type="number" id="int-PB" value="0" oninput="pointBuyEntry()">
+        </div>
+        <div>
+          <label>WIS</label> <input type="number" id="wis-PB" value="0" oninput="pointBuyEntry()">
+        </div>
+        <div>
+          <label>CHA</label> <input type="number" id="cha-PB" value="0" oninput="pointBuyEntry()">
+        </div>
+        <div>
+        <label>Remaining Points:</label><output id="point-buy-count" value="10"></output>
+        </div>
+        <div>
+          <button type="button" onclick="pointBuyReset()">Point Buy Reset</button>
+        </div>
+       </section>
+       <br>
+       <div>
+         <button type="button" onclick="resetAll()">Reset All</button>
+         <button type="button" onclick="finalizeCharacter()">Finalize Character</button>
+       </div>
+
+<!-- ----------------------------------------------------------------------------- -->
+   <hr>
+  
+  <header>
+    <h1 class="page-title" id="char-name"></h1>
+  </header>
+  
+  <body>
+    
+    <section class="white-card" id="character-detail">
+      
+      <h2>
+        <span id="char-race"></span>
+        <span id="char-class"></span>
+        <span id="char-level"></span>
+      </h2>
+      
+      <br>
+      
+      <label>Theme:</label>
+      <span id="char-theme"></span>
+      
+      <label>Gender:</label>
+      <span id="char-gender"></span>
+      
+      <label>Deity:</label>
+      <span id="char-deity"></span>
+      
+      <br>
+      <label>Home World:</label>
+      <span id="char-homeworld"></span>
+      
+      <label>Alignment:</label>
+      <span id="char-align"></span>
+      
+    </section>
+    
+    <br>
+    
+     <section class="grey-card" id="character-condition">
+      <div class="flex-container-status">
+        <div class="title">
+          Current
+        </div>
+        <div class="title">
+          Max
+        </div>
+        <div>
+          <div>STAM</div>
+          <span id="stat-curr-stam"></span>
+        </div>
+        <div>
+          <div>STAM</div>
+          <span id="stat-max-stam"></span>
+        </div>
+        <div>
+          <div>HP</div>
+          <span id="stat-curr-hp"></span>
+        </div>
+        <div>
+          <div>HP</div>
+          <span id="stat-max-hp"></span>
+        </div>
+        <div>
+          <div>RESOLVE</div>
+          <span id="stat-curr-res"></span>
+        </div>
+        <div>
+          <div>RESOLVE</div>
+          <span id="stat-max-res"></span>
+        </div>
+      </div>
+    </section>
+    
+    <section class="grey-card" id="abilty-scores">
+      <div class="flex-container-as">
+        <div>
+          <div>STR</div>
+          <span id="str">10</span>
+        </div>
+        <div class="as-mod">
+          <span id="str-mod">+0</span>
+        </div>
+        <div>
+          <div>DEX</div>
+          <span id="dex">10</span>
+        </div>
+        <div class="as-mod">
+          <span id="dex-mod">+0</span>
+        </div>
+        <div>
+          <div>CON</div>
+          <span id="con">10</span>
+        </div>
+        <div class="as-mod">
+          <span id="con-mod">+0</span>
+        </div>
+        <div>
+          <div>INT</div>
+          <span id="int">10</span>
+        </div>
+        <div class="as-mod">
+          <span id="int-mod">+0</span>
+        </div>
+        <div>
+          <div>WIS</div>
+          <span id="wis">10</span>
+        </div>
+        <div class="as-mod">
+          <span id="wis-mod">0</span>
+        </div>
+        <div>
+          <div>CHA</div>
+          <span id="cha">10</span>
+        </div>
+         <div class="as-mod">
+          <span id="cha-mod">+0</span>
+        </div>
+      </div>
+    </section>
+    <section class="grey-card" id="abilty-scores">
+      <div class="flex-container-saves">
+        <div>
+          <div>FORT</div>
+          <span id="save-fort">0</span>
+        </div>
+        <div>
+          <div>REF</div>
+          <span id="save-reflex">0</span>
+        </div>
+        <div>
+          <div>WILL</div>
+          <span id="save-will">0</span>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
