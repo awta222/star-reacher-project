@@ -1,0 +1,133 @@
+body {
+    background-color: #f2f2f2;
+    font-family: helvetica;
+  }
+  
+  .page-title {
+    text-align: center;
+    font-size: 48px;
+  }
+  
+  .white-card {
+    display: inline-block;
+    background-color: white;
+    box-shadow: 10px 10px 16px grey;
+    padding: 24px;
+    margin-bottom: 16px;
+    border-radius: 20px;
+    border-style: solid;
+    border-width: 5px;
+    text-align: center;
+  }
+  .grey-card {
+    display: inline-block;
+    background-color: #e6e6e6;
+    box-shadow: 10px 10px 16px grey;
+    padding: 24px;
+    margin-bottom: 16px;
+    border-radius: 20px;
+    border-style: solid;
+    border-width: 5px;
+  }
+  
+  .flex-container-status {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 220px;
+  }
+  
+  .flex-container-status > div {
+    background-color: white;
+    border-radius: 20px;
+    border-style: solid;
+    border-width: 3px;
+    width: 80px;
+    height: 80px;
+    margin: 10px;
+    text-align: center;
+    line-height: 35px;
+    font-size: 15px;
+  }
+  
+  .flex-container-status > div > span {
+    font-size: 25px;
+  }
+  
+  .flex-container-as {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width: 120px;
+  }
+  
+  .flex-container-as > div {
+    background-color: white;
+    border-radius: 20px;
+    border-style: solid;
+    border-width: 3px;
+    width: 80px;
+    height: 80px;
+    margin: 15px;
+    text-align: center;
+    line-height: 28px;
+    font-size: 20px;
+  }
+  
+  .flex-container-as > .as-mod {
+    background-color: white;
+    border-radius: 80px;
+    border-style: solid;
+    border-width: 3px;
+    width: 60px;
+    height: 40px;
+    margin-top: -40px;
+    margin-left: 26px;
+    text-align: center;
+    line-height: 40px;
+    font-size: 20px;
+  }
+  
+  
+  .flex-container-status > .title {
+    background-color: #e6e6e6;
+  
+    border-style: none;
+    border-width: px;
+    width: 85px;
+    height: 10px;
+    margin: 10px;
+    text-align: center;
+    line-height: 0px;
+    font-size: 20px;
+  }
+  
+  
+  .debug {
+    text-align: center;
+    font-size: 25px;
+  }
+  
+  .flex-container-saves {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 120px;
+  }
+  
+  .flex-container-saves > div {
+    background-color: white;
+    border-radius: 20px;
+    border-style: solid;
+    border-width: 3px;
+    width: 80px;
+    height: 80px;
+    margin: 10px;
+    text-align: center;
+    line-height: 35px;
+    font-size: 15px;
+  }
+  
+  .flex-container-saves > div > span {
+    font-size: 25px;
+  }
