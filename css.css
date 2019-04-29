@@ -132,31 +132,32 @@ body {
     font-size: 25px;
   }
 
-.column {
-  float: left;
-  text-align: left;
-  padding: 10px 20px;
-}
-.column span {
-  float: right;
-  padding-left: 10px;
-}
+  .column {
+    float: left;
+    text-align: left;
+    padding: 10px 20px;
+  }
 
-.column-debug input {
-  float: right;
-  padding-left: 30px;
-  width: 35px
-}
-.column-debug {
-  float: left;
-  text-align: left;
-  padding: 10px;
-}
+  .column span {
+    float: right;
+    padding-left: 10px;
+  }
 
+  .column-debug input {
+    float: right;
+    padding-left: 30px;
+    width: 35px
+  }
+
+  .column-debug {
+    float: left;
+    text-align: left;
+    padding: 10px;
+  }
 
 /* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
