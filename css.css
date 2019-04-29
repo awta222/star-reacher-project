@@ -3,12 +3,12 @@ body {
     font-family: helvetica;
   }
   
-  .page-title {
+.page-title {
     text-align: center;
     font-size: 48px;
-  }
-  
-  .white-card {
+}
+
+.white-card {
     display: inline-block;
     background-color: white;
     box-shadow: 10px 10px 16px grey;
@@ -18,8 +18,8 @@ body {
     border-style: solid;
     border-width: 5px;
     text-align: center;
-  }
-  .grey-card {
+}
+.grey-card {
     display: inline-block;
     background-color: #e6e6e6;
     box-shadow: 10px 10px 16px grey;
@@ -28,16 +28,16 @@ body {
     border-radius: 20px;
     border-style: solid;
     border-width: 5px;
-  }
-  
-  .flex-container-status {
+}
+
+.flex-container-status {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     width: 220px;
-  }
-  
-  .flex-container-status > div {
+}
+
+.flex-container-status > div {
     background-color: white;
     border-radius: 20px;
     border-style: solid;
@@ -48,20 +48,20 @@ body {
     text-align: center;
     line-height: 35px;
     font-size: 15px;
-  }
-  
-  .flex-container-status > div > span {
+}
+
+.flex-container-status > div > span {
     font-size: 25px;
-  }
-  
-  .flex-container-as {
+}
+
+.flex-container-as {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     width: 120px;
-  }
-  
-  .flex-container-as > div {
+}
+
+.flex-container-as > div {
     background-color: white;
     border-radius: 20px;
     border-style: solid;
@@ -72,9 +72,9 @@ body {
     text-align: center;
     line-height: 28px;
     font-size: 20px;
-  }
-  
-  .flex-container-as > .as-mod {
+}
+
+.flex-container-as > .as-mod {
     background-color: white;
     border-radius: 80px;
     border-style: solid;
@@ -86,12 +86,11 @@ body {
     text-align: center;
     line-height: 40px;
     font-size: 20px;
-  }
-  
-  
-  .flex-container-status > .title {
+}
+
+
+.flex-container-status > .title {
     background-color: #e6e6e6;
-  
     border-style: none;
     border-width: px;
     width: 85px;
@@ -100,22 +99,22 @@ body {
     text-align: center;
     line-height: 0px;
     font-size: 20px;
-  }
-  
-  
-  .debug {
+}
+
+
+.debug {
     text-align: center;
     font-size: 25px;
-  }
-  
-  .flex-container-saves {
+}
+
+.flex-container-saves {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     width: 120px;
-  }
-  
-  .flex-container-saves > div {
+}
+
+.flex-container-saves > div {
     background-color: white;
     border-radius: 20px;
     border-style: solid;
@@ -126,38 +125,38 @@ body {
     text-align: center;
     line-height: 35px;
     font-size: 15px;
-  }
-  
-  .flex-container-saves > div > span {
-    font-size: 25px;
-  }
+}
 
-  .column {
+.flex-container-saves > div > span {
+    font-size: 25px;
+}
+
+.column {
     float: left;
     text-align: left;
     padding: 10px 20px;
-  }
+}
 
-  .column span {
+.column span {
     float: right;
     padding-left: 10px;
-  }
+}
 
-  .column-debug input {
+.column-debug input {
     float: right;
     padding-left: 30px;
     width: 35px;
-  }
+}
 
-  .column-debug {
+.column-debug {
     float: left;
     text-align: left;
     padding: 10px;
-  }
+}
 
 /* Clear floats after the columns */
-  .row:after {
+.row:after {
     content: "";
     display: table;
     clear: both;
-  }
+}
