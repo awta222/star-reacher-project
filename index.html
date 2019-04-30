@@ -4,13 +4,16 @@
   <head>
     <title>Character Sheet</title>
   </head>
-    <header class="debug">Debug Stuff</header>
+  <button type="button" onclick="debugHideShow()" id="debugHideShowButton">Hide Debug</button><br>
+  <div id="allDebug">
+    <header class="debugHeader">Debug Stuff</header>
     <section>
       <div>
         <label>Character Name: </label><input id="char-name-entry" oninput="nameEntry()">
       </div>
     </section>
-    <section class="char-info-box">
+  <br>
+  <section class="char-info-box">
       <div>
         <label>Class: </label> <select id="class-entry" oninput="classEntry()">
           <option></option>
@@ -76,6 +79,7 @@
           <span class="host-gender"><option>Host (Shirren only)</option>
         </select>
       </div>
+        <br>
       <div>
         <label>Alignment: </label> <select id="alignment-entry" oninput="alignEntry()">
           <option></option>
@@ -166,38 +170,49 @@
         </select>
         <label>Player Name: </label><input name="player-entry" oninput="playerEntry()">
       </div>
-      <section>
-        <div>
-          <label>STR</label> <input type="number" id="str-PB" value="0" oninput="pointBuyEntry()">
-        </div>
-        <div>
-          <label>DEX</label> <input type="number" id="dex-PB" value="0" oninput="pointBuyEntry()">
-        </div>
-        <div>
-          <label>CON</label> <input type="number" id="con-PB" value="0" oninput="pointBuyEntry()">
-        </div>
-        <div>
-          <label>INT</label> <input type="number" id="int-PB" value="0" oninput="pointBuyEntry()">
-        </div>
-        <div>
-          <label>WIS</label> <input type="number" id="wis-PB" value="0" oninput="pointBuyEntry()">
-        </div>
-        <div>
-          <label>CHA</label> <input type="number" id="cha-PB" value="0" oninput="pointBuyEntry()">
-        </div>
-        <div>
-        <label>Remaining Points:</label><output id="point-buy-count" value="10"></output>
-        </div>
-        <div>
-          <button type="button" onclick="pointBuyReset()">Point Buy Reset</button>
-        </div>
-       </section>
-       <br>
-       <div>
-         <button type="button" onclick="resetAll()">Reset All</button>
-         <button type="button" onclick="finalizeCharacter()">Finalize Character</button>
-       </div>
-<hr>
+    </section>
+  <br>
+  <div class="row">
+  <section class="column-debug">
+      <div>
+        <label>STR</label><input type="number" id="str-PB" value="0" oninput="pointBuyEntry()">
+      </div>
+    <br>
+      <div>
+        <label>DEX</label> <input type="number" id="dex-PB" value="0" oninput="pointBuyEntry()">
+      </div>
+    <br>
+      <div>
+        <label>CON</label> <input type="number" id="con-PB" value="0" oninput="pointBuyEntry()">
+      </div>
+    <br>
+      <div>
+        <label>INT</label> <input type="number" id="int-PB" value="0" oninput="pointBuyEntry()">
+      </div>
+    <br>
+      <div>
+        <label>WIS</label> <input type="number" id="wis-PB" value="0" oninput="pointBuyEntry()">
+      </div>
+    <br>
+      <div>
+        <label>CHA</label> <input type="number" id="cha-PB" value="0" oninput="pointBuyEntry()">
+      </div>
+      <br>
+      <div>
+        <label>Remaining Points: </label><span id="point-buy-count">8</span>
+      </div>
+    <br>
+      <div>
+        <button type="button" onclick="pointBuyReset()">Point Buy Reset</button>
+      </div>  
+    </section>
+    </div>
+  <br>
+  <section>
+    <button type="button" onclick="resetAll()">Reset</button>
+    <button type="button" onclick="finalizeCharacter()">Finalize Character</button>  
+  </section>
+    <hr>
     <div>Skill Ranks</div><br>
         <div class="row">
           <div class="column-debug">
@@ -222,7 +237,7 @@
             Piloting: <input  type="number" id="piloting-ranks" value="0"></input><br><br>
             Profession (1): <input  type="number" id="profession1-ranks" value="0"></input><br><br>
             Profession (2): <input  type="number" id="profession2-ranks" value="0"></input><br><br>
-            Sense Motive: <input  type="number" id="senseMotive-ranks" value="0"></input><br><br>
+            Sense Motive: <input  type="number" id="sense-motive-ranks" value="0"></input><br><br>
             Sleight of Hand: <input  type="number" id="sleightOfHand-ranks" value="0"></input><br><br>
             Stealth: <input  type="number" id="stealth-ranks" value="0"></input><br><br>
             Survival: <input  type="number" id="survival-ranks" value="0"></input><br><br>
@@ -231,6 +246,9 @@
       <div>
         <label>Remaining Ranks: </label><span id="skill-rank-count"></span>
       </div>
+  <button type="button" onclick="debugHideShow()" id="debugHideShowButton">Hide Debug</button>
+<br>
+</div>
 <!-- ----------------------------------------------------------------------------- -->
    <hr>
   

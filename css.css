@@ -2,6 +2,10 @@ body {
     background-color: #f2f2f2;
     font-family: helvetica;
   }
+
+input {
+  font-family: helvetica;
+}
   
 .page-title {
     text-align: center;
@@ -101,10 +105,17 @@ body {
     font-size: 20px;
 }
 
+.debugHeader {
+  text-align: center;
+  font-size: 25px;
+}
 
-.debug {
-    text-align: center;
-    font-size: 25px;
+#debugHideShowButton {
+  float: right;
+}
+
+#allDebug {
+  display: block;
 }
 
 .flex-container-saves {
