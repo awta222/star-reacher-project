@@ -142,11 +142,10 @@ body {
     padding-left: 10px;
 }
 
-/* .column-debug input {
+.column-debug input {
     float: right;
-    padding-left: 30px;
     width: 35px;
-} */
+}
 
 .column-debug {
     float: left;
