@@ -1,5 +1,6 @@
 <html>
     <script type="text/javascript" src="char_gen.js"></script>
+    <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
     <link rel="stylesheet" href="css.css">
   <head>
     <title>Character Sheet</title>
@@ -66,7 +67,6 @@
           <option>Biotechnician</option>
           <option>Xenoarchaeologist</option>
           <option>Cultist</option>
-          <option>Xenoseeker</option>
           <option>Themeless</option>
         </select>
         <label for="gender-id">Gender: </label> <select id="gender-entry" oninput="genderEntry()">
@@ -77,7 +77,7 @@
         </select>
       </div>
       <div>
-        <label>Alignment: </label> <select id="alignment-entry" oninput="alignEntry()">
+        <label>Alignment: </label> <select id="alignment-entry" oninput="alignmentEntry()">
           <option></option>
           <option>Chaotic Evil</option>
           <option>Chaotic Neutral</option>
@@ -186,7 +186,7 @@
           <label>CHA</label> <input type="number" id="cha-PB" value="0" oninput="pointBuyEntry()">
         </div>
         <div>
-        <label>Remaining Points:</label><output id="point-buy-count" value="10"></output>
+        <label>Remaining Points:</label><output id="point-buy-count" value="10">10</output>
         </div>
         <div>
           <button type="button" onclick="pointBuyReset()">Point Buy Reset</button>
@@ -197,7 +197,40 @@
          <button type="button" onclick="resetAll()">Reset All</button>
          <button type="button" onclick="finalizeCharacter()">Finalize Character</button>
        </div>
-
+<hr>
+    <div>Skill Ranks</div><br>
+        <div class="row">
+          <div class="column-debug">
+            Acrobatics: <input type="number" id="acrobatics-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"></input><br><br>
+            Athletics: <input type="number" id="athletics-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"></input><br><br>
+            Bluff: <input type="number" id="bluff-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"></input><br><br>
+            Computers: <input type="number" id="computers-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"></input><br><br>
+            Culture: <input type="number" id="culture-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"></input><br><br>
+            Diplomacy: <input type="number" id="diplomacy-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"></input><br><br>
+            Disguise: <input type="number" id="disguise-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"></input><br><br>
+          </div>
+          <div class="column-debug">
+            Engineering: <input  type="number" id="engineering-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"></input><br><br>
+            Intimidate: <input  type="number"  id="intimidate-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"></input><br><br>
+            Life Science: <input  type="number"  id="lifeScience-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"></input><br><br>
+            Medicine: <input  type="number"  id="medicine-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"></input><br><br>
+            Mysticism: <input  type="number"  id="mysticism-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"></input><br><br>
+            Perception: <input  type="number"  id="perception-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"></input><br><br>
+            Physical Science: <input  type="number"  id="physicalScience-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"></input><br><br>
+          </div>
+          <div class="column-debug">
+            Piloting: <input  type="number" id="piloting-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"></input><br><br>
+            Profession (1): <input  type="number" id="profession1-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"></input><br><br>
+            Profession (2): <input  type="number" id="profession2-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"></input><br><br>
+            Sense Motive: <input  type="number" id="senseMotive-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"></input><br><br>
+            Sleight of Hand: <input  type="number" id="sleightOfHand-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"></input><br><br>
+            Stealth: <input  type="number" id="stealth-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"></input><br><br>
+            Survival: <input  type="number" id="survival-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"></input><br><br>
+          </div>
+        </div>
+      <div>
+        <label>Remaining Ranks: </label><span id="skill-rank-count"></span>
+      </div>
 <!-- ----------------------------------------------------------------------------- -->
    <hr>
   
@@ -333,6 +366,39 @@
           <span id="save-will">0</span>
         </div>
       </div>
+    </section>
+          <br>
+    <section class="white-card" id="skill-detail">
+      <div>
+        <div class="row">
+          <div class="column">
+            <input type="checkbox" id="acrobatics-box"> Acrobatics: <span id="acrobatics-total"></span><br>
+            <input type="checkbox" id="athletics-box"> Athletics: <span id="athletics-total"></span><br>
+            <input type="checkbox" id="bluff-box"> Bluff: <span id="bluff-total"></span><br>
+            <input type="checkbox" id="computers-box"> Computers: <span id="computers-total"></span><br>
+            <input type="checkbox" id="culture-box"> Culture: <span id="culture-total"></span><br>
+            <input type="checkbox" id="diplomacy-box"> Diplomacy: <span id="diplomacy-total"></span><br>
+            <input type="checkbox" id="disguise-box"> Disguise: <span id="disguise-total"></span><br>
+          </div>
+          <div class="column">
+            <input type="checkbox" id="engineering-box"> Engineering: <span id="engineering-total"></span><br>
+            <input type="checkbox" id="intimidate-box"> Intimidate: <span id="intimidate-total"></span><br>
+            <input type="checkbox" id="lifeScience-box"> Life Science: <span id="lifeScience-total"></span><br>
+            <input type="checkbox" id="medicine-box"> Medicine: <span id="medicine-total"></span><br>
+            <input type="checkbox" id="mysticism-box"> Mysticism: <span id="mysticism-total"></span><br>
+            <input type="checkbox" id="perception-box"> Perception: <span id="perception-total"></span><br>
+            <input type="checkbox" id="physicalScience-box"> Physical Science: <span id="physicalScience-total"></span><br>
+          </div>
+          <div class="column">
+            <input type="checkbox" id="piloting-box"> Piloting: <span id="piloting-total"></span><br>
+            <input type="checkbox" id="profession1-box"> Profession: <span id="profession1-total"></span><br>
+            <input type="checkbox" id="profession2-box"> Profession: <span id="profession2-total"></span><br>
+            <input type="checkbox" id="senseMotive-box"> Sense Motive: <span id="senseMotive-total"></span><br>
+            <input type="checkbox" id="sleightOfHand-box"> Sleight of Hand: <span id="sleightOfHand-total"></span><br>
+            <input type="checkbox" id="stealth-box"> Stealth: <span id="stealth-total"></span><br>
+            <input type="checkbox" id="survival-box"> Survival: <span id="survival-total"></span><br>
+          </div>
+        </div>
     </section>
   </body>
 </html>
