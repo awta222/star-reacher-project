@@ -105,6 +105,7 @@ input {
     font-size: 20px;
 }
 
+
 .debugHeader {
   text-align: center;
   font-size: 25px;
@@ -116,6 +117,7 @@ input {
 
 #allDebug {
   display: block;
+
 }
 
 .flex-container-saves {
@@ -153,10 +155,12 @@ input {
     padding-left: 10px;
 }
 
+
 .column-debug input {
     float: right;
     width: 35px;
 }
+
 
 .column-debug {
     float: left;
