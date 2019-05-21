@@ -148,6 +148,19 @@ function saveCalc() {
   document.getElementById("save-will").innerHTML = save_array[2];
 }
 
+function debugHideShow() {
+  var x = document.getElementById("allDebug");
+  var buttonDisplay = document.getElementById("debugHideShowButton");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+    buttonDisplay.innerHTML = "Hide Debug";
+  } else {
+    x.style.display = "none";
+    buttonDisplay.innerHTML = "Show Debug";
+  }
+}
+
+
 function allSkillCalc() {
   let skillNameArray = getSkillNames(),
   skillTrainingIndex = getClassSkillTraining(),
@@ -181,6 +194,7 @@ function allSkillCalc() {
 
     skillTotals[i] = skillMod + skillRanks + skillTraining + themeBonus + raceBonus + classBonus;
     console.log(skillName+": "+skillTotals[i]+", Mod: "+skillMod+", Theme: "+themeBonus+", Ranks/Trained: "+skillRanks+"/"+skillTraining+", Race: "+raceBonus+", Class: "+classBonus);
+
   }
  
   //check trained skill checkboxes, print all skill totals. Since this is 
@@ -291,6 +305,7 @@ function getSkillClassBonus(skillIdInput) {
   return skillBonusOutput;
 }
 
+
 function getClassSkillTraining() {
   let classSkillTrainedIndex = [
     [1,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,0],
@@ -311,6 +326,7 @@ function getSkillNames() { //list in ID order of skill field names
   'profession1','profession2','senseMotive','sleightOfHand','stealth',
   'survival'];
 }
+
 
 
 

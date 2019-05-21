@@ -2,6 +2,10 @@ body {
     background-color: #f2f2f2;
     font-family: helvetica;
   }
+
+input {
+  font-family: helvetica;
+}
   
 .page-title {
     text-align: center;
@@ -102,9 +106,18 @@ body {
 }
 
 
-.debug {
-    text-align: center;
-    font-size: 25px;
+.debugHeader {
+  text-align: center;
+  font-size: 25px;
+}
+
+#debugHideShowButton {
+  float: right;
+}
+
+#allDebug {
+  display: block;
+
 }
 
 .flex-container-saves {
@@ -142,11 +155,12 @@ body {
     padding-left: 10px;
 }
 
-/* .column-debug input {
+
+.column-debug input {
     float: right;
-    padding-left: 30px;
     width: 35px;
-} */
+}
+
 
 .column-debug {
     float: left;

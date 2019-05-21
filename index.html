@@ -5,13 +5,16 @@
   <head>
     <title>Character Sheet</title>
   </head>
-    <header class="debug">Debug Stuff</header>
+  <button type="button" onclick="debugHideShow()" id="debugHideShowButton">Hide Debug</button><br>
+  <div id="allDebug">
+    <header class="debugHeader">Debug Stuff</header>
     <section>
       <div>
         <label>Character Name: </label><input id="char-name-entry" oninput="nameEntry()">
       </div>
     </section>
-    <section class="char-info-box">
+  <br>
+  <section class="char-info-box">
       <div>
         <label>Class: </label> <select id="class-entry" oninput="classEntry()">
           <option></option>
@@ -76,6 +79,7 @@
           <span class="host-gender"><option>Host (Shirren only)</option>
         </select>
       </div>
+        <br>
       <div>
         <label>Alignment: </label> <select id="alignment-entry" oninput="alignmentEntry()">
           <option></option>
@@ -166,6 +170,7 @@
         </select>
         <label>Player Name: </label><input name="player-entry" oninput="playerEntry()">
       </div>
+
       <section>
         <div>
           <label>STR</label> <input type="number" id="str-PB" value="0" oninput="pointBuyEntry()">
@@ -231,6 +236,10 @@
       <div>
         <label>Remaining Ranks: </label><span id="skill-rank-count"></span>
       </div>
+  <button type="button" onclick="debugHideShow()" id="debugHideShowButton">Hide Debug</button>
+<br>
+</div>
+
 <!-- ----------------------------------------------------------------------------- -->
    <hr>
   
