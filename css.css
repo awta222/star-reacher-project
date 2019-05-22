@@ -147,7 +147,17 @@ input {
 .column {
     float: left;
     text-align: left;
-    padding: 10px 20px;
+    padding: 10px 20px 10px 0px;
+    line-height: 1.5;
+}
+
+.columnIcon {
+    float: left;
+    text-align: center;
+    padding: 10px 3px;
+    font-size: 50%;
+    line-height: 1.5;
+    margin: 0;
 }
 
 .column span {
@@ -158,7 +168,8 @@ input {
 
 .column-debug input {
     float: right;
-    width: 35px;
+    padding-left: 30px;
+    width: 35px
 }
 
 
