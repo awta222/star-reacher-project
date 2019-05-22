@@ -168,38 +168,47 @@
         </select>
         <label>Player Name: </label><input name="player-entry" oninput="playerEntry()">
       </div>
-
-      <section>
-        <div>
-          <label>STR</label> <input type="number" id="str-PB" value="0" oninput="pointBuyEntry()">
-        </div>
-        <div>
-          <label>DEX</label> <input type="number" id="dex-PB" value="0" oninput="pointBuyEntry()">
-        </div>
-        <div>
-          <label>CON</label> <input type="number" id="con-PB" value="0" oninput="pointBuyEntry()">
-        </div>
-        <div>
-          <label>INT</label> <input type="number" id="int-PB" value="0" oninput="pointBuyEntry()">
-        </div>
-        <div>
-          <label>WIS</label> <input type="number" id="wis-PB" value="0" oninput="pointBuyEntry()">
-        </div>
-        <div>
-          <label>CHA</label> <input type="number" id="cha-PB" value="0" oninput="pointBuyEntry()">
-        </div>
-        <div>
-        <label>Remaining Points:</label><output id="point-buy-count" value="10">10</output>
-        </div>
-        <div>
-          <button type="button" onclick="pointBuyReset()">Point Buy Reset</button>
-        </div>
-       </section>
-       <br>
-       <div>
-         <button type="button" onclick="resetAll()">Reset All</button>
-         <button type="button" onclick="finalizeCharacter()">Finalize Character</button>
-       </div>
+  </section>
+  <br>
+  <div class="row">
+    <section class="column-debug">
+      <div>
+        <label>STR</label> <input type="number" id="str-PB" value="0" oninput="pointBuyEntry()">
+      </div>
+      <br>
+      <div>
+        <label>DEX</label> <input type="number" id="dex-PB" value="0" oninput="pointBuyEntry()">
+      </div>
+      <br>
+      <div>
+        <label>CON</label> <input type="number" id="con-PB" value="0" oninput="pointBuyEntry()">
+      </div>
+      <br>
+      <div>
+        <label>INT</label> <input type="number" id="int-PB" value="0" oninput="pointBuyEntry()">
+      </div>
+      <br>
+      <div>
+        <label>WIS</label> <input type="number" id="wis-PB" value="0" oninput="pointBuyEntry()">
+      </div>
+      <br>
+      <div>
+        <label>CHA</label> <input type="number" id="cha-PB" value="0" oninput="pointBuyEntry()">
+      </div>
+      <br>
+      <div>
+      <label>Remaining Points:</label><output id="point-buy-count" value="10">10</output>
+      </div>
+      <br>
+      <div>
+        <button type="button" onclick="pointBuyReset()">Point Buy Reset</button>
+      </div>
+    </section>
+    <br>
+    <div>
+      <button type="button" onclick="resetAll()">Reset All</button>
+      <button type="button" onclick="finalizeCharacter()">Finalize Character</button>
+    </div>
 <hr>
     <div>Skill Ranks</div><br>
         <div class="row">
@@ -378,32 +387,80 @@
     <section class="white-card" id="skill-detail">
       <div>
         <div class="row">
-          <div class="column">
-            <input type="checkbox" id="acrobatics-box"> Acrobatics: <span id="acrobatics-total"></span><br>
-            <input type="checkbox" id="athletics-box"> Athletics: <span id="athletics-total"></span><br>
-            <input type="checkbox" id="bluff-box"> Bluff: <span id="bluff-total"></span><br>
-            <input type="checkbox" id="computers-box"> Computers: <span id="computers-total"></span><br>
-            <input type="checkbox" id="culture-box"> Culture: <span id="culture-total"></span><br>
-            <input type="checkbox" id="diplomacy-box"> Diplomacy: <span id="diplomacy-total"></span><br>
-            <input type="checkbox" id="disguise-box"> Disguise: <span id="disguise-total"></span><br>
+          <div class="columnIcon">
+            <div>⛨</div>
+            <div><br></div>
+            <div>⛨</div>
+            <div><br></div>
+            <div><br></div>
+            <div><br></div>
+            <div><br></div>
+            <div>?</div>
+            <div><br></div>
+            <div>?</div>
+            <div><br></div>
+            <div><br></div>
+            <div><br></div>
+            <div><br></div>
           </div>
           <div class="column">
-            <input type="checkbox" id="engineering-box"> Engineering: <span id="engineering-total"></span><br>
-            <input type="checkbox" id="intimidate-box"> Intimidate: <span id="intimidate-total"></span><br>
-            <input type="checkbox" id="lifeScience-box"> Life Science: <span id="lifeScience-total"></span><br>
-            <input type="checkbox" id="medicine-box"> Medicine: <span id="medicine-total"></span><br>
-            <input type="checkbox" id="mysticism-box"> Mysticism: <span id="mysticism-total"></span><br>
-            <input type="checkbox" id="perception-box"> Perception: <span id="perception-total"></span><br>
-            <input type="checkbox" id="physicalScience-box"> Physical Science: <span id="physicalScience-total"></span><br>
+            Acrobatics: <span id="acrobatics-total"></span><br>
+            Athletics: <span id="athletics-total"></span><br>
+            Bluff: <span id="bluff-total"></span><br>
+            Computers: <span id="computers-total"></span><br>
+            Culture: <span id="culture-total"></span><br>
+            Diplomacy: <span id="diplomacy-total"></span><br>
+            Disguise: <span id="disguise-total"></span><br>
+          </div>
+          <div class="columnIcon">
+            <br>
+            <div>?</div>
+            <br>
+            <br>
+            <br>
+            <div>?</div>
+            <br>
+            <div>?</div>
+            <br>
+            <div>?</div>
+            <br>
+            <br>
+            <br>
+            <div>?</div>
           </div>
           <div class="column">
-            <input type="checkbox" id="piloting-box"> Piloting: <span id="piloting-total"></span><br>
-            <input type="checkbox" id="profession1-box"> Profession: <span id="profession1-total"></span><br>
-            <input type="checkbox" id="profession2-box"> Profession: <span id="profession2-total"></span><br>
-            <input type="checkbox" id="senseMotive-box"> Sense Motive: <span id="senseMotive-total"></span><br>
-            <input type="checkbox" id="sleightOfHand-box"> Sleight of Hand: <span id="sleightOfHand-total"></span><br>
-            <input type="checkbox" id="stealth-box"> Stealth: <span id="stealth-total"></span><br>
-            <input type="checkbox" id="survival-box"> Survival: <span id="survival-total"></span><br>
+            Engineering: <span id="engineering-total"></span><br>
+            Intimidate: <span id="intimidate-total"></span><br>
+            Life Science: <span id="lifeScience-total"></span><br>
+            Medicine: <span id="medicine-total"></span><br>
+            Mysticism: <span id="mysticism-total"></span><br>
+            Perception: <span id="perception-total"></span><br>
+            Physical Science: <span id="physicalScience-total"></span><br>
+          </div>
+          <div class="columnIcon">
+            <div><br></div>
+            <div><br></div>
+            <div><br></div>
+            <div>?</div>
+            <div><br></div>
+            <div>?</div>
+            <div><br></div>
+            <div><br></div>
+            <div>⛨</div>
+            <div>?</div>
+            <div>⛨</div>
+            <div><br></div>
+            <div><br></div>
+            <div><br></div>
+          </div>
+          <div class="column">
+            Piloting: <span id="piloting-total"></span><br>
+            Profession: <span id="profession1-total"></span><br>
+            Profession: <span id="profession2-total"></span><br>
+            Sense Motive: <span id="senseMotive-total"></span><br>
+            Sleight of Hand: <span id="sleightOfHand-total"></span><br>
+            Stealth: <span id="stealth-total"></span><br>
+            Survival: <span id="survival-total"></span><br>
           </div>
         </div>
     </section>
