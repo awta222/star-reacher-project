@@ -174,41 +174,20 @@
   <br>
   <div class="row">
     <section class="column-debug">
-      <div>
-        <label>STR</label> <input type="number" id="str-PB" value="0" oninput="pointBuyEntry()">
-      </div>
-      <br>
-      <div>
-        <label>DEX</label> <input type="number" id="dex-PB" value="0" oninput="pointBuyEntry()">
-      </div>
-      <br>
-      <div>
-        <label>CON</label> <input type="number" id="con-PB" value="0" oninput="pointBuyEntry()">
-      </div>
-      <br>
-      <div>
-        <label>INT</label> <input type="number" id="int-PB" value="0" oninput="pointBuyEntry()">
-      </div>
-      <br>
-      <div>
-        <label>WIS</label> <input type="number" id="wis-PB" value="0" oninput="pointBuyEntry()">
-      </div>
-      <br>
-      <div>
-        <label>CHA</label> <input type="number" id="cha-PB" value="0" oninput="pointBuyEntry()">
-      </div>
-      <br>
-      <div>
-      <label>Remaining Points:</label><output id="point-buy-count" value="10">10</output>
-      </div>
-      <br>
-      <div>
-        <button type="button" onclick="pointBuyReset()">Point Buy Reset</button>
-      </div>
+        <label>STR</label> <input type="number" id="str-PB" value="0" oninput="pointBuyEntry()"><br><br>
+        <label>DEX</label> <input type="number" id="dex-PB" value="0" oninput="pointBuyEntry()"><br><br>
+        <label>CON</label> <input type="number" id="con-PB" value="0" oninput="pointBuyEntry()"><br><br>
+        <label>INT</label> <input type="number" id="int-PB" value="0" oninput="pointBuyEntry()"><br><br>
+        <label>WIS</label> <input type="number" id="wis-PB" value="0" oninput="pointBuyEntry()"><br><br>
+        <label>CHA</label> <input type="number" id="cha-PB" value="0" oninput="pointBuyEntry()"><br><br>
     </section>
   </div>
     <br>
   <section>
+    <label>Remaining Points:</label><output id="point-buy-count" value="10">10</output>
+    <br><br>
+    <button type="button" onclick="pointBuyReset()">Point Buy Reset</button>
+    <br><br>
     <button type="button" onclick="resetAll()">Reset All</button>
     <button type="button" onclick="finalizeCharacter()">Finalize Character</button>
   </section>
