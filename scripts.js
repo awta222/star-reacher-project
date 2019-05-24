@@ -8,19 +8,21 @@ var preferencesTab = document.getElementById("preferences-tab")
 
 
 function raceTabSelect() {
-    if (raceSection.style.display === "none") {
-        preferencesSection.style.display === "none";
-        raceSection.style.display === "block";
-        preferencesTab.classList.remove("btn-primary");
+    if (raceSection.classList.contains("active-section")) {
+    } else {
+        preferencesSection.classList.remove("active-section"); //Setup all sections to remove active
+        raceSection.classList.add("active-section");
+        preferencesTab.classList.remove("btn-primary"); //Setup all sections to remove primary
         raceTab.classList.add("btn-primary");
     } 
 }
 
 function preferencesTabSelect () {
-    if (preferencesSection.style.display === "none") {
-        raceSection.style.display === "none";
-        preferencesSection.style.display === "block";
-        raceTab.classList.remove("btn-primary");
+    if (preferencesSection.classList.contains("active-section")) {
+    } else {
+        raceSection.classList.remove("active-section"); //Setup all sections to remove active
+        preferencesSection.classList.add("active-section");
+        raceTab.classList.remove("btn-primary"); //Setup all sections to remove primary
         preferencesTab.classList.add("btn-primary");
 
     } 
