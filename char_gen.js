@@ -50,6 +50,18 @@ function raceEntry() {
         raceAS = race_index[raceId];
       }
     totalsMods_AS();
+    if (raceId === 5) {
+      var genderSelector = document.getElementById("gender-entry");
+      var option = document.createElement("option");
+      option.text = "Host";
+      genderSelector.add(option);
+    }
+      else {
+        var genderSelector = document.getElementById("gender-entry");
+        if (genderSelector.length > 3) {
+          genderSelector.remove(genderSelector.length-1);
+        }
+      }
 }
 
 function themeEntry() {
