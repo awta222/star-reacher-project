@@ -22,6 +22,11 @@ function levelEntry() {
   document.getElementById("char-level").innerHTML = document.getElementById("level-entry").value;
   level = Number(document.getElementById("level-entry").value);
   level = (level < 1) ? "" : level;
+  var skillRanks = document.querySelectorAll(".skillRanks");
+  var i;
+  for (i=0; i < skillRanks.length; i++) {
+    skillRanks[i].max = level;
+  }
   ranksRemaining();
 }
 
