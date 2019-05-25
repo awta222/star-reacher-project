@@ -10,80 +10,300 @@
 </head>
 <body>
     
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-xl">Extra large modal</button>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-xl">Debug/Wizard</button>
 
     <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-xl">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Debug Menu</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
+          <h5 class="modal-title" id="exampleModalLabel">Debug Menu</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
         </div>
         <div class="modal-body">
-            <ul class="nav nav-pills nav-justified">
-              <li class="nav-item">
-                <!-- <a class="nav-link active" id="preference-tab" onclick="preferencesTabSelect()">Preferences</a> -->
-                <button type="button" class="btn-tab btn btn-primary" id="preferences-tab" onclick="preferencesTabSelect()">Preferences</button>
-              </li>
-              <li class="nav-item">
-                <button type="button" class="btn-tab btn" id="race-tab" onclick="raceTabSelect()">Race</button>
-              </li>
-              <li class="nav-item">
-                <button type="button" class="btn-tab btn" id="theme-tab" onclick="themeTabSelect()">Theme</a>
-              </li>
-              <li class="nav-item">
-                <button type="button" class="btn-tab btn" id="class-tab" onclick="classTabSelect()">Class</a>
-              </li>
-              <li class="nav-item">
-                <button type="button" class="btn-tab btn" id="ability-scores-tab" onclick="abilityScoresTabSelect()">Ability Scores</a>
-              </li>
-              <li class="nav-item">
-                <button type="button" class="btn-tab btn" id="class-choices-tab" onclick="classChoicesTabSelect()">Class Choices</a>
-              </li>
-              <li class="nav-item">
-                <button type="button" class="btn-tab btn" id="skills-tab" onclick="skillsTabSelect()">Skills</a>
-              </li>
-              <li class="nav-item">
-                <button type="button" class="btn-tab btn" id="feats-tab" onclick="featsTabSelect()">Feats</a>
-              </li>
-              <li class="nav-item">
-                <button type="button" class="btn-tab btn" id="equipment-tab" onclick="equipmentTabSelect()">Equipment</a>
-              </li>
-            </ul>
-            <hr>
-            <section class="wizard-section active-section" id="preferences-section">
-              Preferences Test.  
-            </section>
-            <section class="wizard-section" id="race-section">
-              Race Test.    
-            </section>
-            <section class="wizard-section" id="theme-section">
-              Theme Test.    
-            </section>
-            <section class="wizard-section" id="class-section">
-              Class Test.    
-            </section>
-            <section class="wizard-section" id="ability-scores-section">
-              AS Test.    
-            </section>
-            <section class="wizard-section" id="class-choices-section">
-              Class Choices Test.    
-            </section>
-            <section class="wizard-section" id="skills-section">
-              Skills Test.    
-            </section>
-            <section class="wizard-section" id="feats-section">
-              Feats Test.    
-            </section>
-            <section class="wizard-section" id="equipment-section">
-              Equipment Test.    
-            </section>
+          <ul class="nav nav-pills nav-justified">
+            <li class="nav-item">
+              <!-- <a class="nav-link active" id="preference-tab" onclick="preferencesTabSelect()">Preferences</a> -->
+              <button type="button" class="btn-tab btn btn-primary" id="preferences-tab" onclick="preferencesTabSelect()">Preferences</button>
+            </li>
+            <li class="nav-item">
+              <button type="button" class="btn-tab btn" id="race-tab" onclick="raceTabSelect()">Race</button>
+            </li>
+            <li class="nav-item">
+              <button type="button" class="btn-tab btn" id="theme-tab" onclick="themeTabSelect()">Theme</a>
+            </li>
+            <li class="nav-item">
+              <button type="button" class="btn-tab btn" id="class-tab" onclick="classTabSelect()">Class</a>
+            </li>
+            <li class="nav-item">
+              <button type="button" class="btn-tab btn" id="ability-scores-tab" onclick="abilityScoresTabSelect()">Ability Scores</a>
+            </li>
+            <li class="nav-item">
+              <button type="button" class="btn-tab btn" id="class-choices-tab" onclick="classChoicesTabSelect()">Class Choices</a>
+            </li>
+            <li class="nav-item">
+              <button type="button" class="btn-tab btn" id="skills-tab" onclick="skillsTabSelect()">Skills</a>
+            </li>
+            <li class="nav-item">
+              <button type="button" class="btn-tab btn" id="feats-tab" onclick="featsTabSelect()">Feats</a>
+            </li>
+            <li class="nav-item">
+              <button type="button" class="btn-tab btn" id="equipment-tab" onclick="equipmentTabSelect()">Equipment</a>
+            </li>
+          </ul>
+          <hr>
+          <section class="wizard-section active-section" id="preferences-section">
+            <div>
+              <label>Character Name: </label><input id="char-name-entry" oninput="nameEntry()">
+              <label>Level: </label> <input type="number" id="level-entry" min="1" max="20" oninput="levelEntry()">
+              <label>Alignment: </label>
+              <select id="alignment-entry" oninput="alignmentEntry()">
+                <option></option>
+                <option>Chaotic Evil</option>
+                <option>Chaotic Neutral</option>
+                <option>Chaotic Good</option>
+                <option>Neutral Evil</option>
+                <option>True Neutral</option>
+                <option>Neutral Good</option>
+                <option>Lawful Evil</option>
+                <option>Lawful Neutral</option>
+                <option>Lawful Good</option>
+              </select>
+              <br>
+              <label>Deity: </label> 
+              <select id="deity-entry" oninput="deityEntry()">
+                <option>None</option>
+                <option>Abadar</option>
+                <option>Angradd</option>
+                <option>Arshea</option>
+                <option>Asmodeus</option>
+                <option>Besmara</option>
+                <option>Black Butterfly</option>
+                <option>Calistria</option>
+                <option>Damoritosh</option>
+                <option>Desna</option>
+                <option>Eldest</option>
+                <option>Eloritu</option>
+                <option>Groetus</option>
+                <option>Hylax</option>
+                <option>Ibra</option>
+                <option>Iomedae</option>
+                <option>Lamashtu</option>
+                <option>Lao Shu Po</option>
+                <option>Lissala</option>
+                <option>Nyarlathotep</option>
+                <option>Pharasma</option>
+                <option>Sarenrae</option>
+                <option>Talavet</option>
+                <option>The Devourer</option>
+                <option>Triune</option>
+                <option>Urgathoa</option>
+                <option>Weydan</option>
+                <option>Yaraesa</option>
+                <option>Zon-Kuthon</option>
+              </select>
+              <label>Homeworld: </label> 
+              <select id="homeworld-entry" oninput="homeworldEntry()">
+                <option>Unknown</option>
+                <option>Aballon</option>
+                <option>Absalom Station</option>
+                <option>Akiton</option>
+                <option>Apostae</option>
+                <option>Arquand</option>
+                <option>Arshalin</option>
+                <option>Aucturn</option>
+                <option>Azlanti Star Empire</option>
+                <option>Barrow</option>
+                <option>Bretheda</option>
+                <option>Castrovel</option>
+                <option>Daegox 4</option>
+                <option>Daimalko</option>
+                <option>Elytrio</option>
+                <option>Eox</option>
+                <option>Heicoron IV</option>
+                <option>Idari</option>
+                <option>Jedarat</option>
+                <option>Liavara</option>
+                <option>Lothun</option>
+                <option>Nakondis</option>
+                <option>Nejeor VI</option>
+                <option>New Thespera</option>
+                <option>Orikolai</option>
+                <option>Orry</option>
+                <option>Outpost Zed</option>
+                <option>Preluria</option>
+                <option>Primoria</option>
+                <option>Ratheren</option>
+                <option>Riven Shroud</option>
+                <option>Sepres VI</option>
+                <option>Shadari</option>
+                <option>Shimrinsara</option>
+                <option>Silselrik</option>
+                <option>Tabori Cluster</option>
+                <option>The Diaspora</option>
+                <option>The Drift</option>
+                <option>The Sun</option>
+                <option>The Veskarium</option>
+                <option>Triaxus</option>
+                <option>Urrakar</option>
+              </select>
+              <label>Player Name: </label>
+              <input name="player-entry" oninput="playerEntry()">
+            </div><br><br>
+
+            <div class="preference-column">
+              <label for="charcater-progression">Character Progression</label>
+            </div>
+          </section>
+          <section class="wizard-section" id="race-section">
+            <label>Race: </label>
+            <select id="race-entry"  oninput="raceEntry()">
+              <option></option>
+              <option>Android</option>
+              <option>Human</option>
+              <option>Kasatha</option>
+              <option>Lashunta (Damaya)</option>
+              <option>Lashunta (Korasha)</option>
+              <option>Shirren</option>
+              <option>Vesk</option>
+              <option>Ysoki</option>
+              <option>Astrazoan</option>
+              <option>Bantrid</option>
+              <option>Borais</option>
+              <option>Khizar</option>
+              <option>SRO (Small)</option>
+              <option>SRO (Medium)</option>
+              <option>Strix</option>
+            </select>
+            <label for="gender-id">Gender: </label>
+            <select id="gender-entry" oninput="genderEntry()">
+              <option></option>
+              <option>Male</option>
+              <option>Female</option>
+            </select>
+          </section>
+          <section class="wizard-section" id="theme-section">
+            <label>Theme: </label> 
+            <select id="theme-entry" oninput="themeEntry()">
+              <option></option>
+              <option>Ace Pilot</option>
+              <option>Bounty Hunter</option>
+              <option>Icon</option>
+              <option>Mercenary</option>
+              <option>Outlaw</option>
+              <option>Priest</option>
+              <option>Scholar</option>
+              <option>Spacefarer</option>
+              <option>Xenoseeker</option>
+              <option>Solar Disciple</option>
+              <option>Roboticist</option>
+              <option>Wild Warden</option>
+              <option>Corporate Agent</option>
+              <option>Gladiator</option>
+              <option>Cyberborn</option>
+              <option>Tempered Pilgrim</option>
+              <option>Space Pirate</option>
+              <option>Death-Touched</option>
+              <option>Dragonblood</option>
+              <option>Dream Prophet</option>
+              <option>Biotechnician</option>
+              <option>Xenoarchaeologist</option>
+              <option>Cultist</option>
+              <option>Themeless</option>
+            </select>
+          </section>
+          <section class="wizard-section" id="class-section">
+            <label>Class: </label>
+            <select id="class-entry" oninput="classEntry()">
+              <option></option>
+              <option>Envoy</option>
+              <option>Mechanic</option>
+              <option>Mystic</option>
+              <option>Operative</option>
+              <option>Solarian</option>
+              <option>Soldier</option>
+              <option>Technomancer</option>
+            </select>   
+          </section>
+          <section class="wizard-section" id="ability-scores-section">
+            <section class="column-debug">
+              <h3>Stats (Point Buy)</h3>
+              <label>STR</label> <input type="number" id="str-PB" value="0" oninput="pointBuyEntry()"><br><br>
+              <label>DEX</label> <input type="number" id="dex-PB" value="0" oninput="pointBuyEntry()"><br><br>
+              <label>CON</label> <input type="number" id="con-PB" value="0" oninput="pointBuyEntry()"><br><br>
+              <label>INT</label> <input type="number" id="int-PB" value="0" oninput="pointBuyEntry()"><br><br>
+              <label>WIS</label> <input type="number" id="wis-PB" value="0" oninput="pointBuyEntry()"><br><br>
+              <label>CHA</label> <input type="number" id="cha-PB" value="0" oninput="pointBuyEntry()"><br><br>
+              <br>
+              <h3>Human Stat Select</h3>
+              <label>+2 to: </label> 
+              <select id="human-attribute-entry" oninput="">
+                <option>STR</option>
+                <option>DEX</option>
+                <option>CON</option>
+                <option>INT</option>
+                <option>WIS</option>
+                <option>CHA</option>
+              </select>
+            </section>   
+            <section>
+              <label>Remaining Points:</label><output id="point-buy-count" value="10">10</output>
+              <br><br>
+              <button type="button" onclick="pointBuyReset()">Point Buy Reset</button>
+              <br><br>
+              <button type="button" onclick="resetAll()">Reset All</button>
+              <button type="button" onclick="finalizeCharacter()">Finalize Character</button>
+            </section> 
+          </section>
+          <section class="wizard-section" id="class-choices-section">
+            Class Choices Test.    
+          </section>
+          <section class="wizard-section" id="skills-section">
+            <h3>Skill Ranks</h3>
+            <div class="row">
+              <div class="column-debug">
+                Acrobatics: <input type="number" class="skillRanks" id="acrobatics-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+                Athletics: <input type="number" class="skillRanks" id="athletics-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+                Bluff: <input type="number" class="skillRanks" id="bluff-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+                Computers: <input type="number" class="skillRanks" id="computers-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+                Culture: <input type="number" class="skillRanks" id="culture-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+                Diplomacy: <input type="number" class="skillRanks" id="diplomacy-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+                Disguise: <input type="number" class="skillRanks" id="disguise-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+              </div>
+              <div class="column-debug">
+                Engineering: <input  type="number" class="skillRanks" id="engineering-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+                Intimidate: <input  type="number" class="skillRanks"  id="intimidate-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+                Life Science: <input  type="number" class="skillRanks"  id="lifeScience-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+                Medicine: <input  type="number" class="skillRanks"  id="medicine-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+                Mysticism: <input  type="number" class="skillRanks"  id="mysticism-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+                Perception: <input  type="number" class="skillRanks"  id="perception-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+                Physical Science: <input  type="number" class="skillRanks"  id="physicalScience-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+              </div>
+              <div class="column-debug">
+                Piloting: <input  type="number" class="skillRanks" id="piloting-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+                Profession (1): <input  type="number" class="skillRanks" id="profession1-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+                Profession (2): <input  type="number" class="skillRanks" id="profession2-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+                Sense Motive: <input  type="number" class="skillRanks" id="senseMotive-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+                Sleight of Hand: <input  type="number" class="skillRanks" id="sleightOfHand-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+                Stealth: <input  type="number" class="skillRanks" id="stealth-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+                Survival: <input  type="number" class="skillRanks" id="survival-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+              </div>
+            </div>
+            <div>
+              <label>Remaining Ranks: </label><span id="skill-rank-count"></span>
+            </div>    
+          </section>
+          <section class="wizard-section" id="feats-section">
+            Feats Test.    
+          </section>
+          <section class="wizard-section" id="equipment-section">
+            Equipment Test.    
+          </section>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
         </div>
         </div>
     </div>
