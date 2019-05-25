@@ -22,6 +22,10 @@ function levelEntry() {
   document.getElementById("char-level").innerHTML = document.getElementById("level-entry").value;
   level = Number(document.getElementById("level-entry").value);
   level = (level < 1) ? "" : level;
+  var skillRanks = document.querySelectorAll(".skillRanks");
+  for (let i = 0; i < skillRanks.length; i++) {
+    skillRanks[i].max = level;
+  }
   ranksRemaining();
 }
 
@@ -45,6 +49,18 @@ function raceEntry() {
         raceAS = race_index[raceId];
       }
     totalsMods_AS();
+    if (raceId === 5) {
+      let genderSelector = document.getElementById("gender-entry");
+      let option = document.createElement("option");
+      option.text = "Host";
+      genderSelector.add(option);
+    }
+      else {
+        let genderSelector = document.getElementById("gender-entry");
+        if (genderSelector.length > 3) {
+          genderSelector.remove(genderSelector.length-1);
+        }
+      }
 }
 
 function themeEntry() {
