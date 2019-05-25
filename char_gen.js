@@ -50,13 +50,13 @@ function raceEntry() {
       }
     totalsMods_AS();
     if (raceId === 5) {
-      var genderSelector = document.getElementById("gender-entry");
-      var option = document.createElement("option");
+      let genderSelector = document.getElementById("gender-entry");
+      let option = document.createElement("option");
       option.text = "Host";
       genderSelector.add(option);
     }
       else {
-        var genderSelector = document.getElementById("gender-entry");
+        let genderSelector = document.getElementById("gender-entry");
         if (genderSelector.length > 3) {
           genderSelector.remove(genderSelector.length-1);
         }
