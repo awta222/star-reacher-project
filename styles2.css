@@ -43,3 +43,11 @@ header {
     height: 50px;
     width: auto;
 }
+
+.footer {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin: 0% 5% 0% 5%;
+    width: 90%;
+}
