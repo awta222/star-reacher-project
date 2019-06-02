@@ -1,309 +1,615 @@
-<html>
-  <head>
-    <title>Character Sheet</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css.css">
-  </head>
-  <button type="button" onclick="debugHideShow()" id="debugHideShowButton">Hide Debug</button><br>
-  <div id="allDebug">
-    <header class="debugHeader">Debug Stuff</header>
-    <section>
-      <div>
-        <label>Character Name: </label><input id="char-name-entry" oninput="nameEntry()">
-      </div>
-    </section>
-  <br>
-  <section class="char-info-box">
-      <div>
-        <label>Class: </label> <select id="class-entry" oninput="classEntry()">
-          <option></option>
-          <option>Envoy</option>
-          <option>Mechanic</option>
-          <option>Mystic</option>
-          <option>Operative</option>
-          <option>Solarian</option>
-          <option>Soldier</option>
-          <option>Technomancer</option>
-        </select>
-        <label>Level: </label> <input type="number" id="level-entry" min="1" max="20" oninput="levelEntry()">
-        <label>Race: </label> <select id="race-entry"  oninput="raceEntry()">
-          <option></option>
-          <option>Android</option>
-          <option>Human</option>
-          <option>Kasatha</option>
-          <option>Lashunta (Damaya)</option>
-          <option>Lashunta (Korasha)</option>
-          <option>Shirren</option>
-          <option>Vesk</option>
-          <option>Ysoki</option>
-          <option>Astrazoan</option>
-          <option>Bantrid</option>
-          <option>Borais</option>
-          <option>Khizar</option>
-          <option>SRO (Small)</option>
-          <option>SRO (Medium)</option>
-          <option>Strix</option>
-        </select>
-        <label>Theme: </label> <select id="theme-entry" oninput="themeEntry()">
-          <option></option>
-          <option>Ace Pilot</option>
-          <option>Bounty Hunter</option>
-          <option>Icon</option>
-          <option>Mercenary</option>
-          <option>Outlaw</option>
-          <option>Priest</option>
-          <option>Scholar</option>
-          <option>Spacefarer</option>
-          <option>Xenoseeker</option>
-          <option>Solar Disciple</option>
-          <option>Roboticist</option>
-          <option>Wild Warden</option>
-          <option>Corporate Agent</option>
-          <option>Gladiator</option>
-          <option>Cyberborn</option>
-          <option>Tempered Pilgrim</option>
-          <option>Space Pirate</option>
-          <option>Death-Touched</option>
-          <option>Dragonblood</option>
-          <option>Dream Prophet</option>
-          <option>Biotechnician</option>
-          <option>Xenoarchaeologist</option>
-          <option>Cultist</option>
-          <option>Themeless</option>
-        </select>
-        <label for="gender-id">Gender: </label> <select id="gender-entry" oninput="genderEntry()">
-          <option></option>
-          <option>Male</option>
-          <option>Female</option>
-        </select>
-      </div>
-        <br>
-      <div>
-        <label>Alignment: </label> <select id="alignment-entry" oninput="alignmentEntry()">
-          <option></option>
-          <option>Chaotic Evil</option>
-          <option>Chaotic Neutral</option>
-          <option>Chaotic Good</option>
-          <option>Neutral Evil</option>
-          <option>True Neutral</option>
-          <option>Neutral Good</option>
-          <option>Lawful Evil</option>
-          <option>Lawful Neutral</option>
-          <option>Lawful Good</option>
-        </select>
-        <label>Deity: </label> <select id="deity-entry" oninput="deityEntry()">
-          <option>None</option>
-          <option>Abadar</option>
-          <option>Angradd</option>
-          <option>Arshea</option>
-          <option>Asmodeus</option>
-          <option>Besmara</option>
-          <option>Black Butterfly</option>
-          <option>Calistria</option>
-          <option>Damoritosh</option>
-          <option>Desna</option>
-          <option>Eldest</option>
-          <option>Eloritu</option>
-          <option>Groetus</option>
-          <option>Hylax</option>
-          <option>Ibra</option>
-          <option>Iomedae</option>
-          <option>Lamashtu</option>
-          <option>Lao Shu Po</option>
-          <option>Lissala</option>
-          <option>Nyarlathotep</option>
-          <option>Pharasma</option>
-          <option>Sarenrae</option>
-          <option>Talavet</option>
-          <option>The Devourer</option>
-          <option>Triune</option>
-          <option>Urgathoa</option>
-          <option>Weydan</option>
-          <option>Yaraesa</option>
-          <option>Zon-Kuthon</option>
-        </select>
-        <label>Homeworld: </label> <select id="homeworld-entry" oninput="homeworldEntry()">
-          <option>Unknown</option>
-          <option>Aballon</option>
-          <option>Absalom Station</option>
-          <option>Akiton</option>
-          <option>Apostae</option>
-          <option>Arquand</option>
-          <option>Arshalin</option>
-          <option>Aucturn</option>
-          <option>Azlanti Star Empire</option>
-          <option>Barrow</option>
-          <option>Bretheda</option>
-          <option>Castrovel</option>
-          <option>Daegox 4</option>
-          <option>Daimalko</option>
-          <option>Elytrio</option>
-          <option>Eox</option>
-          <option>Heicoron IV</option>
-          <option>Idari</option>
-          <option>Jedarat</option>
-          <option>Liavara</option>
-          <option>Lothun</option>
-          <option>Nakondis</option>
-          <option>Nejeor VI</option>
-          <option>New Thespera</option>
-          <option>Orikolai</option>
-          <option>Orry</option>
-          <option>Outpost Zed</option>
-          <option>Preluria</option>
-          <option>Primoria</option>
-          <option>Ratheren</option>
-          <option>Riven Shroud</option>
-          <option>Sepres VI</option>
-          <option>Shadari</option>
-          <option>Shimrinsara</option>
-          <option>Silselrik</option>
-          <option>Tabori Cluster</option>
-          <option>The Diaspora</option>
-          <option>The Drift</option>
-          <option>The Sun</option>
-          <option>The Veskarium</option>
-          <option>Triaxus</option>
-          <option>Urrakar</option>
-        </select>
-        <label>Player Name: </label><input name="player-entry" oninput="playerEntry()">
-      </div>
-  </section>
-  <br>
-  <div class="row">
-    <section class="column-debug">
-      <h3>Stats (Point Buy)</h3>
-      <label>STR</label> <input type="number" id="str-PB" value="0" oninput="pointBuyEntry()"><br><br>
-      <label>DEX</label> <input type="number" id="dex-PB" value="0" oninput="pointBuyEntry()"><br><br>
-      <label>CON</label> <input type="number" id="con-PB" value="0" oninput="pointBuyEntry()"><br><br>
-      <label>INT</label> <input type="number" id="int-PB" value="0" oninput="pointBuyEntry()"><br><br>
-      <label>WIS</label> <input type="number" id="wis-PB" value="0" oninput="pointBuyEntry()"><br><br>
-      <label>CHA</label> <input type="number" id="cha-PB" value="0" oninput="pointBuyEntry()"><br><br>
-    </section>
-    <section class="column-debug">
-        <h3>Human Stat Select</h3>
-        <label>+2 to: </label> 
-        <select id="human-attribute-entry" oninput="">
-          <option>STR</option>
-          <option>DEX</option>
-          <option>CON</option>
-          <option>INT</option>
-          <option>WIS</option>
-          <option>CHA</option>
-        </select>
-        <br><br>
-        <h3>Lashunta Skill Select</h3>
-        <label>First Choice: </label> 
-        <select id="lashunta-skill-1-entry" oninput="">
-            <option>Acrobatics</option>
-            <option>Athletics</option>
-            <option>Bluff</option>
-            <option>Computers</option>
-            <option>Culture</option>
-            <option>Diplomacy</option>
-            <option>Disguise</option>
-            <option>Engineering</option>
-            <option>Intimidate</option>
-            <option>Life Science</option>
-            <option>Medicine</option>
-            <option>Mysticism</option>
-            <option>Perception</option>
-            <option>Physical Science</option>
-            <option>Piloting</option>
-            <option>Profession (1)</option>
-            <option>Profession (2)</option>
-            <option>Sense Motive</option>
-            <option>Sleight of Hand</option>
-            <option>Stealth</option>
-            <option>Survival</option>
-        </select>
-        <br><br>
-        <label>Second Choice: </label> 
-        <select id="lashunta-skill-2-entry" oninput="">
-            <option>Acrobatics</option>
-            <option>Athletics</option>
-            <option>Bluff</option>
-            <option>Computers</option>
-            <option>Culture</option>
-            <option>Diplomacy</option>
-            <option>Disguise</option>
-            <option>Engineering</option>
-            <option>Intimidate</option>
-            <option>Life Science</option>
-            <option>Medicine</option>
-            <option>Mysticism</option>
-            <option>Perception</option>
-            <option>Physical Science</option>
-            <option>Piloting</option>
-            <option>Profession (1)</option>
-            <option>Profession (2)</option>
-            <option>Sense Motive</option>
-            <option>Sleight of Hand</option>
-            <option>Stealth</option>
-            <option>Survival</option>
-        </select>
-    </section>
-  </div>
-    <br>
-  <section>
-    <label>Remaining Points:</label><output id="point-buy-count" value="10">10</output>
-    <br><br>
-    <button type="button" onclick="pointBuyReset()">Point Buy Reset</button>
-    <br><br>
-    <button type="button" onclick="resetAll()">Reset All</button>
-    <button type="button" onclick="finalizeCharacter()">Finalize Character</button>
-  </section>
-
-<hr>
-    <div>Skill Ranks</div><br>
-    <div class="row">
-      <div class="column-debug">
-        Acrobatics: <input type="number" class="skillRanks" id="acrobatics-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
-        Athletics: <input type="number" class="skillRanks" id="athletics-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
-        Bluff: <input type="number" class="skillRanks" id="bluff-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
-        Computers: <input type="number" class="skillRanks" id="computers-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
-        Culture: <input type="number" class="skillRanks" id="culture-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
-        Diplomacy: <input type="number" class="skillRanks" id="diplomacy-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
-        Disguise: <input type="number" class="skillRanks" id="disguise-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
-      </div>
-      <div class="column-debug">
-        Engineering: <input  type="number" class="skillRanks" id="engineering-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
-        Intimidate: <input  type="number" class="skillRanks"  id="intimidate-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
-        Life Science: <input  type="number" class="skillRanks"  id="lifeScience-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
-        Medicine: <input  type="number" class="skillRanks"  id="medicine-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
-        Mysticism: <input  type="number" class="skillRanks"  id="mysticism-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
-        Perception: <input  type="number" class="skillRanks"  id="perception-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
-        Physical Science: <input  type="number" class="skillRanks"  id="physicalScience-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
-      </div>
-      <div class="column-debug">
-        Piloting: <input  type="number" class="skillRanks" id="piloting-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
-        Profession (1): <input  type="number" class="skillRanks" id="profession1-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
-        Profession (2): <input  type="number" class="skillRanks" id="profession2-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
-        Sense Motive: <input  type="number" class="skillRanks" id="senseMotive-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
-        Sleight of Hand: <input  type="number" class="skillRanks" id="sleightOfHand-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
-        Stealth: <input  type="number" class="skillRanks" id="stealth-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
-        Survival: <input  type="number" class="skillRanks" id="survival-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
-      </div>
-    </div>
-    <div>
-      <label>Remaining Ranks: </label><span id="skill-rank-count"></span>
-    </div>
-  <button type="button" onclick="debugHideShow()" id="debugHideShowButton">Hide Debug</button>
-<br>
-</div>
-
-<!-- ----------------------------------------------------------------------------- -->
-   <hr>
-  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles.css">
+  <title>Starfinder Character Sheet</title>
+</head>
+<body>
   <header>
+    <img src="https://cdn7.bigcommerce.com/s-prbxb6t0/product_images/uploaded_images/starfinder-logo.png" id="starfinder-main-logo" alt="">
+    <button type="button" class="char-edit-button btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-xl"><i class="fas fa-cog"></i> Edit Character</button>
+  </header> 
+  <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Debug Menu</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ul class="nav nav-pills nav-justified">
+          <li class="nav-item">
+            <button type="button" class="btn-tab btn btn-primary" id="preferences-tab" onclick="preferencesTabSelect()">Preferences</button>
+          </li>
+          <li class="nav-item">
+            <button type="button" class="btn-tab btn" id="race-tab" onclick="raceTabSelect()">Race</button>
+          </li>
+          <li class="nav-item">
+            <button type="button" class="btn-tab btn" id="theme-tab" onclick="themeTabSelect()">Theme</a>
+          </li>
+          <li class="nav-item">
+            <button type="button" class="btn-tab btn" id="class-tab" onclick="classTabSelect()">Class</a>
+          </li>
+          <li class="nav-item">
+            <button type="button" class="btn-tab btn" id="ability-scores-tab" onclick="abilityScoresTabSelect()">Ability Scores</a>
+          </li>
+          <li class="nav-item">
+            <button type="button" class="btn-tab btn" id="class-choices-tab" onclick="classChoicesTabSelect()">Class Choices</a>
+          </li>
+          <li class="nav-item">
+            <button type="button" class="btn-tab btn" id="skills-tab" onclick="skillsTabSelect()">Skills</a>
+          </li>
+          <li class="nav-item">
+            <button type="button" class="btn-tab btn" id="feats-tab" onclick="featsTabSelect()">Feats</a>
+          </li>
+          <li class="nav-item">
+            <button type="button" class="btn-tab btn" id="equipment-tab" onclick="equipmentTabSelect()">Equipment</a>
+          </li>
+        </ul>
+        <hr>
+        <section class="wizard-section active-section" id="preferences-section">
+          <div>
+            <label>Character Name: </label><input id="char-name-entry" oninput="nameEntry()">
+            <label>Level: </label> <input type="number" id="level-entry" min="1" max="20" oninput="levelEntry()">
+            <label>Alignment: </label>
+            <select id="alignment-entry" oninput="alignmentEntry()">
+              <option></option>
+              <option>Chaotic Evil</option>
+              <option>Chaotic Neutral</option>
+              <option>Chaotic Good</option>
+              <option>Neutral Evil</option>
+              <option>True Neutral</option>
+              <option>Neutral Good</option>
+              <option>Lawful Evil</option>
+              <option>Lawful Neutral</option>
+              <option>Lawful Good</option>
+            </select>
+            <br>
+            <label>Deity: </label> 
+            <select id="deity-entry" oninput="deityEntry()">
+              <option>None</option>
+              <option>Abadar</option>
+              <option>Angradd</option>
+              <option>Arshea</option>
+              <option>Asmodeus</option>
+              <option>Besmara</option>
+              <option>Black Butterfly</option>
+              <option>Calistria</option>
+              <option>Damoritosh</option>
+              <option>Desna</option>
+              <option>Eldest</option>
+              <option>Eloritu</option>
+              <option>Groetus</option>
+              <option>Hylax</option>
+              <option>Ibra</option>
+              <option>Iomedae</option>
+              <option>Lamashtu</option>
+              <option>Lao Shu Po</option>
+              <option>Lissala</option>
+              <option>Nyarlathotep</option>
+              <option>Pharasma</option>
+              <option>Sarenrae</option>
+              <option>Talavet</option>
+              <option>The Devourer</option>
+              <option>Triune</option>
+              <option>Urgathoa</option>
+              <option>Weydan</option>
+              <option>Yaraesa</option>
+              <option>Zon-Kuthon</option>
+            </select>
+            <label>Homeworld: </label> 
+            <select id="homeworld-entry" oninput="homeworldEntry()">
+              <option>Unknown</option>
+              <option>Aballon</option>
+              <option>Absalom Station</option>
+              <option>Akiton</option>
+              <option>Apostae</option>
+              <option>Arquand</option>
+              <option>Arshalin</option>
+              <option>Aucturn</option>
+              <option>Azlanti Star Empire</option>
+              <option>Barrow</option>
+              <option>Bretheda</option>
+              <option>Castrovel</option>
+              <option>Daegox 4</option>
+              <option>Daimalko</option>
+              <option>Elytrio</option>
+              <option>Eox</option>
+              <option>Heicoron IV</option>
+              <option>Idari</option>
+              <option>Jedarat</option>
+              <option>Liavara</option>
+              <option>Lothun</option>
+              <option>Nakondis</option>
+              <option>Nejeor VI</option>
+              <option>New Thespera</option>
+              <option>Orikolai</option>
+              <option>Orry</option>
+              <option>Outpost Zed</option>
+              <option>Preluria</option>
+              <option>Primoria</option>
+              <option>Ratheren</option>
+              <option>Riven Shroud</option>
+              <option>Sepres VI</option>
+              <option>Shadari</option>
+              <option>Shimrinsara</option>
+              <option>Silselrik</option>
+              <option>Tabori Cluster</option>
+              <option>The Diaspora</option>
+              <option>The Drift</option>
+              <option>The Sun</option>
+              <option>The Veskarium</option>
+              <option>Triaxus</option>
+              <option>Urrakar</option>
+            </select>
+            <label>Player Name: </label>
+            <input name="player-entry" oninput="playerEntry()">
+          </div><br><br>
+
+          <div class="preference-column">
+            <label for="charcater-progression">Character Progression</label>
+          </div>
+        </section>
+        <section class="wizard-section" id="race-section">
+          <label>Race: </label>
+          <select id="race-entry"  oninput="raceEntry()">
+            <option></option>
+            <option>Android</option>
+            <option>Human</option>
+            <option>Kasatha</option>
+            <option>Lashunta (Damaya)</option>
+            <option>Lashunta (Korasha)</option>
+            <option>Shirren</option>
+            <option>Vesk</option>
+            <option>Ysoki</option>
+          </select>
+
+          <div class="row">
+            <div class="col-4">
+              <div class="list-group" id="list-tab" role="tablist">
+                <a class="list-group-item list-group-item-action active" id="list-android-list" data-toggle="list" href="#list-android" role="tab" aria-controls="android">Android</a>
+
+                <a class="list-group-item list-group-item-action" id="list-human-list" data-toggle="list" href="#list-human" role="tab" aria-controls="human">Human</a>
+
+                <a class="list-group-item list-group-item-action" id="list-kasatha-list" data-toggle="list" href="#list-kasatha" role="tab" aria-controls="kasatha">Kasatha</a>
+
+                <a class="list-group-item list-group-item-action" id="list-lashunta-d-list" data-toggle="list" href="#list-lashunta-d" role="tab" aria-controls="lashunta-d">Lashunta (Damaya)</a>
+
+                <a class="list-group-item list-group-item-action" id="list-lashunta-k-list" data-toggle="list" href="#list-lashunta-k" role="tab" aria-controls="lashunta-k">Lashunta (Korasha)</a>
+
+                <a class="list-group-item list-group-item-action" id="list-shirren-list" data-toggle="list" href="#list-shirren" role="tab" aria-controls="shirren">Shirren</a>
+
+                <a class="list-group-item list-group-item-action" id="list-vesk-list" data-toggle="list" href="#list-vesk" role="tab" aria-controls="vesk">Vesk</a>
+
+                <a class="list-group-item list-group-item-action" id="list-ysoki-list" data-toggle="list" href="#list-ysoki" role="tab" aria-controls="ysoki">Ysoki</a>
+
+              </div>
+            </div>
+            <div class="col-8">
+              <div class="tab-content">
+
+                <div class="tab-pane fade show active" id="list-android" role="tabpanel" aria-labelledby="list-android-list">
+
+                  <div class="class-description">
+                    <div class="class-image">
+                      <img src="images/Android.png" alt="">
+                    </div>
+                    <p>
+                      Complex technological creations crafted to resemble humans, androids were originally a servitor race, but they have since broken free to form their own society. Unlike ordinary robots or ship AIs, androids do not simply respond according to their programming; rather, they have independent consciousnesses and are animated by souls—a distinction crucial to their generally accepted status as people rather than property.
+                      <ul class="race-info-list">
+                        <li>Ability Scores: +2 Dex, +2 Int, -2 Cha</li>
+                        <li>HP: 4</li>
+                        <li>Size: Medium</li>
+                        <li>Type/Subtype: humanoid/android</li>
+                      </ul>
+                    </p>
+                    <p>
+                        <h5>Constructed</h5>
+                        <p>For effects targeting creatures by type,androids count as both humanoids and constructs (whichever effect is worse). They receive a +2 racial bonus to saving throws against disease, mind-affecting effects,poison, and sleep, unless those effects specifically target constructs. In addition, androids do not breathe or suffer the normal environmental effects of being in a vacuum.</p>
+                        <h5>Exceptional Vision</h5>
+                        <p>Androids can see in dim light as if it were normal light, and they can see with no light source at all for 60 ft in black and white only.</p>
+                        <h5>Flat Affect</h5>
+                        <p>Androids find emotions confusing and keep them bottled up. They take a –2 penalty to Sense Motive, and the DCs of Sense Motive checks against them is increased by 2.</p> 
+                        <h5>Upgrade Slot</h5>
+                        <p>Androids have a single light armor upgrade slot on their bodies.</p>
+                    </p>
+                  </div>
+
+                </div>
+                
+                <div class="tab-pane fade" id="list-human" role="tabpanel" aria-labelledby="list-human-list">
+
+                  <div class="class-description">
+                    <div class="class-image">
+                      <img src="images/Human.png" alt="">
+                    </div>
+                    <p>
+                      Ambitious, creative, and endlessly curious, humans have shown more drive to explore their system and the universe beyond than any of their neighbor races—for better and for worse. They’ve helped usher in a new era of system-wide communication and organization and are admired for their passion and tenacity, but their tendency to shoot first and think about the consequences later can make them a liability for those races otherwise inclined to work with them.
+                      <ul class="race-info-list">
+                        <li>Ability Scores: +2 to any 1 ability</li>
+                        <li>HP: 4</li>
+                        <li>Size: Medium</li>
+                        <li>Type/Subtype: humanoid/human</li>
+                      </ul>
+                    </p>
+                    <p>
+                      <h5>Bonus Feat</h5>
+                      <p>Humans select one extra feat at first level.</p>
+                      <h5>Skilled</h5>
+                      <p>Humans gains an additional skill rank at 1st level and each level thereafter.</p>
+                    </p>
+                  </div>
+                </div>
+                
+                <div class="tab-pane fade" id="list-kasatha" role="tabpanel" aria-labelledby="list-kasatha-list">
+
+                  <div class="class-description">
+                    <div class="class-image">
+                      <img src="images/Kasatha.png" alt="">
+                    </div>
+                    <p>
+                      Originally from a planet orbiting a dying star far beyond the Pact Worlds, the four-armed kasathas maintain a reputation as a noble and mysterious people. They are famous for their anachronistic warriors, ancient wisdom, and strange traditions. 
+                      <ul class="race-info-list">
+                        <li>Ability Scores: +2 Str, +2 Wis, -2 Int</li>
+                        <li>HP: 4</li>
+                        <li>Size: Medium</li>
+                        <li>Type/Subtype: humanoid/kasatha</li>
+                      </ul>
+                    </p>
+                    <p>
+                      <h5>Desert Stride</h5>
+                      <p>Kasathas can move through nonmagical difficult terrain in deserts, hills, and mountains at their normal speed. FOUR-ARMED Kasathas have four arms, which allows them to wield and hold up to four hands’ worth of weapons and equipment. This increases the number of items they can have at the ready, but doesn't increase the number of attacks they can make during combat.</p>
+                      <h5>Historian</h5>
+                      <p>Due to their in-depth historical training and the wide-ranging academic background knowledge they possess, kasathas receive a +2 racial bonus to Culture checks.</p>
+                      <h5>Natural Grace</h5>
+                      <p>Kasathas receive a +2 racial bonus to Acrobatics and Athletics checks.</p>
+                    </p>
+                  </div>
+
+                </div>
+                
+                <div class="tab-pane fade" id="list-lashunta-d" role="tabpanel" aria-labelledby="list-lashunta-d-list">
+
+                  <div class="class-description">
+                    <div class="class-image">
+                      <img src="images/Lashunta Damaya.png" alt="">
+                    </div>
+                    <p>
+                      Idealized by many other humanoid races and gifted with innate psychic abilities, lashuntas are at once consummate scholars and enlightened warriors, naturally divided into two specialized subraces with different abilities and societal roles. 
+                      <ul class="race-info-list">
+                        <li>Ability Scores: +2 Cha, -2 Con, +2 Int</li>
+                        <li>HP: 4</li>
+                        <li>Size: Medium</li>
+                        <li>Type/Subtype: humanoid/lashunta</li>
+                      </ul>
+                    </p>
+                    <p>
+                      <h5>Lashunta Magic</h5>
+                      <p>Lashuntas gain the following spell-like abilities:
+                        <ul class="race-info-list">
+                          <li>At will: Daze, Psychokinetic Hand</li>
+                          <li>Once per day: Detect Thoughts</li>
+                        </ul>
+                      </p>
+                      <h5>Limited Telepathy</h5>
+                      <p>Lashuntas can mentally communicate with any creatures within 30 feet with whom they share a language. Conversing telepathically with multiple creatures simultaneously is just as difficult as listening to multiple people speaking.</p>
+                      <h5>Student</h5>
+                      <p>Lashuntas love to learn, and they receive a +2 racial bonus to any two skills of their choice.</p>
+                    </p>
+                  </div>
+
+                </div>
+
+                <div class="tab-pane fade" id="list-lashunta-k" role="tabpanel" aria-labelledby="list-lashunta-k-list">
+
+                  <div class="class-description">
+                    <div class="class-image">
+                      <img src="images/Lashunta K.PNG" alt="">
+                    </div>
+                    <p>
+                      Idealized by many other humanoid races and gifted with innate psychic abilities, lashuntas are at once consummate scholars and enlightened warriors, naturally divided into two specialized subraces with different abilities and societal roles. 
+                      <ul class="race-info-list">
+                        <li>Ability Scores: +2 Cha, -2 Wis, +2 Str</li>
+                        <li>HP: 4</li>
+                        <li>Size: Medium</li>
+                        <li>Type/Subtype: humanoid/lashunta</li>
+                      </ul>
+                    </p>
+                    <p>
+                      <h5>Lashunta Magic</h5>
+                      <p>Lashuntas gain the following spell-like abilities:
+                        <ul class="race-info-list">
+                          <li>At will: Daze, Psychokinetic Hand</li>
+                          <li>Once per day: Detect Thoughts</li>
+                        </ul>
+                      </p>
+                      <h5>Limited Telepathy</h5>
+                      <p>Lashuntas can mentally communicate with any creatures within 30 feet with whom they share a language. Conversing telepathically with multiple creatures simultaneously is just as difficult as listening to multiple people speaking.</p>
+                      <h5>Student</h5>
+                      <p>Lashuntas love to learn, and they receive a +2 racial bonus to any two skills of their choice.</p>
+                    </p>
+                  </div>
+
+                </div>
+
+                <div class="tab-pane fade" id="list-shirren" role="tabpanel" aria-labelledby="list-shirren-list">
+
+                  <div class="class-description">
+                    <div class="class-image">
+                      <img src="images/Shirren.png" alt="">
+                    </div>
+                    <p>
+                      Once part of a ravenous hive of locust-like predators, the insectile shirrens only recently broke with their hive mind to become a race of telepaths physically addicted to their own individualism,yet dedicated to the idea of community and harmony with other races. 
+                      <ul class="race-info-list">
+                        <li>Ability Scores: +2 Con, +2 Wis, -2 Cha</li>
+                        <li>HP: 6</li>
+                        <li>Size: Medium</li>
+                        <li>Type/Subtype: humanoid/shirren</li>
+                      </ul>
+                    </p>
+                    <p>
+                      <h5>Blindsense</h5>
+                      <p>Shirrens’ sensitive antennae grant them blindsense (vibration)—the ability to sense vibrations in the air—out to 30 feet. A shirren ignores the Stealth bonuses from any form of visual camouflage, invisibility, and the like when attempting a Perception check opposed by a creature’s Stealth check. Even on a successful Perception check, any foe that can’t be seen still has total concealment (50% miss chance) against a shirren, and the shirren still has the normal miss chance when attacking foes that have concealment. A shirren is still flatfooted against attacks from creatures it can’t see.</p>
+                      <h5>Communalism</h5>
+                      <p>Shirrens are used to working with others as part of a team. Once per day, as long as an ally is within 10 feet, a shirren can roll a single attack roll or skill check twice and take the higher result.</p>
+                      <h5>Cultural Fascination</h5>
+                      <p>Shirrens are eager to learn about new cultures and societies. Shirrens receive a +2 racial bonus to Culture and Diplomacy checks.</p>
+                      <h5>Limited Telepathy</h5>
+                      <p>Shirrens can communicate telepathically with any creatures within 30 feet with whom they share a language. Conversing telepathically with multiple creatures simultaneously is just as difficult as listening to multiple people speak.</p>
+                    </p>
+                  </div>
+
+                </div>
+
+                <div class="tab-pane fade" id="list-vesk" role="tabpanel" aria-labelledby="list-vesk-list">
+
+                  <div class="class-description">
+                    <div class="class-image">
+                      <img src="images/Vesk.png" alt="">
+                    </div>
+                    <p>
+                      Heavily muscled and covered with thick scales and short, sharp horns, the reptilian vesk are exactly as predatory and warlike as they appear. Originally hailing from a star system near the Pact Worlds, they sought to conquer and subdue their stellar neighbors, as they had all the other intelligent races in their own system, until an overwhelming threat forced them into a grudging alliance with the Pact Worlds—for now. 
+                      <ul class="race-info-list">
+                        <li>Ability Scores: +2 Str, +2 Con, -2 Int</li>
+                        <li>HP: 6</li>
+                        <li>Size: Medium</li>
+                        <li>Type/Subtype: humanoid/vesk</li>
+                      </ul>
+                    </p>
+                    <p>
+                      <h5>Armor Savant</h5>
+                      <p>Vesk use armor in a way that complements their uniquely sturdy physiology. When wearing armor, they gain a +1 racial bonus to AC. When they’re wearing heavy armor, their armor check penalty is 1 less severe than normal.</p>
+                      <h5>Fearless</h5>
+                      <p>Vesk receive a +2 racial bonus to saving throws against fear effects.</p>
+                      <h5>Low-Light Vision</h5>
+                      <p>Vesk can see in dim light as if it were normal light. For more details, see page 264.</p>
+                      <h5>Natural Weapons</h5>
+                      <p>Vesk are always considered armed. They can deal 1d3 lethal damage with unarmed strikes and the attack doesn’t count as archaic. Vesk gain a unique weapon specialization with their natural weapons at 3rd level, allowing them to add 1–1/2 × their character level to their damage rolls for their natural weapons (instead of just adding their character level, as usual).</p>
+                    </p>
+                  </div>
+
+                </div>
+
+                <div class="tab-pane fade" id="list-ysoki" role="tabpanel" aria-labelledby="list-ysoki-list">
+
+                  <div class="class-description">
+                    <div class="class-image">
+                      <img src="images/Ysoki.png" alt="">
+                    </div>
+                    <p>
+                      Small and furtive, the ysoki are often overlooked by larger races. Yet through wit and technological prowess, they’ve spread throughout the solar system, giving truth to the old adage that every starship needs a few rats. 
+                      <ul class="race-info-list">
+                        <li>Ability Scores: +2 Dex, +2 Int, -2 Str</li>
+                        <li>HP: 2</li>
+                        <li>Size: Small</li>
+                        <li>Type/Subtype: humanoid/ysoki</li>
+                      </ul>
+                    </p>
+                    <p>
+                      <h5>Cheek Pouches</h5>
+                      <p>Ysoki can store up to 1 cubic foot of items weighing up to 1 bulk in total in their cheek pouches, and they can transfer a single object between hand and cheek as a swift action. A ysoki can disgorge the entire contents of his pouch onto the ground in his square as a move action that does not provoke an attack of opportunity.</p>
+                      <h5>Darkvision</h5>
+                      <p>Ysoki can see up to 60 feet in the dark.</p>
+                      <h5>Moxie</h5>
+                      <p>Ysoki are scrappy and nimble even when the odds are against them. A ysoki can stand from prone as a swift action. Additionally, when off-kilter, a ysoki does not take the usual penalties to attacks or gain the flat-footed condition. When attempting an Acrobatics check to tumble through the space of an opponent at least one size category larger than himself, a ysoki receive a +5 racial bonus to the check.</p>
+                      <h5>Scrounger</h5>
+                      <p>Ysoki receive a +2 racial bonus to Engineering, Stealth, and Survival checks.</p>
+                    </p>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <label for="gender-id">Gender: </label>
+          <select id="gender-entry" oninput="genderEntry()">
+            <option></option>
+            <option>Male</option>
+            <option>Female</option>
+          </select>
+        </section>
+        <section class="wizard-section" id="theme-section">
+          <label>Theme: </label> 
+          <select id="theme-entry" oninput="themeEntry()">
+            <option></option>
+            <option>Ace Pilot</option>
+            <option>Bounty Hunter</option>
+            <option>Icon</option>
+            <option>Mercenary</option>
+            <option>Outlaw</option>
+            <option>Priest</option>
+            <option>Scholar</option>
+            <option>Spacefarer</option>
+            <option>Xenoseeker</option>
+            <option>Solar Disciple</option>
+            <option>Roboticist</option>
+            <option>Wild Warden</option>
+            <option>Corporate Agent</option>
+            <option>Gladiator</option>
+            <option>Cyberborn</option>
+            <option>Tempered Pilgrim</option>
+            <option>Space Pirate</option>
+            <option>Death-Touched</option>
+            <option>Dragonblood</option>
+            <option>Dream Prophet</option>
+            <option>Biotechnician</option>
+            <option>Xenoarchaeologist</option>
+            <option>Cultist</option>
+            <option>Themeless</option>
+          </select>
+
+        </section>
+        <section class="wizard-section" id="class-section">
+          <label>Class: </label>
+          <select id="class-entry" oninput="classEntry()">
+            <option></option>
+            <option>Envoy</option>
+            <option>Mechanic</option>
+            <option>Mystic</option>
+            <option>Operative</option>
+            <option>Solarian</option>
+            <option>Soldier</option>
+            <option>Technomancer</option>
+          </select>   
+
+          <div class="row">
+            <div class="col-4">
+              <div class="list-group" id="list-tab" role="tablist">
+                <a class="list-group-item list-group-item-action active" id="list-envoy-list" data-toggle="list" href="#list-envoy" role="tab" aria-controls="envoy">Envoy</a>
+
+                <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Mechanic</a>
+
+                <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Mystic</a>
+
+                <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Operative</a>
+
+                <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Solarian</a>
+
+                <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Soldier</a>
+
+                <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Technomancer</a>
+              </div>
+            </div>
+            <div class="col-8">
+              <div class="tab-content" id="nav-tabContent">
+
+                <div class="tab-pane fade show active" id="list-envoy" role="tabpanel" aria-labelledby="list-home-list">
+                  <div class="class-image">
+                    <img src="images/Envoy.png" alt="">
+                  </div>
+                  <div class="class-description">
+                    You make your way in the universe with a charming smile, quick wit, and keen sense of self-preservation, and excel at getting others to do what you want. You might be a trickster, hustler, or con artist, or you might serve as an actor, ambassador, or businessperson, paving the way for negotiation through kind words or the occasional dirty trick. You are often the group’s strategist, using your quick wit and tactical acumen to push your friends to greater heights. You may also be skilled in diplomacy, serving as the face for a starship crew, talking your way into restricted systems or gaining audiences with local politicians or warlords.
+
+                    You make your way in the universe with a charming smile, quick wit, and keen sense of self-preservation, and excel at getting others to do what you want. You might be a trickster, hustler, or con artist, or you might serve as an actor, ambassador, or businessperson, paving the way for negotiation through kind words or the occasional dirty trick. You are often the group’s strategist, using your quick wit and tactical acumen to push your friends to greater heights. You may also be skilled in diplomacy, serving as the face for a starship crew, talking your way into restricted systems or gaining audiences with local politicians or warlords.
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+                  <div class="class-image">
+                      <img src="images/Mechanic.png" alt="">
+                  </div>
+                  Mechanic
+                </div>
+                <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">Mess</div>
+                <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">Set</div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="wizard-section" id="ability-scores-section">
+          <section class="column-debug">
+            <h3>Stats (Point Buy)</h3>
+            <label>STR</label> <input type="number" id="str-PB" value="0" oninput="pointBuyEntry()"><br><br>
+            <label>DEX</label> <input type="number" id="dex-PB" value="0" oninput="pointBuyEntry()"><br><br>
+            <label>CON</label> <input type="number" id="con-PB" value="0" oninput="pointBuyEntry()"><br><br>
+            <label>INT</label> <input type="number" id="int-PB" value="0" oninput="pointBuyEntry()"><br><br>
+            <label>WIS</label> <input type="number" id="wis-PB" value="0" oninput="pointBuyEntry()"><br><br>
+            <label>CHA</label> <input type="number" id="cha-PB" value="0" oninput="pointBuyEntry()"><br><br>
+            <br>
+            <h3>Human Stat Select</h3>
+            <label>+2 to: </label> 
+            <select id="human-attribute-entry" oninput="">
+              <option>STR</option>
+              <option>DEX</option>
+              <option>CON</option>
+              <option>INT</option>
+              <option>WIS</option>
+              <option>CHA</option>
+            </select>
+          </section>   
+          <section>
+            <label>Remaining Points:</label><output id="point-buy-count" value="10">10</output>
+            <br><br>
+            <button type="button" onclick="pointBuyReset()">Point Buy Reset</button>
+            <br><br>
+            <button type="button" onclick="resetAll()">Reset All</button>
+            <button type="button" onclick="finalizeCharacter()">Finalize Character</button>
+          </section> 
+        </section>
+        <section class="wizard-section" id="class-choices-section">
+          Class Choices Test.    
+        </section>
+        <section class="wizard-section" id="skills-section">
+          <h3>Skill Ranks</h3>
+          <div class="row">
+            <div class="column-debug">
+              Acrobatics: <input type="number" class="skillRanks" id="acrobatics-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+              Athletics: <input type="number" class="skillRanks" id="athletics-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+              Bluff: <input type="number" class="skillRanks" id="bluff-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+              Computers: <input type="number" class="skillRanks" id="computers-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+              Culture: <input type="number" class="skillRanks" id="culture-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+              Diplomacy: <input type="number" class="skillRanks" id="diplomacy-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+              Disguise: <input type="number" class="skillRanks" id="disguise-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+            </div>
+            <div class="column-debug">
+              Engineering: <input  type="number" class="skillRanks" id="engineering-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+              Intimidate: <input  type="number" class="skillRanks"  id="intimidate-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+              Life Science: <input  type="number" class="skillRanks"  id="lifeScience-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+              Medicine: <input  type="number" class="skillRanks"  id="medicine-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+              Mysticism: <input  type="number" class="skillRanks"  id="mysticism-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+              Perception: <input  type="number" class="skillRanks"  id="perception-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+              Physical Science: <input  type="number" class="skillRanks"  id="physicalScience-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+            </div>
+            <div class="column-debug">
+              Piloting: <input  type="number" class="skillRanks" id="piloting-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+              Profession (1): <input  type="number" class="skillRanks" id="profession1-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+              Profession (2): <input  type="number" class="skillRanks" id="profession2-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+              Sense Motive: <input  type="number" class="skillRanks" id="senseMotive-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+              Sleight of Hand: <input  type="number" class="skillRanks" id="sleightOfHand-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+              Stealth: <input  type="number" class="skillRanks" id="stealth-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+              Survival: <input  type="number" class="skillRanks" id="survival-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+            </div>
+          </div>
+          <div>
+            <label>Remaining Ranks: </label><span id="skill-rank-count"></span>
+          </div>    
+        </section>
+        <section class="wizard-section" id="feats-section">
+          Feats Test.    
+        </section>
+        <section class="wizard-section" id="equipment-section">
+          Equipment Test.    
+        </section>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+      </div>
+  </div>
+  </div>
+  <section>
     <h1 class="page-title" id="char-name"></h1>
-  </header>
-  
-  <body>
-    
     <section class="white-card" id="character-detail">
-      
+  
       <h2>
         <span id="char-race"></span>
         <span id="char-class"></span>
@@ -332,7 +638,7 @@
     
     <br>
     
-     <section class="grey-card" id="character-condition">
+      <section class="grey-card" id="character-condition">
       <div class="flex-container-status">
         <div class="title">
           Current
@@ -408,7 +714,7 @@
           <div>CHA</div>
           <span id="cha">10</span>
         </div>
-         <div class="as-mod">
+          <div class="as-mod">
           <span id="cha-mod">+0</span>
         </div>
       </div>
@@ -510,7 +816,13 @@
           </div>
         </div>
     </section>
-    <script type="text/javascript" src="char_gen.js"></script>
-    <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
-  </body>
+  </section>
+
+  <footer class="footer">Paizo, Starfinder, and their logos are trademarks of Paizo Inc. in the United States and other countries. ©2002-2019 Paizo Inc.® All Rights Reserved. Star-Reacher is not affiliated with, endorsed, sponsored, or specifically approved by Paizo Inc.®</footer>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="scripts.js"></script>
+  <script type="text/javascript" src="char_gen.js"></script>
+</body>
 </html>

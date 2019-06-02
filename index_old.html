@@ -1,0 +1,516 @@
+<html>
+  <head>
+    <title>Character Sheet</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css.css">
+  </head>
+  <button type="button" onclick="debugHideShow()" id="debugHideShowButton">Hide Debug</button><br>
+  <div id="allDebug">
+    <header class="debugHeader">Debug Stuff</header>
+    <section>
+      <div>
+        <label>Character Name: </label><input id="char-name-entry" oninput="nameEntry()">
+      </div>
+    </section>
+  <br>
+  <section class="char-info-box">
+      <div>
+        <label>Class: </label> <select id="class-entry" oninput="classEntry()">
+          <option></option>
+          <option>Envoy</option>
+          <option>Mechanic</option>
+          <option>Mystic</option>
+          <option>Operative</option>
+          <option>Solarian</option>
+          <option>Soldier</option>
+          <option>Technomancer</option>
+        </select>
+        <label>Level: </label> <input type="number" id="level-entry" min="1" max="20" oninput="levelEntry()">
+        <label>Race: </label> <select id="race-entry"  oninput="raceEntry()">
+          <option></option>
+          <option>Android</option>
+          <option>Human</option>
+          <option>Kasatha</option>
+          <option>Lashunta (Damaya)</option>
+          <option>Lashunta (Korasha)</option>
+          <option>Shirren</option>
+          <option>Vesk</option>
+          <option>Ysoki</option>
+          <option>Astrazoan</option>
+          <option>Bantrid</option>
+          <option>Borais</option>
+          <option>Khizar</option>
+          <option>SRO (Small)</option>
+          <option>SRO (Medium)</option>
+          <option>Strix</option>
+        </select>
+        <label>Theme: </label> <select id="theme-entry" oninput="themeEntry()">
+          <option></option>
+          <option>Ace Pilot</option>
+          <option>Bounty Hunter</option>
+          <option>Icon</option>
+          <option>Mercenary</option>
+          <option>Outlaw</option>
+          <option>Priest</option>
+          <option>Scholar</option>
+          <option>Spacefarer</option>
+          <option>Xenoseeker</option>
+          <option>Solar Disciple</option>
+          <option>Roboticist</option>
+          <option>Wild Warden</option>
+          <option>Corporate Agent</option>
+          <option>Gladiator</option>
+          <option>Cyberborn</option>
+          <option>Tempered Pilgrim</option>
+          <option>Space Pirate</option>
+          <option>Death-Touched</option>
+          <option>Dragonblood</option>
+          <option>Dream Prophet</option>
+          <option>Biotechnician</option>
+          <option>Xenoarchaeologist</option>
+          <option>Cultist</option>
+          <option>Themeless</option>
+        </select>
+        <label for="gender-id">Gender: </label> <select id="gender-entry" oninput="genderEntry()">
+          <option></option>
+          <option>Male</option>
+          <option>Female</option>
+        </select>
+      </div>
+        <br>
+      <div>
+        <label>Alignment: </label> <select id="alignment-entry" oninput="alignmentEntry()">
+          <option></option>
+          <option>Chaotic Evil</option>
+          <option>Chaotic Neutral</option>
+          <option>Chaotic Good</option>
+          <option>Neutral Evil</option>
+          <option>True Neutral</option>
+          <option>Neutral Good</option>
+          <option>Lawful Evil</option>
+          <option>Lawful Neutral</option>
+          <option>Lawful Good</option>
+        </select>
+        <label>Deity: </label> <select id="deity-entry" oninput="deityEntry()">
+          <option>None</option>
+          <option>Abadar</option>
+          <option>Angradd</option>
+          <option>Arshea</option>
+          <option>Asmodeus</option>
+          <option>Besmara</option>
+          <option>Black Butterfly</option>
+          <option>Calistria</option>
+          <option>Damoritosh</option>
+          <option>Desna</option>
+          <option>Eldest</option>
+          <option>Eloritu</option>
+          <option>Groetus</option>
+          <option>Hylax</option>
+          <option>Ibra</option>
+          <option>Iomedae</option>
+          <option>Lamashtu</option>
+          <option>Lao Shu Po</option>
+          <option>Lissala</option>
+          <option>Nyarlathotep</option>
+          <option>Pharasma</option>
+          <option>Sarenrae</option>
+          <option>Talavet</option>
+          <option>The Devourer</option>
+          <option>Triune</option>
+          <option>Urgathoa</option>
+          <option>Weydan</option>
+          <option>Yaraesa</option>
+          <option>Zon-Kuthon</option>
+        </select>
+        <label>Homeworld: </label> <select id="homeworld-entry" oninput="homeworldEntry()">
+          <option>Unknown</option>
+          <option>Aballon</option>
+          <option>Absalom Station</option>
+          <option>Akiton</option>
+          <option>Apostae</option>
+          <option>Arquand</option>
+          <option>Arshalin</option>
+          <option>Aucturn</option>
+          <option>Azlanti Star Empire</option>
+          <option>Barrow</option>
+          <option>Bretheda</option>
+          <option>Castrovel</option>
+          <option>Daegox 4</option>
+          <option>Daimalko</option>
+          <option>Elytrio</option>
+          <option>Eox</option>
+          <option>Heicoron IV</option>
+          <option>Idari</option>
+          <option>Jedarat</option>
+          <option>Liavara</option>
+          <option>Lothun</option>
+          <option>Nakondis</option>
+          <option>Nejeor VI</option>
+          <option>New Thespera</option>
+          <option>Orikolai</option>
+          <option>Orry</option>
+          <option>Outpost Zed</option>
+          <option>Preluria</option>
+          <option>Primoria</option>
+          <option>Ratheren</option>
+          <option>Riven Shroud</option>
+          <option>Sepres VI</option>
+          <option>Shadari</option>
+          <option>Shimrinsara</option>
+          <option>Silselrik</option>
+          <option>Tabori Cluster</option>
+          <option>The Diaspora</option>
+          <option>The Drift</option>
+          <option>The Sun</option>
+          <option>The Veskarium</option>
+          <option>Triaxus</option>
+          <option>Urrakar</option>
+        </select>
+        <label>Player Name: </label><input name="player-entry" oninput="playerEntry()">
+      </div>
+  </section>
+  <br>
+  <div class="row">
+    <section class="column-debug">
+      <h3>Stats (Point Buy)</h3>
+      <label>STR</label> <input type="number" id="str-PB" value="0" oninput="pointBuyEntry()"><br><br>
+      <label>DEX</label> <input type="number" id="dex-PB" value="0" oninput="pointBuyEntry()"><br><br>
+      <label>CON</label> <input type="number" id="con-PB" value="0" oninput="pointBuyEntry()"><br><br>
+      <label>INT</label> <input type="number" id="int-PB" value="0" oninput="pointBuyEntry()"><br><br>
+      <label>WIS</label> <input type="number" id="wis-PB" value="0" oninput="pointBuyEntry()"><br><br>
+      <label>CHA</label> <input type="number" id="cha-PB" value="0" oninput="pointBuyEntry()"><br><br>
+    </section>
+    <section class="column-debug">
+        <h3>Human Stat Select</h3>
+        <label>+2 to: </label> 
+        <select id="human-attribute-entry" oninput="">
+          <option>STR</option>
+          <option>DEX</option>
+          <option>CON</option>
+          <option>INT</option>
+          <option>WIS</option>
+          <option>CHA</option>
+        </select>
+        <br><br>
+        <h3>Lashunta Skill Select</h3>
+        <label>First Choice: </label> 
+        <select id="lashunta-skill-1-entry" oninput="">
+            <option>Acrobatics</option>
+            <option>Athletics</option>
+            <option>Bluff</option>
+            <option>Computers</option>
+            <option>Culture</option>
+            <option>Diplomacy</option>
+            <option>Disguise</option>
+            <option>Engineering</option>
+            <option>Intimidate</option>
+            <option>Life Science</option>
+            <option>Medicine</option>
+            <option>Mysticism</option>
+            <option>Perception</option>
+            <option>Physical Science</option>
+            <option>Piloting</option>
+            <option>Profession (1)</option>
+            <option>Profession (2)</option>
+            <option>Sense Motive</option>
+            <option>Sleight of Hand</option>
+            <option>Stealth</option>
+            <option>Survival</option>
+        </select>
+        <br><br>
+        <label>Second Choice: </label> 
+        <select id="lashunta-skill-2-entry" oninput="">
+            <option>Acrobatics</option>
+            <option>Athletics</option>
+            <option>Bluff</option>
+            <option>Computers</option>
+            <option>Culture</option>
+            <option>Diplomacy</option>
+            <option>Disguise</option>
+            <option>Engineering</option>
+            <option>Intimidate</option>
+            <option>Life Science</option>
+            <option>Medicine</option>
+            <option>Mysticism</option>
+            <option>Perception</option>
+            <option>Physical Science</option>
+            <option>Piloting</option>
+            <option>Profession (1)</option>
+            <option>Profession (2)</option>
+            <option>Sense Motive</option>
+            <option>Sleight of Hand</option>
+            <option>Stealth</option>
+            <option>Survival</option>
+        </select>
+    </section>
+  </div>
+    <br>
+  <section>
+    <label>Remaining Points:</label><output id="point-buy-count" value="10">10</output>
+    <br><br>
+    <button type="button" onclick="pointBuyReset()">Point Buy Reset</button>
+    <br><br>
+    <button type="button" onclick="resetAll()">Reset All</button>
+    <button type="button" onclick="finalizeCharacter()">Finalize Character</button>
+  </section>
+
+<hr>
+    <div>Skill Ranks</div><br>
+    <div class="row">
+      <div class="column-debug">
+        Acrobatics: <input type="number" class="skillRanks" id="acrobatics-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+        Athletics: <input type="number" class="skillRanks" id="athletics-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+        Bluff: <input type="number" class="skillRanks" id="bluff-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+        Computers: <input type="number" class="skillRanks" id="computers-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+        Culture: <input type="number" class="skillRanks" id="culture-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+        Diplomacy: <input type="number" class="skillRanks" id="diplomacy-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+        Disguise: <input type="number" class="skillRanks" id="disguise-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+      </div>
+      <div class="column-debug">
+        Engineering: <input  type="number" class="skillRanks" id="engineering-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+        Intimidate: <input  type="number" class="skillRanks"  id="intimidate-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+        Life Science: <input  type="number" class="skillRanks"  id="lifeScience-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+        Medicine: <input  type="number" class="skillRanks"  id="medicine-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+        Mysticism: <input  type="number" class="skillRanks"  id="mysticism-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+        Perception: <input  type="number" class="skillRanks"  id="perception-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+        Physical Science: <input  type="number" class="skillRanks"  id="physicalScience-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+      </div>
+      <div class="column-debug">
+        Piloting: <input  type="number" class="skillRanks" id="piloting-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+        Profession (1): <input  type="number" class="skillRanks" id="profession1-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+        Profession (2): <input  type="number" class="skillRanks" id="profession2-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+        Sense Motive: <input  type="number" class="skillRanks" id="senseMotive-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+        Sleight of Hand: <input  type="number" class="skillRanks" id="sleightOfHand-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+        Stealth: <input  type="number" class="skillRanks" id="stealth-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+        Survival: <input  type="number" class="skillRanks" id="survival-ranks" value="0" oninput="skillRankCalc(this.id,this.value)"><br><br>
+      </div>
+    </div>
+    <div>
+      <label>Remaining Ranks: </label><span id="skill-rank-count"></span>
+    </div>
+  <button type="button" onclick="debugHideShow()" id="debugHideShowButton">Hide Debug</button>
+<br>
+</div>
+
+<!-- ----------------------------------------------------------------------------- -->
+   <hr>
+  
+  <header>
+    <h1 class="page-title" id="char-name"></h1>
+  </header>
+  
+  <body>
+    
+    <section class="white-card" id="character-detail">
+      
+      <h2>
+        <span id="char-race"></span>
+        <span id="char-class"></span>
+        <span id="char-level"></span>
+      </h2>
+      
+      <br>
+      
+      <label>Theme:</label>
+      <span id="char-theme"></span>
+      
+      <label>Gender:</label>
+      <span id="char-gender"></span>
+      
+      <label>Deity:</label>
+      <span id="char-deity"></span>
+      
+      <br>
+      <label>Home World:</label>
+      <span id="char-homeworld"></span>
+      
+      <label>Alignment:</label>
+      <span id="char-align"></span>
+      
+    </section>
+    
+    <br>
+    
+     <section class="grey-card" id="character-condition">
+      <div class="flex-container-status">
+        <div class="title">
+          Current
+        </div>
+        <div class="title">
+          Max
+        </div>
+        <div>
+          <div>STAM</div>
+          <span id="stat-curr-stam"></span>
+        </div>
+        <div>
+          <div>STAM</div>
+          <span id="stat-max-stam"></span>
+        </div>
+        <div>
+          <div>HP</div>
+          <span id="stat-curr-hp"></span>
+        </div>
+        <div>
+          <div>HP</div>
+          <span id="stat-max-hp"></span>
+        </div>
+        <div>
+          <div>RESOLVE</div>
+          <span id="stat-curr-res"></span>
+        </div>
+        <div>
+          <div>RESOLVE</div>
+          <span id="stat-max-res"></span>
+        </div>
+      </div>
+    </section>
+    
+    <section class="grey-card" id="abilty-scores">
+      <div class="flex-container-as">
+        <div>
+          <div>STR</div>
+          <span id="str">10</span>
+        </div>
+        <div class="as-mod">
+          <span id="str-mod">+0</span>
+        </div>
+        <div>
+          <div>DEX</div>
+          <span id="dex">10</span>
+        </div>
+        <div class="as-mod">
+          <span id="dex-mod">+0</span>
+        </div>
+        <div>
+          <div>CON</div>
+          <span id="con">10</span>
+        </div>
+        <div class="as-mod">
+          <span id="con-mod">+0</span>
+        </div>
+        <div>
+          <div>INT</div>
+          <span id="int">10</span>
+        </div>
+        <div class="as-mod">
+          <span id="int-mod">+0</span>
+        </div>
+        <div>
+          <div>WIS</div>
+          <span id="wis">10</span>
+        </div>
+        <div class="as-mod">
+          <span id="wis-mod">0</span>
+        </div>
+        <div>
+          <div>CHA</div>
+          <span id="cha">10</span>
+        </div>
+         <div class="as-mod">
+          <span id="cha-mod">+0</span>
+        </div>
+      </div>
+    </section>
+    <section class="grey-card" id="abilty-scores">
+      <div class="flex-container-saves">
+        <div>
+          <div>FORT</div>
+          <span id="save-fort">0</span>
+        </div>
+        <div>
+          <div>REF</div>
+          <span id="save-reflex">0</span>
+        </div>
+        <div>
+          <div>WILL</div>
+          <span id="save-will">0</span>
+        </div>
+      </div>
+    </section>
+          <br>
+    <section class="white-card" id="skill-detail">
+      <div>
+        <div class="row">
+          <div class="columnIcon">
+            <div><i class="fas fa-shield-alt"></i></div>
+            <br>
+            <div><i class="fas fa-shield-alt"></i></div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div><i class="fas fa-book"></i></div>
+            <br>
+            <div><i class="fas fa-book"></i></div>
+            <br>
+            <br>
+            <br>
+            <br>
+          </div>
+          <div class="column">
+            Acrobatics: <span id="acrobatics-total"></span><br>
+            Athletics: <span id="athletics-total"></span><br>
+            Bluff: <span id="bluff-total"></span><br>
+            Computers: <span id="computers-total"></span><br>
+            Culture: <span id="culture-total"></span><br>
+            Diplomacy: <span id="diplomacy-total"></span><br>
+            Disguise: <span id="disguise-total"></span><br>
+          </div>
+          <div class="columnIcon">
+            <br>
+            <div><i class="fas fa-book"></i></div>
+            <br>
+            <br>
+            <br>
+            <div><i class="fas fa-book"></i></div>
+            <br>
+            <div><i class="fas fa-book"></i></div>
+            <br>
+            <div><i class="fas fa-book"></i></div>
+            <br>
+            <br>
+            <br>
+            <div><i class="fas fa-book"></i></div>
+          </div>
+          <div class="column">
+            Engineering: <span id="engineering-total"></span><br>
+            Intimidate: <span id="intimidate-total"></span><br>
+            Life Science: <span id="lifeScience-total"></span><br>
+            Medicine: <span id="medicine-total"></span><br>
+            Mysticism: <span id="mysticism-total"></span><br>
+            Perception: <span id="perception-total"></span><br>
+            Physical Science: <span id="physicalScience-total"></span><br>
+          </div>
+          <div class="columnIcon">
+            <div><br></div>
+            <div><br></div>
+            <div><br></div>
+            <div><i class="fas fa-book"></i></div>
+            <div><br></div>
+            <div><i class="fas fa-fa-book"></i></div>
+            <div><br></div>
+            <div><br></div>
+            <div><i class="fas fa-shield-alt"></i></div>
+            <div><i class="fas fa-book"></i></div>
+            <div><i class="fas fa-shield-alt"></i></div>
+            <div><br></div>
+            <div><br></div>
+            <div><br></div>
+          </div>
+          <div class="column">
+            Piloting: <span id="piloting-total"></span><br>
+            Profession: <span id="profession1-total"></span><br>
+            Profession: <span id="profession2-total"></span><br>
+            Sense Motive: <span id="senseMotive-total"></span><br>
+            Sleight of Hand: <span id="sleightOfHand-total"></span><br>
+            Stealth: <span id="stealth-total"></span><br>
+            Survival: <span id="survival-total"></span><br>
+          </div>
+        </div>
+    </section>
+    <script type="text/javascript" src="char_gen.js"></script>
+    <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
+  </body>
+</html>
