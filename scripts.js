@@ -1,6 +1,23 @@
 
 
-var preferencesSection = document.getElementById("preferences-section"), raceSection = document.getElementById("race-section"), themeSection = document.getElementById("theme-section"), classSection = document.getElementById("class-section"), abilityScoresSection = document.getElementById("ability-scores-section"), classChoicesSection = document.getElementById("class-choices-section"), skillsSection = document.getElementById("skills-section"), featsSection = document.getElementById("feats-section"), equipmentSection = document.getElementById("equipment-section"), preferencesTab = document.getElementById("preferences-tab"), raceTab = document.getElementById("race-tab"), themeTab = document.getElementById("theme-tab"), classTab = document.getElementById("class-tab"), abilityScoresTab = document.getElementById("ability-scores-tab"), classChoicesTab = document.getElementById("class-choices-tab"), skillsTab = document.getElementById("skills-tab"), featsTab = document.getElementById("feats-tab"), equipmentTab = document.getElementById("equipment-tab");
+var preferencesSection = document.getElementById("preferences-section"),
+    raceSection = document.getElementById("race-section"),
+    themeSection = document.getElementById("theme-section"),
+    classSection = document.getElementById("class-section"),
+    abilityScoresSection = document.getElementById("ability-scores-section"),
+    classChoicesSection = document.getElementById("class-choices-section"),
+    skillsSection = document.getElementById("skills-section"),
+    featsSection = document.getElementById("feats-section"),
+    equipmentSection = document.getElementById("equipment-section"),
+    preferencesTab = document.getElementById("preferences-tab"),
+    raceTab = document.getElementById("race-tab"),
+    themeTab = document.getElementById("theme-tab"),
+    classTab = document.getElementById("class-tab"),
+    abilityScoresTab = document.getElementById("ability-scores-tab"),
+    classChoicesTab = document.getElementById("class-choices-tab"),
+    skillsTab = document.getElementById("skills-tab"),
+    featsTab = document.getElementById("feats-tab"),
+    equipmentTab = document.getElementById("equipment-tab");
 
 
 function clearSections() {
