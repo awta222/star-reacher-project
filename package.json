@@ -1,0 +1,27 @@
+{
+  "name": "star-reacher-project",
+  "version": "1.0.0",
+  "description": "first iteration of site w/ a backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index",
+    "dev": "nodemon index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/awta222/star-reacher-project.git"
+  },
+  "author": "Evan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/awta222/star-reacher-project/issues"
+  },
+  "homepage": "https://github.com/awta222/star-reacher-project#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}
