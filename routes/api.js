@@ -4,8 +4,8 @@ const routes = express.Router();
 let Race = require('../models/races.model'),
 Theme = require('../models/themes.model');
 
-routes.route('/raceAS/:id').get((req,res) => {
-    let raceId = Number(req.params.id);
+routes.route('/raceAS/:raceId').get((req,res) => {
+    let raceId = Number(req.params.raceId);
     
     Race.findOne({id: raceId}).then((race) => {
         res.status(200).send(race.AS);
