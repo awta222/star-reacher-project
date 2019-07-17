@@ -5,6 +5,37 @@ modAS = [0,0,0,0,0,0], pbAS = [0,0,0,0,0,0];
 //declare user input variables
 var raceId, themeId, classId, level; 
 
+function getRaceAS() {
+  if (!raceId) {return console.log("no race selected")}
+  const Http = new XMLHttpRequest();
+  const url='http://localhost:3000/raceAS/'+raceId;
+  Http.open("GET", url, true);
+  Http.send();
+  Http.onreadystatechange = function() {
+    if (Http.readyState === 4) {
+      let output = JSON.parse(Http.response);
+      console.log(output+", typeof = "+typeof output);
+    }
+  }
+}
+
+function getBaseAS() {
+  if (!raceId || !themeId) {return console.log("need race & theme")}
+  const Http = new XMLHttpRequest();
+  const url='http://localhost:3000/baseAS/'+raceId+"-"+themeId;
+  Http.open("GET", url, true);
+  Http.send();
+  Http.onreadystatechange = function() {
+    if (Http.readyState === 4) {
+      let output = JSON.parse(Http.response);
+      console.log(output+", typeof = "+typeof output);
+    }
+    if (Http.status === 400) {
+      console.log(Http.response);
+    }
+  }
+}
+
 function abLabel() {return ["str","dex","con","int","wis","cha"]}
 
 //function playerEntry() {document.getElementById("char-player").innerHTML = document.getElementById("player-entry").value;}
@@ -39,14 +70,14 @@ function homeworldEntry() {document.getElementById("char-homeworld").innerHTML =
 
 function raceEntry() {
   document.getElementById("char-race").innerHTML = document.getElementById("race-entry").value;
-  raceId = document.getElementById("race-entry").selectedIndex-1;
+  raceId = document.getElementById("race-entry").selectedIndex;
   raceId = (raceId < 0) ? "" : raceId;
     if (!raceId) {raceAS.fill(0)}
       else {
         let race_index = [[0,2,0,2,0,-2],[0,0,0,0,0,0],[2,0,0,-2,2,0],[0,0,-2,2,0,2],
         [2,0,0,0,-2,2],[0,0,2,0,2,-2],[2,0,2,-2,0,0],[-2,2,0,2,0,0],[0,2,-2,0,0,2],[0,2,2,-2,0,0],
         [0,0,2,0,-2,2],[0,-2,2,0,2,0],[0,2,0,0,0,0],[2,0,0,0,0,0],[0,2,0,2,0,-2]];
-        raceAS = race_index[raceId];
+        raceAS = race_index[raceId-1];
       }
     totalsMods_AS();
     if (raceId === 5) {
@@ -65,8 +96,8 @@ function raceEntry() {
 
 function themeEntry() {
   document.getElementById("char-theme").innerHTML = document.getElementById("theme-entry").value;
-  themeId = document.getElementById("theme-entry").selectedIndex-1;
-  themeId = (themeId < 0) ? "" : themeId;
+  themeId = document.getElementById("theme-entry").selectedIndex;
+  themeId = (themeId < 1) ? "" : themeId; //may not need this line since theme id's now start at 1 and not 0?
   themeAS.fill(0);
   let themeless_input = 6, //get ability score for themeless
   theme_index = [1,2,5,0,1,4,3,2,5,4,3,4,5,2,3,5,1,2,5,4,3,3,2,themeless_input];
