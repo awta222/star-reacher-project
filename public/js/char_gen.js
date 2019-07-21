@@ -2,38 +2,17 @@
 var raceAS = [0,0,0,0,0,0], themeAS = [0,0,0,0,0,0], totalAS = [10,10,10,10,10,10],
 modAS = [0,0,0,0,0,0], pbAS = [0,0,0,0,0,0];
 
+var url = window.location.href;
+
 //declare user input variables
 var raceId, themeId, classId, level; 
 
-function getRaceAS() {
-  if (!raceId) {return console.log("no race selected")}
-  const Http = new XMLHttpRequest();
-  const url='http://localhost:3000/raceAS/'+raceId;
-  Http.open("GET", url, true);
-  Http.send();
-  Http.onreadystatechange = function() {
-    if (Http.readyState === 4) {
-      let output = JSON.parse(Http.response);
-      console.log(output+", typeof = "+typeof output);
-    }
-  }
-}
-
 function getBaseAS() {
   if (!raceId || !themeId) {return console.log("need race & theme")}
-  const Http = new XMLHttpRequest();
-  const url='http://localhost:3000/baseAS/'+raceId+"-"+themeId;
-  Http.open("GET", url, true);
-  Http.send();
-  Http.onreadystatechange = function() {
-    if (Http.readyState === 4) {
-      let output = JSON.parse(Http.response);
-      console.log(output+", typeof = "+typeof output);
-    }
-    if (Http.status === 400) {
-      console.log(Http.response);
-    }
-  }
+  const baseASUrl = url+'baseAS/'+raceId+"-"+themeId;
+  return fetch(baseASUrl)
+    .then(res => res.json())
+    .then(res => console.log(res+", typeof = "+typeof res))
 }
 
 function abLabel() {return ["str","dex","con","int","wis","cha"]}

@@ -4,13 +4,16 @@ const path = require('path');
 const port = process.env.PORT || 3000;
 const mongoose = require('mongoose');
 
-const dbURL = process.env.MONGODB_URI ? process.env.MONGODB_URI : 'mongodb://localhost:27017/starreacher';
+const auth = process.env.PROD_MONGODB ? undefined : require('./config');
+
+const dbUrl = process.env.PROD_MONGODB ? process.env.PROD_MONGODB : auth.db;
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect(dbURL, { useNewUrlParser: true }).then(
-    () => {console.log('Connected to mongo at ' + dbURL)},
-        err => {console.log(`Cannot connect to the database ${dbURL}: ${err}`)}
+mongoose.connect(dbUrl, {useNewUrlParser: true})
+        .then(
+            () => {console.log('Connected to Mongo!')},
+            err => {console.log(`Cannot connect to the database: ${err}`)}
 );
 
 // Set static folder
@@ -18,10 +21,4 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', require('./routes/api'));
 
-//app.get('/', (req, res) => {});
-//app.get('/other', (req, res) => res.send('hello other!'));
-
 app.listen(port, () => console.log(`Listening on port ${port}!!`));
-
-
-
