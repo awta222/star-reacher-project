@@ -229,15 +229,162 @@ header {
     padding-left: 10px;
 }
 
-
 .column-debug input {
     float: right;
     width: 35px
 }
 
-
 .column-debug {
     float: left;
     text-align: left;
     padding: 10px;
+}
+
+.entry-disable {
+    color: lightgray;
+}
+
+.left-margin-20per {
+    padding: 0px 10% 10px 20%;
+}
+
+.right-margin-20per {
+    padding: 0px 20% 10px 10%;
+}
+
+
+
+#preferences-section {
+    padding: 10px auto;
+}
+
+.checkbox-entry {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.checkbox-entry input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkbox-entry .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+}
+
+.checkbox-entry:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+.checkbox-entry input:checked ~ .checkmark {
+    background-color: #2196F3;
+}
+
+.checkbox-entry input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.checkbox-entry .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.radio-entry {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+ 
+.radio-entry input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.radio-entry .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+.radio-entry:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+.radio-entry input:checked ~ .checkmark {
+    background-color: #2196F3;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.radio-entry input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.radio-entry .checkmark:after {
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+}
+
+.block-center {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    width: 30%;
+}
+
+.top-spacing-60 {
+    padding-top: 60px;
+}
+
+.top-spacing-30 {
+    padding-top: 30px;
+}
+
+.bottom-spacing-30 {
+    padding-bottom: 30px;
 }
