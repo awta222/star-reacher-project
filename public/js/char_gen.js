@@ -3,7 +3,7 @@ var raceAS = [0,0,0,0,0,0], themeAS = [0,0,0,0,0,0], totalAS = [10,10,10,10,10,1
 modAS = [0,0,0,0,0,0], pbAS = [0,0,0,0,0,0];
 
 //declare user input variables
-var raceId, themeId, classId, level, blorb;
+var raceId, themeId, classId, level;
 
 function abLabel() {return ["str","dex","con","int","wis","cha"]}
 

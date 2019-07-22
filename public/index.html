@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-  <link rel="stylesheet" href="/stylesheets/styles.css">
+  <link rel="stylesheet" href="stylesheets/styles.css" type="text/css">
   <title>Starfinder Character Sheet</title>
 </head>
 <body>
@@ -55,106 +55,51 @@
         </ul>
         <hr>
         <section class="wizard-section active-section" id="preferences-section">
-          <div>
-            <label>Character Name: </label><input id="char-name-entry" oninput="nameEntry()">
-            <label>Level: </label> <input type="number" id="level-entry" min="1" max="20" oninput="levelEntry()">
-            <label>Alignment: </label>
-            <select id="alignment-entry" oninput="alignmentEntry()">
+          <div class="top-spacing-60">
+            <input class="block-center" id="char-name-entry" oninput="nameEntry()">
+          </div>
+          <div class="block-center">
+            <label><h4>Character Name</h4></label>
+          </div>
+          <div class="block-center top-spacing-60 bottom-spacing-30">
+            <label for="character-progression"><h4>Character Progression:</h4></label>
+            <select class="custom-select" id="progression-entry"  oninput="">
               <option></option>
-              <option>Chaotic Evil</option>
-              <option>Chaotic Neutral</option>
-              <option>Chaotic Good</option>
-              <option>Neutral Evil</option>
-              <option>True Neutral</option>
-              <option>Neutral Good</option>
-              <option>Lawful Evil</option>
-              <option>Lawful Neutral</option>
-              <option>Lawful Good</option>
+              <option>Experience</option>
+              <option>Milestone</option>
             </select>
-            <br>
-            <label>Deity: </label> 
-            <select id="deity-entry" oninput="deityEntry()">
-              <option>None</option>
-              <option>Abadar</option>
-              <option>Angradd</option>
-              <option>Arshea</option>
-              <option>Asmodeus</option>
-              <option>Besmara</option>
-              <option>Black Butterfly</option>
-              <option>Calistria</option>
-              <option>Damoritosh</option>
-              <option>Desna</option>
-              <option>Eldest</option>
-              <option>Eloritu</option>
-              <option>Groetus</option>
-              <option>Hylax</option>
-              <option>Ibra</option>
-              <option>Iomedae</option>
-              <option>Lamashtu</option>
-              <option>Lao Shu Po</option>
-              <option>Lissala</option>
-              <option>Nyarlathotep</option>
-              <option>Pharasma</option>
-              <option>Sarenrae</option>
-              <option>Talavet</option>
-              <option>The Devourer</option>
-              <option>Triune</option>
-              <option>Urgathoa</option>
-              <option>Weydan</option>
-              <option>Yaraesa</option>
-              <option>Zon-Kuthon</option>
-            </select>
-            <label>Homeworld: </label> 
-            <select id="homeworld-entry" oninput="homeworldEntry()">
-              <option>Unknown</option>
-              <option>Aballon</option>
-              <option>Absalom Station</option>
-              <option>Akiton</option>
-              <option>Apostae</option>
-              <option>Arquand</option>
-              <option>Arshalin</option>
-              <option>Aucturn</option>
-              <option>Azlanti Star Empire</option>
-              <option>Barrow</option>
-              <option>Bretheda</option>
-              <option>Castrovel</option>
-              <option>Daegox 4</option>
-              <option>Daimalko</option>
-              <option>Elytrio</option>
-              <option>Eox</option>
-              <option>Heicoron IV</option>
-              <option>Idari</option>
-              <option>Jedarat</option>
-              <option>Liavara</option>
-              <option>Lothun</option>
-              <option>Nakondis</option>
-              <option>Nejeor VI</option>
-              <option>New Thespera</option>
-              <option>Orikolai</option>
-              <option>Orry</option>
-              <option>Outpost Zed</option>
-              <option>Preluria</option>
-              <option>Primoria</option>
-              <option>Ratheren</option>
-              <option>Riven Shroud</option>
-              <option>Sepres VI</option>
-              <option>Shadari</option>
-              <option>Shimrinsara</option>
-              <option>Silselrik</option>
-              <option>Tabori Cluster</option>
-              <option>The Diaspora</option>
-              <option>The Drift</option>
-              <option>The Sun</option>
-              <option>The Veskarium</option>
-              <option>Triaxus</option>
-              <option>Urrakar</option>
-            </select>
-            <label>Player Name: </label>
-            <input name="player-entry" oninput="playerEntry()">
-          </div><br><br>
-
-          <div class="preference-column">
-            <label for="charcater-progression">Character Progression</label>
+          </div>
+          <div class="row top-spacing-30 bottom-spacing-30">
+            <div class="col-6 left-margin-20per block-center">
+              <h4 class="bottom-spacing-30">Source Control</h4>
+              <label class="checkbox-entry">Core Rulebook
+                <input type="checkbox" checked="checked" disabled>
+                <span class="checkmark"></span>
+              </label>
+              <label class="checkbox-entry entry-disable">Pact Worlds
+                <input type="checkbox" disabled>
+                <span class="checkmark"></span>
+              </label>
+              <label class="checkbox-entry entry-disable">Alien Archive
+                <input type="checkbox" disabled>
+                <span class="checkmark"></span>
+              </label>
+            </div>
+            <div class="col-6 right-margin-20per block-center">
+              <h4 class="bottom-spacing-30">Ability Scores</h4>
+              <label class="radio-entry">Point Buy
+                <input type="radio" checked="checked" name="radio">
+                <span class="checkmark"></span>
+              </label>
+              <label class="radio-entry entry-disable">Dice Rolls
+                <input type="radio" name="radio" disabled>
+                <span class="checkmark"></span>
+              </label>
+              <label class="radio-entry entry-disable">Quick Pick
+                <input type="radio" name="radio" disabled>
+                <span class="checkmark"></span>
+              </label>
+            </div>
           </div>
         </section>
         <section class="wizard-section" id="race-section">
@@ -170,7 +115,57 @@
             <option>Vesk</option>
             <option>Ysoki</option>
           </select>
-
+          <label>Homeworld: </label> 
+          <select id="homeworld-entry" oninput="homeworldEntry()">
+            <option>Unknown</option>
+            <option>Aballon</option>
+            <option>Absalom Station</option>
+            <option>Akiton</option>
+            <option>Apostae</option>
+            <option>Arquand</option>
+            <option>Arshalin</option>
+            <option>Aucturn</option>
+            <option>Azlanti Star Empire</option>
+            <option>Barrow</option>
+            <option>Bretheda</option>
+            <option>Castrovel</option>
+            <option>Daegox 4</option>
+            <option>Daimalko</option>
+            <option>Elytrio</option>
+            <option>Eox</option>
+            <option>Heicoron IV</option>
+            <option>Idari</option>
+            <option>Jedarat</option>
+            <option>Liavara</option>
+            <option>Lothun</option>
+            <option>Nakondis</option>
+            <option>Nejeor VI</option>
+            <option>New Thespera</option>
+            <option>Orikolai</option>
+            <option>Orry</option>
+            <option>Outpost Zed</option>
+            <option>Preluria</option>
+            <option>Primoria</option>
+            <option>Ratheren</option>
+            <option>Riven Shroud</option>
+            <option>Sepres VI</option>
+            <option>Shadari</option>
+            <option>Shimrinsara</option>
+            <option>Silselrik</option>
+            <option>Tabori Cluster</option>
+            <option>The Diaspora</option>
+            <option>The Drift</option>
+            <option>The Sun</option>
+            <option>The Veskarium</option>
+            <option>Triaxus</option>
+            <option>Urrakar</option>
+          </select>
+          <label for="gender-id">Gender: </label>
+          <select id="gender-entry" oninput="genderEntry()">
+            <option></option>
+            <option>Male</option>
+            <option>Female</option>
+          </select>
           <div class="row">
             <div class="col-4">
               <div class="list-group" id="list-tab" role="tablist">
@@ -430,12 +425,7 @@
             </div>
           </div>
 
-          <label for="gender-id">Gender: </label>
-          <select id="gender-entry" oninput="genderEntry()">
-            <option></option>
-            <option>Male</option>
-            <option>Female</option>
-          </select>
+          
         </section>
         <section class="wizard-section" id="theme-section">
           <label>Theme: </label> 
@@ -466,7 +456,51 @@
             <option>Cultist</option>
             <option>Themeless</option>
           </select>
-
+          <label>Alignment: </label>
+          <select id="alignment-entry" oninput="alignmentEntry()">
+            <option></option>
+            <option>Chaotic Evil</option>
+            <option>Chaotic Neutral</option>
+            <option>Chaotic Good</option>
+            <option>Neutral Evil</option>
+            <option>True Neutral</option>
+            <option>Neutral Good</option>
+            <option>Lawful Evil</option>
+            <option>Lawful Neutral</option>
+            <option>Lawful Good</option>
+          </select>
+          <label>Deity: </label> 
+          <select id="deity-entry" oninput="deityEntry()">
+            <option>None</option>
+            <option>Abadar</option>
+            <option>Angradd</option>
+            <option>Arshea</option>
+            <option>Asmodeus</option>
+            <option>Besmara</option>
+            <option>Black Butterfly</option>
+            <option>Calistria</option>
+            <option>Damoritosh</option>
+            <option>Desna</option>
+            <option>Eldest</option>
+            <option>Eloritu</option>
+            <option>Groetus</option>
+            <option>Hylax</option>
+            <option>Ibra</option>
+            <option>Iomedae</option>
+            <option>Lamashtu</option>
+            <option>Lao Shu Po</option>
+            <option>Lissala</option>
+            <option>Nyarlathotep</option>
+            <option>Pharasma</option>
+            <option>Sarenrae</option>
+            <option>Talavet</option>
+            <option>The Devourer</option>
+            <option>Triune</option>
+            <option>Urgathoa</option>
+            <option>Weydan</option>
+            <option>Yaraesa</option>
+            <option>Zon-Kuthon</option>
+          </select>
         </section>
         <section class="wizard-section" id="class-section">
           <label>Class: </label>
@@ -480,7 +514,7 @@
             <option>Soldier</option>
             <option>Technomancer</option>
           </select>   
-
+          <label>Level: </label> <input type="number" id="level-entry" min="1" max="20" oninput="levelEntry()">
           <div class="row">
             <div class="col-4">
               <div class="list-group" id="list-tab" role="tablist">
