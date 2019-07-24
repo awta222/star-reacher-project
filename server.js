@@ -16,9 +16,8 @@ mongoose.connect(dbUrl, {useNewUrlParser: true})
             err => {console.log(`Cannot connect to the database: ${err}`)}
 );
 
-// Set static folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', require('./routes/api'));
+app.use('/wizard', require('./routes/wizard'));
 
 app.listen(port, () => console.log(`Listening on port ${port}!!`));
