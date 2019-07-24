@@ -9,17 +9,25 @@ var raceId, themeId, classId, level;
 
 function getBaseAS() {
   if (!raceId || !themeId) {return console.log("need race & theme")}
-  const baseASUrl = url+'baseAS/'+raceId+"-"+themeId;
+  const baseASUrl = url+'wizard/baseAS/'+raceId+"-"+themeId;
   return fetch(baseASUrl)
     .then(res => res.json())
-    .then(res => console.log(res+", typeof = "+typeof res))
+    .then(res => console.log(res+", typeof = "+typeof res)
+
+      // do what needs to be done with baseAS here
+
+    )
+
 }
 
 function abLabel() {return ["str","dex","con","int","wis","cha"]}
 
-//function playerEntry() {document.getElementById("char-player").innerHTML = document.getElementById("player-entry").value;}
-
-function nameEntry() {document.getElementById("char-name").innerHTML = document.getElementById("char-name-entry").value;}
+function playerEntry() {}
+function nameEntry() {}
+function genderEntry() {}
+function alignmentEntry() {}
+function deityEntry() {}
+function homeworldEntry() {}
 
 function classEntry() {
   document.getElementById("char-class").innerHTML = document.getElementById("class-entry").value;
@@ -38,14 +46,6 @@ function levelEntry() {
   }
   ranksRemaining();
 }
-
-function genderEntry() {document.getElementById("char-gender").innerHTML = document.getElementById("gender-entry").value;}
-
-function alignmentEntry() {document.getElementById("char-align").innerHTML = document.getElementById("alignment-entry").value;}
-  
-function deityEntry() {document.getElementById("char-deity").innerHTML = document.getElementById("deity-entry").value;}
-  
-function homeworldEntry() {document.getElementById("char-homeworld").innerHTML = document.getElementById("homeworld-entry").value;}
 
 function raceEntry() {
   document.getElementById("char-race").innerHTML = document.getElementById("race-entry").value;
