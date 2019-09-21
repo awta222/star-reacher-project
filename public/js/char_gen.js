@@ -7,6 +7,66 @@ var url = window.location.href;
 //declare user input variables
 var raceId, themeId, classId, level; 
 
+//store required fields as variables so we don't have to "get" them each time
+//possibly use this at end of wizard to submit all inputs to backend
+var charInput = {
+  name: document.getElementById('char-name-entry')
+}
+
+var tabs = {
+  race: document.getElementById('race-tab'),
+  theme: document.getElementById('theme-tab'),
+  class: document.getElementById('class-tab'),
+  abilityScores: document.getElementById('ability-scores-tab'),
+  classChoices: document.getElementById('class-choices-tab'),
+  skills: document.getElementById('skills-tab'),
+  feats: document.getElementById('feats-tab'),
+  equipment: document.getElementById('equipment-tab')
+};
+
+//bucket to hold current tab statuses
+var isTabLocked = [
+  ['race', true, tabs.race], ['theme', true, tabs.theme], ['class', true, tabs.class], 
+  ['abilityScores', true, tabs.abilityScores], ['classChoices', true, tabs.classChoices], 
+  ['skills', true, tabs.skills], ['feats', true, tabs.feats], ['equipment', true, tabs.equipment]
+];
+
+//one function for locking/unlocking any tab since same action taken for each tab
+function updateTabLock(tabName,isLocked) {
+  for (i=0; i<isTabLocked.length; i++) {
+    if (isTabLocked[i][0] === tabName) {
+        if (isTabLocked[i][1] === isLocked) {return}
+        else {
+            isTabLocked[i][1] = isLocked;
+            var element = isTabLocked[i][2];
+            if (isLocked) {   //if locking the tab...
+              element.setAttribute("disabled","disabled"); //disable button
+              element.classList.add("disabled"); //make text gray
+              element.innerHTML = '<i class="fas fa-lock"></i> Race'; //add icon
+            } else {   //if unlocking the tab...
+              element.removeAttribute("disabled"); //enable button
+              element.classList.remove("disabled"); //undo gray text
+              element.innerHTML ="Race"; //remove icon
+            }
+        }    
+    }
+  }
+}
+
+//checks lists of required fields for any tab and returns boolean of whether everything has a value
+function tabComplete(requiredFields) {return !requiredFields.some(x => !x)}
+
+//checks pref tab for completeness and unlocks race tab
+function prefTabValidate() {
+  var requiredFields = [
+    charInput.name.value
+  ];
+  
+  if (tabComplete(requiredFields)) {updateTabLock('race',false)}
+    else {updateTabLock('race',true)}
+}
+
+
 function getBaseAS() {
   if (!raceId || !themeId) {return console.log("need race & theme")}
   const baseASUrl = url+'wizard/baseAS/'+raceId+"-"+themeId;

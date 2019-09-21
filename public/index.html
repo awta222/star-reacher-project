@@ -29,34 +29,34 @@
             <button type="button" class="btn-tab btn btn-primary" id="preferences-tab" onclick="preferencesTabSelect()">Preferences</button>
           </li> 
           <li class="nav-item">
-            <button type="button" class="btn-tab btn" id="race-tab" onclick="raceTabSelect()">Race</button>
+            <button type="button" class="btn-tab btn disabled" id="race-tab" onclick="raceTabSelect()" disabled><i class="fas fa-lock"></i> Race</button>
           </li>
           <li class="nav-item">
-            <button type="button" class="btn-tab btn" id="theme-tab" onclick="themeTabSelect()">Theme</a>
+            <button type="button" class="btn-tab btn disabled" id="theme-tab" onclick="themeTabSelect()" disabled><i class="fas fa-lock"></i> Theme</a>
           </li>
           <li class="nav-item">
-            <button type="button" class="btn-tab btn" id="class-tab" onclick="classTabSelect()">Class</a>
+            <button type="button" class="btn-tab btn disabled" id="class-tab" onclick="classTabSelect()" disabled><i class="fas fa-lock"></i> Class</a>
           </li>
           <li class="nav-item">
-            <button type="button" class="btn-tab btn" id="ability-scores-tab" onclick="abilityScoresTabSelect()">Ability Scores</a>
+            <button type="button" class="btn-tab btn disabled" id="ability-scores-tab" onclick="abilityScoresTabSelect()" disabled><i class="fas fa-lock"></i> Ability Scores</a>
           </li>
           <li class="nav-item">
-            <button type="button" class="btn-tab btn" id="class-choices-tab" onclick="classChoicesTabSelect()">Class Choices</a>
+            <button type="button" class="btn-tab btn disabled" id="class-choices-tab" onclick="classChoicesTabSelect()" disabled><i class="fas fa-lock"></i> Class Choices</a>
           </li>
           <li class="nav-item">
-            <button type="button" class="btn-tab btn" id="skills-tab" onclick="skillsTabSelect()">Skills</a>
+            <button type="button" class="btn-tab btn disabled" id="skills-tab" onclick="skillsTabSelect()" disabled><i class="fas fa-lock"></i> Skills</a>
           </li>
           <li class="nav-item">
-            <button type="button" class="btn-tab btn" id="feats-tab" onclick="featsTabSelect()">Feats</a>
+            <button type="button" class="btn-tab btn disabled" id="feats-tab" onclick="featsTabSelect()" disabled><i class="fas fa-lock"></i> Feats</a>
           </li>
           <li class="nav-item">
-            <button type="button" class="btn-tab btn" id="equipment-tab" onclick="equipmentTabSelect()">Equipment</a>
+            <button type="button" class="btn-tab btn disabled" id="equipment-tab" onclick="equipmentTabSelect()" disabled><i class="fas fa-lock"></i> Equipment</a>
           </li>
         </ul>
         <hr>
         <section class="wizard-section active-section" id="preferences-section">
           <div class="top-spacing-60">
-            <input class="block-center" id="char-name-entry" oninput="nameEntry()">
+            <input class="block-center" id="char-name-entry" oninput="prefTabValidate()">
           </div>
           <div class="block-center">
             <label><h4>Character Name</h4></label>
