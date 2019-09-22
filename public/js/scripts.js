@@ -1,24 +1,92 @@
+function importTest() {
+    let imports = require('./charGen');
+    console.log(imports.test);
+}
 
+var sections = {
+    preferences: document.getElementById("preferences-section"),
+    race: document.getElementById("race-section"),
+    theme: document.getElementById("theme-section"),
+    class: document.getElementById("class-section"),
+    abilityScores: document.getElementById("ability-scores-section"),
+    classChoices: document.getElementById("class-choices-section"),
+    skills: document.getElementById("skills-section"),
+    feats: document.getElementById("feats-section"),
+    equipment: document.getElementById("equipment-section")
+};
 
-var preferencesSection = document.getElementById("preferences-section"),
-    raceSection = document.getElementById("race-section"),
-    themeSection = document.getElementById("theme-section"),
-    classSection = document.getElementById("class-section"),
-    abilityScoresSection = document.getElementById("ability-scores-section"),
-    classChoicesSection = document.getElementById("class-choices-section"),
-    skillsSection = document.getElementById("skills-section"),
-    featsSection = document.getElementById("feats-section"),
-    equipmentSection = document.getElementById("equipment-section"),
-    preferencesTab = document.getElementById("preferences-tab"),
-    raceTab = document.getElementById("race-tab"),
-    themeTab = document.getElementById("theme-tab"),
-    classTab = document.getElementById("class-tab"),
-    abilityScoresTab = document.getElementById("ability-scores-tab"),
-    classChoicesTab = document.getElementById("class-choices-tab"),
-    skillsTab = document.getElementById("skills-tab"),
-    featsTab = document.getElementById("feats-tab"),
-    equipmentTab = document.getElementById("equipment-tab");
+var tabs = {
+    preferences: document.getElementById("preferences-tab"),
+    race: document.getElementById("race-tab"),
+    theme: document.getElementById("theme-tab"),
+    class: document.getElementById("class-tab"),
+    abilityScores: document.getElementById("ability-scores-tab"),
+    classChoices: document.getElementById("class-choices-tab"),
+    skills: document.getElementById("skills-tab"),
+    feats: document.getElementById("feats-tab"),
+    equipment: document.getElementById("equipment-tab")
+};
 
+//all relevant inputs stored as functions that get the value live
+var charInput = {
+    name() {return document.getElementById('char-name-entry').value},
+    race() {return getSelectedRace()}
+};
+
+//array of all the clickable race buttons in the race tab; find active one to get selected race
+var raceList = document.getElementById("race-list").getElementsByTagName('*');
+
+//returns selected race as string
+function getSelectedRace() {
+    for (i=0; i<raceList.length; i++) {
+        if (raceList[i].classList.contains('active')) {return raceList[i].innerHTML}
+    }  
+}
+
+//bucket to hold current tab statuses
+var isTabLocked = [
+    [tabs.race, true], [tabs.theme, true], [tabs.class, true], 
+    [tabs.abilityScores, true], [tabs.classChoices, true], 
+    [tabs.skills, true], [tabs.feats, true], [tabs.equipment, true]
+];
+
+//validation functions use this function to lock/unlock the desired tab
+function updateTabLock(tabId,isLocked) {
+    var tab = isTabLocked.find((e) => {return e[0].id === tabId});
+    if (tab[1] === isLocked) {return} 
+        else {
+            tab[1] = isLocked;
+            if (isLocked) {  //if locking the tab...
+                tab[0].setAttribute("disabled","disabled");
+                tab[0].classList.add("disabled");
+                tab[0].innerHTML = '<i class="fas fa-lock"></i>' + tab[0].innerHTML; 
+            } else {   //if unlocking the tab...
+                tab[0].removeAttribute("disabled");
+                tab[0].classList.remove("disabled");
+                tab[0].innerHTML = tab[0].innerHTML.replace('<i class="fas fa-lock"></i>','');
+            }
+        }    
+}
+
+function unlockAllTabs() { //for testing purposes
+    for (i=0; i<isTabLocked.length; i++) {updateTabLock(isTabLocked[i][0].id,false)}
+}
+
+//validation functions use this function to check whether all required fields are there
+function tabComplete(requiredFields) {return !requiredFields.some(x => !x)}
+
+//tab validation functions
+function prefTabValidate() {
+    var requiredFields = [charInput.name()];
+    if (tabComplete(requiredFields)) {updateTabLock(tabs.race.id,false)}
+        else {updateTabLock(tabs.race.id,true)}
+}
+
+function raceTabValidate() {
+    var requiredFields = [charInput.race()];
+    if (tabComplete(requiredFields)) {updateTabLock(tabs.theme.id,false)}
+        else {updateTabLock(tabs.theme.id,true)}
+}
 
 function clearSections() {
     var wizardSections = document.querySelectorAll(".wizard-section");
@@ -35,91 +103,91 @@ function clearPrimaryTab () {
 }
 
 function preferencesTabSelect () {
-    if (preferencesSection.classList.contains("active-section")) {
+    if (sections.preferences.classList.contains("active-section")) {
     } else {
         clearSections();
-        preferencesSection.classList.add("active-section");
+        sections.preferences.classList.add("active-section");
         clearPrimaryTab();
-        preferencesTab.classList.add("btn-primary");
+        tabs.preferences.classList.add("btn-primary");
     } 
 }
 
 function raceTabSelect() {
-    if (raceSection.classList.contains("active-section")) {
+    if (sections.race.classList.contains("active-section")) {
     } else {
         clearSections();
-        raceSection.classList.add("active-section");
+        sections.race.classList.add("active-section");
         clearPrimaryTab();
-        raceTab.classList.add("btn-primary");
+        tabs.race.classList.add("btn-primary");
     } 
 }
 
 function themeTabSelect () {
-    if (themeSection.classList.contains("active-section")) {
+    if (sections.theme.classList.contains("active-section")) {
     } else {
         clearSections();
-        themeSection.classList.add("active-section");
+        sections.theme.classList.add("active-section");
         clearPrimaryTab();
-        themeTab.classList.add("btn-primary");
+        tabs.theme.classList.add("btn-primary");
     } 
 }
 
 function classTabSelect () {
-    if (classSection.classList.contains("active-section")) {
+    if (sections.class.classList.contains("active-section")) {
     } else {
         clearSections();
-        classSection.classList.add("active-section");
+        sections.class.classList.add("active-section");
         clearPrimaryTab();
-        classTab.classList.add("btn-primary");
+        tabs.class.classList.add("btn-primary");
     } 
 }
 
 function abilityScoresTabSelect () {
-    if (abilityScoresSection.classList.contains("active-section")) {
+    if (sections.abilityScores.classList.contains("active-section")) {
     } else {
         clearSections();
-        abilityScoresSection.classList.add("active-section");
+        sections.abilityScores.classList.add("active-section");
         clearPrimaryTab();
-        abilityScoresTab.classList.add("btn-primary");
+        tabs.abilityScores.classList.add("btn-primary");
     } 
 }
 
 function classChoicesTabSelect () {
-    if (classChoicesSection.classList.contains("active-section")) {
+    if (sections.classChoices.classList.contains("active-section")) {
     } else {
         clearSections();
-        classChoicesSection.classList.add("active-section");
+        sections.classChoices.classList.add("active-section");
         clearPrimaryTab();
-        classChoicesTab.classList.add("btn-primary");
+        tabs.classChoices.classList.add("btn-primary");
     } 
 }
 
 function skillsTabSelect () {
-    if (skillsSection.classList.contains("active-section")) {
+    if (sections.skills.classList.contains("active-section")) {
     } else {
         clearSections();
-        skillsSection.classList.add("active-section");
+        sections.skills.classList.add("active-section");
         clearPrimaryTab();
-        skillsTab.classList.add("btn-primary");
+        tabs.skills.classList.add("btn-primary");
     } 
 }
 function featsTabSelect () {
-    if (featsSection.classList.contains("active-section")) {
+    if (sections.feats.classList.contains("active-section")) {
     } else {
         clearSections();
-        featsSection.classList.add("active-section");
+        sections.feats.classList.add("active-section");
         clearPrimaryTab();
-        featsTab.classList.add("btn-primary");
+        tabs.feats.classList.add("btn-primary");
     } 
 }
 
 function equipmentTabSelect () {
-    if (equipmentSection.classList.contains("active-section")) {
+    if (sections.equipment.classList.contains("active-section")) {
     } else {
         clearSections();
-        equipmentSection.classList.add("active-section");
+        sections.equipment.classList.add("active-section");
         clearPrimaryTab();
-        equipmentTab.classList.add("btn-primary");
+        tabs.equipment.classList.add("btn-primary");
     } 
 }
 
