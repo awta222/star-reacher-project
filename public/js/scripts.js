@@ -1,8 +1,3 @@
-function importTest() {
-    let imports = require('./charGen');
-    console.log(imports.test);
-}
-
 var sections = {
     preferences: document.getElementById("preferences-section"),
     race: document.getElementById("race-section"),
@@ -33,14 +28,14 @@ var charInput = {
     race() {return getSelectedRace()}
 };
 
-//array of all the clickable race buttons in the race tab; find active one to get selected race
+//array of all clickable race options in the race tab; find active one to get selected race
 var raceList = document.getElementById("race-list").getElementsByTagName('*');
 
 //returns selected race as string
 function getSelectedRace() {
     for (i=0; i<raceList.length; i++) {
         if (raceList[i].classList.contains('active')) {return raceList[i].innerHTML}
-    }  
+    }
 }
 
 //bucket to hold current tab statuses
@@ -50,17 +45,17 @@ var isTabLocked = [
     [tabs.skills, true], [tabs.feats, true], [tabs.equipment, true]
 ];
 
-//validation functions use this function to lock/unlock the desired tab
+//locks/unlocks the desired tab
 function updateTabLock(tabId,isLocked) {
     var tab = isTabLocked.find((e) => {return e[0].id === tabId});
     if (tab[1] === isLocked) {return} 
         else {
             tab[1] = isLocked;
-            if (isLocked) {  //if locking the tab...
+            if (isLocked) {
                 tab[0].setAttribute("disabled","disabled");
                 tab[0].classList.add("disabled");
                 tab[0].innerHTML = '<i class="fas fa-lock"></i>' + tab[0].innerHTML; 
-            } else {   //if unlocking the tab...
+            } else {
                 tab[0].removeAttribute("disabled");
                 tab[0].classList.remove("disabled");
                 tab[0].innerHTML = tab[0].innerHTML.replace('<i class="fas fa-lock"></i>','');
@@ -68,35 +63,45 @@ function updateTabLock(tabId,isLocked) {
         }    
 }
 
-function unlockAllTabs() { //for testing purposes
-    for (i=0; i<isTabLocked.length; i++) {updateTabLock(isTabLocked[i][0].id,false)}
+//when a tab is complete, unlocks next tab. When incomplete, locks all subsequent tabs
+function lockController(tabId,isComplete) {
+    let tabOrder = ["preferences-tab","race-tab","theme-tab","class-tab","ability-scores-tab",
+    "class-choices-tab","skills-tab","feats-tab","equipment-tab"];
+
+    let nextTabIndex = tabOrder.indexOf(tabId) + 1;
+
+    if (isComplete) {updateTabLock(tabOrder[nextTabIndex],false)}
+        else {for (i=nextTabIndex; i<tabOrder.length; i++) {updateTabLock(tabOrder[i],true)}}
 }
 
-//validation functions use this function to check whether all required fields are there
+//for testing purposes
+function unlockAllTabs() {for (i=0;i<isTabLocked.length;i++) {updateTabLock(isTabLocked[i][0].id,false)}}
+
+//returns boolean for whether all required fields are present
 function tabComplete(requiredFields) {return !requiredFields.some(x => !x)}
 
 //tab validation functions
 function prefTabValidate() {
-    var requiredFields = [charInput.name()];
-    if (tabComplete(requiredFields)) {updateTabLock(tabs.race.id,false)}
-        else {updateTabLock(tabs.race.id,true)}
+    let requiredFields = [charInput.name()];
+    if (tabComplete(requiredFields)) {lockController(tabs.preferences.id,true)}
+        else {lockController(tabs.preferences.id,false)}
 }
 
 function raceTabValidate() {
-    var requiredFields = [charInput.race()];
-    if (tabComplete(requiredFields)) {updateTabLock(tabs.theme.id,false)}
-        else {updateTabLock(tabs.theme.id,true)}
+    let requiredFields = [charInput.race()];
+    if (tabComplete(requiredFields)) {lockController(tabs.race.id,true)}
+        else {lockController(tabs.race.id,false)}
 }
 
 function clearSections() {
-    var wizardSections = document.querySelectorAll(".wizard-section");
+    let wizardSections = document.querySelectorAll(".wizard-section");
     for (i=0; i < wizardSections.length; i++) {
         wizardSections[i].classList.remove("active-section");
     }
 }
 
 function clearPrimaryTab () {
-    var wizardTabs = document.querySelectorAll(".btn-tab");
+    let wizardTabs = document.querySelectorAll(".btn-tab");
     for (i=0; i < wizardTabs.length; i++) {
         wizardTabs[i].classList.remove("btn-primary");
     }
@@ -190,6 +195,4 @@ function equipmentTabSelect () {
         tabs.equipment.classList.add("btn-primary");
     } 
 }
-
-
 
