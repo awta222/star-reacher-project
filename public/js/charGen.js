@@ -1,8 +1,26 @@
-var url = window.location.href;
+const wizUrl = window.location.href + 'wizard/';
 
-function getBaseAS() {
-  if (!raceId || !themeId) {return console.log("need race & theme")}
-  const baseASUrl = url+'wizard/baseAS/'+raceId+"-"+themeId;
+var listsData;
+
+fetch(wizUrl+'lists')
+    .then(res => res.json())
+    .then((res) => {
+      listsData = res;
+      populateOptions('homeworlds','homeworld-entry');
+    }).catch((e) => {console.log('Unable to load lists: '+e)});
+
+function populateOptions(listName,elementId) {
+  var listArray = listsData.find((list) => {return list.listName == listName}).list;
+  var selectElement = document.getElementById(elementId);
+  for (i=0;i<listArray.length;i++) {
+    let option = document.createElement('option');
+    option.innerHTML = listArray[i];
+    selectElement.appendChild(option);
+  }
+}
+
+function getBaseAS(raceId,themeId) {
+  const baseASUrl = wizUrl+'baseAS/'+raceId+"-"+themeId;
   return fetch(baseASUrl)
     .then(res => res.json())
     .then(res => console.log(res+", typeof = "+typeof res)
