@@ -1,70 +1,77 @@
 const wizUrl = window.location.href + 'wizard/';
 
+var raceDescGlobal;
 
-//for populating dropdown options
-var listsData;
+Promise.all([
+  fetch(wizUrl+'raceDesc').then(data => data.json()),
+  fetch(wizUrl+'lists').then(data => data.json())
+  ])
+  .then((data) => {
+    populateRaceTab(data[0]);
+    populateAllDropdowns(data[1]);
+}).catch((e) => {console.log('Unable to populate data from server: '+e)}); 
 
-fetch(wizUrl+'lists')
-    .then(res => res.json())
-    .then((res) => {
-      listsData = res;
-      populateOptions('homeworlds','homeworld-entry');
-    }).catch((e) => {console.log('Unable to load lists: '+e)});
 
-function populateOptions(listName,elementId) {
-  var listArray = listsData.find((list) => {return list.listName == listName}).list;
-  var selectElement = document.getElementById(elementId);
-  for (i=0;i<listArray.length;i++) {
-    let option = document.createElement('option');
-    option.innerHTML = listArray[i];
-    selectElement.appendChild(option);
+function populateAllDropdowns(listCollection) {
+// in the format ('list name','target element id')
+  populateDropdown('homeworlds','homeworldSelect');
+
+  function populateDropdown(listName,elementId) {
+    var listArray = listCollection.find((list) => {return list.listName == listName}).list;
+    var dropdown = document.getElementById(elementId);
+    for (i=0;i<listArray.length;i++) {
+      let option = document.createElement('option');
+      option.innerHTML = listArray[i];
+      dropdown.appendChild(option);
+    }
   }
 }
 
 
-//populating race tab
-var raceDescriptions;
-
-fetch(wizUrl+'raceDesc')
-  .then(res => res.json())
-  .then((res) => {
-    raceDescriptions = res;
-    console.log(raceDescriptions);
-  }).catch((e) => {console.log('Unable to load raceDescriptions: '+e)})
-
-
-function populateRaceTab() {
+function populateRaceTab(raceTabData) {
 
   var tabContent = document.getElementById('tab-content').children;
 
+  //div names and data names to pair data with the right section when iterating
   var tabIndex = [['list-android','Android'],['list-human','Human'],['list-kasatha','Kasatha'],
   ['list-lashunta','Lashunta'],['list-shirren','Shirren'],['list-vesk','Vesk'],['list-ysoki','Ysoki']];
 
-  var raceInfoKey = [['#race-name','raceName'],['#race-description','description'],['#race-AS','AS'],
-  ['#race-HP','HP'],['#race-sizeType','sizeType']];
-
-  for (i=0;i<tabContent.length;i++) {
-
-    //get main div for the race we're updating, and get the data we'll use to populate with
-    var thisTabContent = tabContent[tabIndex[i][0]].children;
-    var thisData = raceDescriptions.find((race) => {return race.raceName == tabIndex[i][1]});
+  for (i=0;i<tabIndex.length;i++) {
+    var thisRaceData = raceTabData.find((race) => {return race.raceName == tabIndex[i][1]});
     
-    //populate race info (race name, desc, stat block)
-    var raceInfo = thisTabContent['race-info'];
-    for (infoCounter=0; infoCounter<raceInfoKey.length; infoCounter++) {
-      let thisElement = raceInfo.querySelector(raceInfoKey[infoCounter][0]);
-      thisElement.innerHTML = thisData[raceInfoKey[infoCounter][1]];
-    }
+    var thisTabContent = tabContent[tabIndex[i][0]].children;
+    var raceInfoDiv = thisTabContent['race-info'];
+    var raceAbilitiesDiv = thisTabContent['race-abilities'];
 
-    //create race ability boxes based off dataset for this race
-    var raceAbilities = thisTabContent['race-abilities'];
-    for (abilityCounter=0; abilityCounter<thisData.racialAbilities.length; abilityCounter++) {
-      let thisAbility = thisData.racialAbilities[abilityCounter];
+    createRaceStatBlock(raceInfoDiv,thisRaceData);
+    
+    for (raceAb=0; raceAb<thisRaceData.racialAbilities.length; raceAb++) {
+      let thisAbility = thisRaceData.racialAbilities[raceAb];
       let raceAbilityBox = createRaceAbilityBox(thisAbility.name,thisAbility.description);
-      raceAbilities.appendChild(raceAbilityBox);
+      raceAbilitiesDiv.appendChild(raceAbilityBox);
     }
-
   }
+}
+
+function createRaceStatBlock(raceInfoSection,raceData) {
+  var raceInfo = raceInfoSection;
+
+  function makeDiv(name) {
+    let div = document.createElement('div');
+    div.className = div.id = 'race-'+name;
+    if (raceData[name]) {div.innerHTML = raceData[name]}
+    return div;
+  }
+
+  let raceName = makeDiv('raceName');
+  let description = makeDiv('description');
+  let stats = makeDiv('stats');
+  let AS = makeDiv('AS');
+  let HP = makeDiv('HP');
+  let sizeType = makeDiv('sizeType');
+
+  raceInfo.appendChild(raceName); raceInfo.appendChild(description); raceInfo.appendChild(stats);
+  stats.appendChild(AS); stats.appendChild(HP); stats.appendChild(sizeType);
 }
 
 function createRaceAbilityBox(abilityName,abilityDesc) {

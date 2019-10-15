@@ -22,6 +22,30 @@ var tabs = {
     equipment: document.getElementById("equipment-tab")
 };
 
+function clearSections() {
+    let wizardSections = document.querySelectorAll(".wizard-section");
+    for (i=0; i < wizardSections.length; i++) {
+        wizardSections[i].classList.remove("active-section");
+    }
+}
+
+function clearPrimaryTab() {
+    let wizardTabs = document.querySelectorAll(".btn-tab");
+    for (i=0; i < wizardTabs.length; i++) {
+        wizardTabs[i].classList.remove("btn-primary");
+    }
+}
+
+function tabSelect(tabName) {
+    var section = sections[tabName], tab = tabs[tabName];
+    if (!section.classList.contains("active-section")) {
+        clearSections();
+        section.classList.add("active-section");
+        clearPrimaryTab();
+        tab.classList.add("btn-primary");
+    } 
+}
+
 //all relevant inputs stored as functions that get the value live
 var charInput = {
     name() {return document.getElementById('char-name-entry').value},
@@ -93,106 +117,8 @@ function raceTabValidate() {
         else {lockController(tabs.race.id,false)}
 }
 
-function clearSections() {
-    let wizardSections = document.querySelectorAll(".wizard-section");
-    for (i=0; i < wizardSections.length; i++) {
-        wizardSections[i].classList.remove("active-section");
-    }
-}
 
-function clearPrimaryTab () {
-    let wizardTabs = document.querySelectorAll(".btn-tab");
-    for (i=0; i < wizardTabs.length; i++) {
-        wizardTabs[i].classList.remove("btn-primary");
-    }
-}
 
-function preferencesTabSelect () {
-    if (sections.preferences.classList.contains("active-section")) {
-    } else {
-        clearSections();
-        sections.preferences.classList.add("active-section");
-        clearPrimaryTab();
-        tabs.preferences.classList.add("btn-primary");
-    } 
-}
 
-function raceTabSelect() {
-    if (sections.race.classList.contains("active-section")) {
-    } else {
-        clearSections();
-        sections.race.classList.add("active-section");
-        clearPrimaryTab();
-        tabs.race.classList.add("btn-primary");
-    } 
-}
 
-function themeTabSelect () {
-    if (sections.theme.classList.contains("active-section")) {
-    } else {
-        clearSections();
-        sections.theme.classList.add("active-section");
-        clearPrimaryTab();
-        tabs.theme.classList.add("btn-primary");
-    } 
-}
-
-function classTabSelect () {
-    if (sections.class.classList.contains("active-section")) {
-    } else {
-        clearSections();
-        sections.class.classList.add("active-section");
-        clearPrimaryTab();
-        tabs.class.classList.add("btn-primary");
-    } 
-}
-
-function abilityScoresTabSelect () {
-    if (sections.abilityScores.classList.contains("active-section")) {
-    } else {
-        clearSections();
-        sections.abilityScores.classList.add("active-section");
-        clearPrimaryTab();
-        tabs.abilityScores.classList.add("btn-primary");
-    } 
-}
-
-function classChoicesTabSelect () {
-    if (sections.classChoices.classList.contains("active-section")) {
-    } else {
-        clearSections();
-        sections.classChoices.classList.add("active-section");
-        clearPrimaryTab();
-        tabs.classChoices.classList.add("btn-primary");
-    } 
-}
-
-function skillsTabSelect () {
-    if (sections.skills.classList.contains("active-section")) {
-    } else {
-        clearSections();
-        sections.skills.classList.add("active-section");
-        clearPrimaryTab();
-        tabs.skills.classList.add("btn-primary");
-    } 
-}
-function featsTabSelect () {
-    if (sections.feats.classList.contains("active-section")) {
-    } else {
-        clearSections();
-        sections.feats.classList.add("active-section");
-        clearPrimaryTab();
-        tabs.feats.classList.add("btn-primary");
-    } 
-}
-
-function equipmentTabSelect () {
-    if (sections.equipment.classList.contains("active-section")) {
-    } else {
-        clearSections();
-        sections.equipment.classList.add("active-section");
-        clearPrimaryTab();
-        tabs.equipment.classList.add("btn-primary");
-    } 
-}
 

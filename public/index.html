@@ -26,31 +26,31 @@
       <div class="modal-body">
         <ul class="nav nav-pills nav-justified">
           <li class="nav-item">
-            <button type="button" class="btn-tab btn btn-primary" id="preferences-tab" onclick="preferencesTabSelect()">Preferences</button>
+            <button type="button" class="btn-tab btn btn-primary" id="preferences-tab" onclick="tabSelect('preferences')">Preferences</button>
           </li> 
           <li class="nav-item">
-            <button type="button" class="btn-tab btn disabled" id="race-tab" onclick="raceTabSelect()" disabled><i class="fas fa-lock"></i> Race</button>
+            <button type="button" class="btn-tab btn disabled" id="race-tab" onclick="tabSelect('race')" disabled><i class="fas fa-lock"></i> Race</button>
           </li>
           <li class="nav-item">
-            <button type="button" class="btn-tab btn disabled" id="theme-tab" onclick="themeTabSelect()" disabled><i class="fas fa-lock"></i> Theme</a>
+            <button type="button" class="btn-tab btn disabled" id="theme-tab" onclick="tabSelect('theme')" disabled><i class="fas fa-lock"></i> Theme</a>
           </li>
           <li class="nav-item">
-            <button type="button" class="btn-tab btn disabled" id="class-tab" onclick="classTabSelect()" disabled><i class="fas fa-lock"></i> Class</a>
+            <button type="button" class="btn-tab btn disabled" id="class-tab" onclick="tabSelect('class')" disabled><i class="fas fa-lock"></i> Class</a>
           </li>
           <li class="nav-item">
-            <button type="button" class="btn-tab btn disabled" id="ability-scores-tab" onclick="abilityScoresTabSelect()" disabled><i class="fas fa-lock"></i> Ability Scores</a>
+            <button type="button" class="btn-tab btn disabled" id="ability-scores-tab" onclick="tabSelect('abilityScores')" disabled><i class="fas fa-lock"></i> Ability Scores</a>
           </li>
           <li class="nav-item">
-            <button type="button" class="btn-tab btn disabled" id="class-choices-tab" onclick="classChoicesTabSelect()" disabled><i class="fas fa-lock"></i> Class Choices</a>
+            <button type="button" class="btn-tab btn disabled" id="class-choices-tab" onclick="tabSelect('classChoices')" disabled><i class="fas fa-lock"></i> Class Choices</a>
           </li>
           <li class="nav-item">
-            <button type="button" class="btn-tab btn disabled" id="skills-tab" onclick="skillsTabSelect()" disabled><i class="fas fa-lock"></i> Skills</a>
+            <button type="button" class="btn-tab btn disabled" id="skills-tab" onclick="tabSelect('skills')" disabled><i class="fas fa-lock"></i> Skills</a>
           </li>
           <li class="nav-item">
-            <button type="button" class="btn-tab btn disabled" id="feats-tab" onclick="featsTabSelect()" disabled><i class="fas fa-lock"></i> Feats</a>
+            <button type="button" class="btn-tab btn disabled" id="feats-tab" onclick="tabSelect('feats')" disabled><i class="fas fa-lock"></i> Feats</a>
           </li>
           <li class="nav-item">
-            <button type="button" class="btn-tab btn disabled" id="equipment-tab" onclick="equipmentTabSelect()" disabled><i class="fas fa-lock"></i> Equipment</a>
+            <button type="button" class="btn-tab btn disabled" id="equipment-tab" onclick="tabSelect('equipment')" disabled><i class="fas fa-lock"></i> Equipment</a>
           </li>
         </ul>
         <hr>
@@ -103,17 +103,8 @@
           </div>
         </section>
         <section class="wizard-section" id="race-section">
-          <label>Homeworld: </label>
-          <select id="homeworld-entry" oninput="homeworldEntry()">
-          </select>
-          <label for="gender-id">Gender: </label>
-          <select id="gender-entry" oninput="genderEntry()">
-            <option></option>
-            <option>Male</option>
-            <option>Female</option>
-          </select>
           <div class="row">
-            <div class="col-4" onclick="raceTabValidate()">
+            <div class="col-4">
               <div class="list-group" id="race-list" role="tablist">
                 <a class="list-group-item list-group-item-action active" id="list-android-list" data-toggle="list" href="#list-android" role="tab" aria-controls="android">Android</a>
 
@@ -130,6 +121,17 @@
                 <a class="list-group-item list-group-item-action" id="list-ysoki-list" data-toggle="list" href="#list-ysoki" role="tab" aria-controls="ysoki">Ysoki</a>
 
               </div>
+              <div class="homeworld-gender">
+                <select class="browser-default custom-select genderSelect" id="genderSelect">
+                  <option selected>Gender</option>
+                  <option>Male</option>
+                  <option>Female</option>
+                  <option>Other</option>
+                </select>  
+                <select class="browser-default custom-select homeworldSelect" id="homeworldSelect">
+                  <option selected>Homeworld</option>
+                </select>  
+              </div>
             </div>
             <div class="col-8">
               <div class="tab-content" id="tab-content">
@@ -138,72 +140,52 @@
                   <div class="race-image">
                     <img src="images/Android.png" alt="">
                   </div>
-                  <div class="race-info" id="race-info">
-                    <div id="race-name" class="race-name"></div>
-                    <div class="race-description" id="race-description"></div>
-                    <div class="race-stats" id="race-stats">
-                      <div class="race-AS" id="race-AS"></div>
-                      <div class="race-HP" id="race-HP"></div>
-                      <div class="race-sizeType" id="race-sizeType"></div>
-                    </div>     
-                  </div>
+                  <div class="race-info" id="race-info"></div>
                   <hr> 
                   <div class="race-abilities" id="race-abilities"></div>
                   <hr>
+                  <div class="race-select-pane">
+                    <button type="button" class="btn btn-primary btn-lg race-select-button" id="Android" onclick="selectRace(this.id)">Select This Race</button>
+                  </div>
                 </div>
 
                 <div class="tab-pane fade" id="list-human" role="tabpanel" aria-labelledby="list-human-list">
                   <div class="race-image">
                     <img src="images/Human.png" alt="">
                   </div>
-                  <div class="race-info" id="race-info">
-                    <div id="race-name" class="race-name"></div>
-                    <div class="race-description" id="race-description"></div>
-                    <div class="race-stats" id="race-stats">
-                      <div class="race-AS" id="race-AS"></div>
-                      <div class="race-HP" id="race-HP"></div>
-                      <div class="race-sizeType" id="race-sizeType"></div>
-                    </div>     
-                  </div>
+                  <div class="race-info" id="race-info"></div>
                   <hr> 
                   <div class="race-abilities" id="race-abilities"></div>
                   <hr>
+                  <div class="race-select-pane">
+                    <button type="button" class="btn btn-primary btn-lg race-select-button" id="Human" onclick="selectRace(this.id)">Select This Race</button>
+                  </div>
                 </div>
                 
                 <div class="tab-pane fade" id="list-kasatha" role="tabpanel" aria-labelledby="list-kasatha-list">
                   <div class="race-image">
                     <img src="images/Kasatha.png" alt="">
                   </div>
-                  <div class="race-info" id="race-info">
-                    <div id="race-name" class="race-name"></div>
-                    <div class="race-description" id="race-description"></div>
-                    <div class="race-stats" id="race-stats">
-                      <div class="race-AS" id="race-AS"></div>
-                      <div class="race-HP" id="race-HP"></div>
-                      <div class="race-sizeType" id="race-sizeType"></div>
-                    </div>     
-                  </div>
+                  <div class="race-info" id="race-info"></div>
                   <hr>
                   <div class="race-abilities" id="race-abilities"></div>
                   <hr>
+                  <div class="race-select-pane">
+                    <button type="button" class="btn btn-primary btn-lg race-select-button" id="Kasatha" onclick="selectRace(this.id)">Select This Race</button>
+                  </div>
                 </div>
                 
                 <div class="tab-pane fade" id="list-lashunta" role="tabpanel" aria-labelledby="list-lashunta-list">
                   <div class="race-image">
                     <img src="images/Lashunta Damaya.png" alt="">
                   </div>
-                  <div class="race-info" id="race-info">
-                    <div id="race-name" class="race-name"></div>
-                    <div class="race-description" id="race-description"></div>
-                    <div class="race-stats" id="race-stats">
-                      <div class="race-AS" id="race-AS"></div>
-                      <div class="race-HP" id="race-HP"></div>
-                      <div class="race-sizeType" id="race-sizeType"></div>
-                    </div>     
-                  </div>
+                  <div class="race-info" id="race-info"></div>
                   <hr> 
                   <div class="race-abilities" id="race-abilities"></div>
                   <hr>
+                  <div class="race-select-pane">
+                    <button type="button" class="btn btn-primary btn-lg race-select-button" id="Lashunta" onclick="selectRace(this.id)">Select This Race</button>
+                  </div>
                 </div>
 
 
@@ -211,58 +193,42 @@
                   <div class="race-image">
                     <img src="images/Shirren.png" alt="">
                   </div>
-                  <div class="race-info" id="race-info">
-                    <div id="race-name" class="race-name"></div>
-                    <div class="race-description" id="race-description"></div>
-                    <div class="race-stats" id="race-stats">
-                      <div class="race-AS" id="race-AS"></div>
-                      <div class="race-HP" id="race-HP"></div>
-                      <div class="race-sizeType" id="race-sizeType"></div>
-                    </div>     
-                  </div>
+                  <div class="race-info" id="race-info"></div>
                   <hr> 
                   <div class="race-abilities" id="race-abilities"></div>
                   <hr>
+                  <div class="race-select-pane">
+                    <button type="button" class="btn btn-primary btn-lg race-select-button" id="Shirren" onclick="selectRace(this.id)">Select This Race</button>
+                  </div>
                 </div>
 
                 <div class="tab-pane fade" id="list-vesk" role="tabpanel" aria-labelledby="list-vesk-list">
                   <div class="class-image">
                     <img src="images/Vesk.png" alt="">
                   </div>
-                  <div class="race-info" id="race-info">
-                    <div id="race-name" class="race-name"></div>
-                    <div class="race-description" id="race-description"></div>
-                    <div class="race-stats" id="race-stats">
-                      <div class="race-AS" id="race-AS"></div>
-                      <div class="race-HP" id="race-HP"></div>
-                      <div class="race-sizeType" id="race-sizeType"></div>
-                    </div>     
-                  </div>
+                  <div class="race-info" id="race-info"></div>
                   <hr> 
                   <div class="race-abilities" id="race-abilities"></div>
                   <hr>
+                  <div class="race-select-pane">
+                    <button type="button" class="btn btn-primary btn-lg race-select-button" id="Vesk" onclick="selectRace(this.id)">Select This Race</button>
+                  </div>
                 </div>
 
                 <div class="tab-pane fade" id="list-ysoki" role="tabpanel" aria-labelledby="list-ysoki-list">
                   <div class="class-image">
                     <img src="images/Ysoki.png" alt="">
                   </div>
-                  <div class="race-info" id="race-info">
-                    <div id="race-name" class="race-name"></div>
-                    <div class="race-description" id="race-description"></div>
-                    <div class="race-stats" id="race-stats">
-                      <div class="race-AS" id="race-AS"></div>
-                      <div class="race-HP" id="race-HP"></div>
-                      <div class="race-sizeType" id="race-sizeType"></div>
-                    </div>     
-                  </div>
+                  <div class="race-info" id="race-info"></div>
                   <hr> 
                   <div class="race-abilities" id="race-abilities"></div>
                   <hr>
-                </div>
-
-              </div>
-            </div>
+                  <div class="race-select-pane">
+                    <button type="button" class="btn btn-primary btn-lg race-select-button" id="Ysoki" onclick="selectRace(this.id)">Select This Race</button>
+                  </div>
+                </div>            
+              </div>  
+            </div> <!--end of col-8; the sidebar where the race list is-->
           </div>
 
           
