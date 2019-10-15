@@ -56,22 +56,20 @@ function populateRaceTab(raceTabData) {
 function createRaceStatBlock(raceInfoSection,raceData) {
   var raceInfo = raceInfoSection;
 
-  function makeDiv(name) {
+  function addDiv(name) {
     let div = document.createElement('div');
     div.className = div.id = 'race-'+name;
     if (raceData[name]) {div.innerHTML = raceData[name]}
     return div;
-  }
+  } 
 
-  let raceName = makeDiv('raceName');
-  let description = makeDiv('description');
-  let stats = makeDiv('stats');
-  let AS = makeDiv('AS');
-  let HP = makeDiv('HP');
-  let sizeType = makeDiv('sizeType');
+  let raceName = addDiv('raceName'), 
+  description = addDiv('description'),
+  stats = addDiv('stats'), AS = addDiv('AS'),
+  HP = addDiv('HP'), sizeType = addDiv('sizeType'); 
 
   raceInfo.appendChild(raceName); raceInfo.appendChild(description); raceInfo.appendChild(stats);
-  stats.appendChild(AS); stats.appendChild(HP); stats.appendChild(sizeType);
+  stats.appendChild(AS); stats.appendChild(HP); stats.appendChild(sizeType); 
 }
 
 function createRaceAbilityBox(abilityName,abilityDesc) {

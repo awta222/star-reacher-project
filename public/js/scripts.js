@@ -22,6 +22,24 @@ var tabs = {
     equipment: document.getElementById("equipment-tab")
 };
 
+//contains tab locked/unlocked statuses
+var isTabLocked = [
+    [tabs.race, true], [tabs.theme, true], [tabs.class, true], 
+    [tabs.abilityScores, true], [tabs.classChoices, true], 
+    [tabs.skills, true], [tabs.feats, true], [tabs.equipment, true]
+];
+
+//array of race list items from race-list div
+var raceList = Array.from(document.getElementById("race-list").getElementsByTagName('*'));
+
+//holds character selections
+var charInput = {
+    name() {return document.getElementById('char-name-entry').value},
+    race: ""
+};
+
+
+// --- tab switching stuff --- //
 function clearSections() {
     let wizardSections = document.querySelectorAll(".wizard-section");
     for (i=0; i < wizardSections.length; i++) {
@@ -46,28 +64,28 @@ function tabSelect(tabName) {
     } 
 }
 
-//all relevant inputs stored as functions that get the value live
-var charInput = {
-    name() {return document.getElementById('char-name-entry').value},
-    race() {return getSelectedRace()}
-};
 
-//array of all clickable race options in the race tab; find active one to get selected race
-var raceList = document.getElementById("race-list").getElementsByTagName('*');
+// --- race tab stuff --- //
 
-//returns selected race as string
-function getSelectedRace() {
-    for (i=0; i<raceList.length; i++) {
-        if (raceList[i].classList.contains('active')) {return raceList[i].innerHTML}
+function selectRace(buttonElement) {
+    if (charInput.race != buttonElement.id) {
+        var checkIcon = '<i class="fas fa-check"></i>';
+        if (charInput.race) {
+            let previousRaceButton = document.getElementById(charInput.race);
+            let previousListItem = raceList.find((item) => {return item.innerHTML.includes(charInput.race)});
+            previousRaceButton.innerHTML = "Select This Race";
+            previousListItem.innerHTML = previousListItem.innerHTML.replace(checkIcon,'');
+        }
+        charInput.race = buttonElement.id; 
+        buttonElement.innerHTML = "Selected  "+checkIcon;
+        let newRaceListItem = raceList.find((e) => {return e.innerHTML == buttonElement.id})
+        newRaceListItem.innerHTML += checkIcon;
     }
+    lockController(tabs.race.id,true);
 }
 
-//bucket to hold current tab statuses
-var isTabLocked = [
-    [tabs.race, true], [tabs.theme, true], [tabs.class, true], 
-    [tabs.abilityScores, true], [tabs.classChoices, true], 
-    [tabs.skills, true], [tabs.feats, true], [tabs.equipment, true]
-];
+
+// --- validation stuff --- //
 
 //locks/unlocks the desired tab
 function updateTabLock(tabId,isLocked) {
@@ -75,14 +93,15 @@ function updateTabLock(tabId,isLocked) {
     if (tab[1] === isLocked) {return} 
         else {
             tab[1] = isLocked;
+            var lockIcon = '<i class="fas fa-lock"></i>';
             if (isLocked) {
                 tab[0].setAttribute("disabled","disabled");
                 tab[0].classList.add("disabled");
-                tab[0].innerHTML = '<i class="fas fa-lock"></i>' + tab[0].innerHTML; 
+                tab[0].innerHTML = lockIcon + tab[0].innerHTML; 
             } else {
                 tab[0].removeAttribute("disabled");
                 tab[0].classList.remove("disabled");
-                tab[0].innerHTML = tab[0].innerHTML.replace('<i class="fas fa-lock"></i>','');
+                tab[0].innerHTML = tab[0].innerHTML.replace(lockIcon,'');
             }
         }    
 }
@@ -104,20 +123,13 @@ function unlockAllTabs() {for (i=0;i<isTabLocked.length;i++) {updateTabLock(isTa
 //returns boolean for whether all required fields are present
 function tabComplete(requiredFields) {return !requiredFields.some(x => !x)}
 
-//tab validation functions
+
+//tab validation
 function prefTabValidate() {
     let requiredFields = [charInput.name()];
     if (tabComplete(requiredFields)) {lockController(tabs.preferences.id,true)}
         else {lockController(tabs.preferences.id,false)}
 }
-
-function raceTabValidate() {
-    let requiredFields = [charInput.race()];
-    if (tabComplete(requiredFields)) {lockController(tabs.race.id,true)}
-        else {lockController(tabs.race.id,false)}
-}
-
-
 
 
 

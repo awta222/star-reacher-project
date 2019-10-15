@@ -118,10 +118,7 @@ hr {display: block; clear: both;}
     margin-bottom: 16px;
 }
 
-.race-description {
-    font-size: 15px;
-    margin-bottom: 16px;
-}
+.race-description {font-size: 15px; margin-bottom: 16px;}
 
 .race-stats {
     border: 3px solid black;
@@ -133,14 +130,9 @@ hr {display: block; clear: both;}
     margin-top: 16px;
 }
 
-.race-AS, .race-HP {
-    font-weight: bold;
-    font-size: 17px; 
-}
+.race-AS, .race-HP {font-weight: bold; font-size: 17px;}
 
-.race-sizeType {
-    font-size: 13px;
-}
+.race-sizeType {font-size: 13px;}
 
 .race-abilities {
     clear: both;
@@ -187,8 +179,12 @@ hr {display: block; clear: both;}
 .race-select-button {
     align-self: center;
     font-weight: bold;
+    width: 200px;
 }
 
+.fa-check {margin-left: 6px;}
+
+/* --- END RACE TAB CONTENT --- */
 
 .page-title {
     text-align: center;
@@ -206,6 +202,7 @@ hr {display: block; clear: both;}
     border-width: 5px;
     text-align: center;
 }
+
 .grey-card {
     display: inline-block;
     background-color: #e6e6e6;
