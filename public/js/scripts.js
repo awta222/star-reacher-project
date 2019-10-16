@@ -29,6 +29,20 @@ var isTabLocked = [
     [tabs.skills, true], [tabs.feats, true], [tabs.equipment, true]
 ];
 
+//will hold subdecision info for all tabs to use...?
+var subdecisions = {
+    race: [
+        {
+            raceName: "Lashunta",
+            selectLabel: "Select Dimorph:",
+            options: [
+                {text: "Damaya", desc: "+2 Int, -2 Con"},
+                {text: "Korasha", desc: "+2 Str, -2 Wis"}
+            ]
+        }
+    ]
+};
+
 //array of race list items from race-list div
 var raceList = Array.from(document.getElementById("race-list").getElementsByTagName('*'));
 
@@ -81,9 +95,15 @@ function selectRace(buttonElement) {
         let newRaceListItem = raceList.find((e) => {return e.innerHTML == buttonElement.id})
         newRaceListItem.innerHTML += checkIcon;
     }
+    
     lockController(tabs.race.id,true);
 }
 
+function getRaceSubdecisions(raceName) {
+    var decisions = subdecisions.race.filter(decision => decision.raceName == raceName);
+    if (!decisions.length) {return}
+        else {return decisions}
+}
 
 // --- validation stuff --- //
 

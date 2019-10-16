@@ -184,6 +184,35 @@ hr {display: block; clear: both;}
 
 .fa-check {margin-left: 6px;}
 
+.subdecisions {
+    display: flex;
+    align-content: center;
+    width: 100%
+}
+
+.subdecisions label {
+    font-weight: bold;
+    align-self: center;
+}
+
+.subdecisions select {
+    margin: 16px;
+    border: 2px solid black;
+    font-weight: bold;
+    width: 250px;
+    justify-self: center;
+    align-self: center;
+}
+
+.subdecisionDetail {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 7px;
+    background-color: #ededed;
+    font-weight: bold;
+    align-self: center;
+}
+
 /* --- END RACE TAB CONTENT --- */
 
 .page-title {

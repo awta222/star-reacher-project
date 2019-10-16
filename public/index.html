@@ -145,7 +145,7 @@
                   <div class="race-abilities" id="race-abilities"></div>
                   <hr>
                   <div class="race-select-pane">
-                    <button type="button" class="btn btn-primary btn-lg race-select-button" id="Android" onclick="selectRace(this)">Select This Race</button>
+                    <button type="button" class="btn btn-primary btn-lg race-select-button" id="Android" onclick="selectRace(this)">Select This Race</button>                    
                   </div>
                 </div>
 
@@ -185,6 +185,15 @@
                   <hr>
                   <div class="race-select-pane">
                     <button type="button" class="btn btn-primary btn-lg race-select-button" id="Lashunta" onclick="selectRace(this)">Select This Race</button>
+                    <div class="subdecisions">
+                      <label for="subdecisionSelect">Select Dimorph:</label>
+                      <select class="browser-default custom-select subdecisionSelect" id="subdecisionSelect">
+                        <option hidden disabled selected value></option>
+                        <option>Damaya</option>
+                        <option>Korasha</option>
+                      </select>
+                      <div class="subdecisionDetail" id="subdecisionDetail">+2 Int, -2 Wis</div>
+                    </div>
                   </div>
                 </div>
 
