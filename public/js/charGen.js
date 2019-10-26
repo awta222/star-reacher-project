@@ -1,15 +1,14 @@
 const wizUrl = window.location.href + 'wizard/';
 
-var raceDescGlobal;
+fetch(wizUrl+'lists')
+  .then(data => data.json())
+  .then(data => populateAllDropdowns(data))
+  .catch(err => console.log('Unable to populate lists: '+err));
 
-Promise.all([
-  fetch(wizUrl+'raceDesc').then(data => data.json()),
-  fetch(wizUrl+'lists').then(data => data.json())
-  ])
-  .then((data) => {
-    populateRaceTab(data[0]);
-    populateAllDropdowns(data[1]);
-}).catch((e) => {console.log('Unable to populate data from server: '+e)}); 
+fetch(wizUrl+'raceDesc')
+  .then(data => data.json())
+  .then(data => populateRaceTab(data))
+  .catch(err => console.log('Unable to populate race tab: '+err));
 
 
 function populateAllDropdowns(listCollection) {
@@ -28,18 +27,15 @@ function populateAllDropdowns(listCollection) {
 }
 
 
-function populateRaceTab(raceTabData) {
+// --- race tab stuff --- //
 
+function populateRaceTab(raceTabData) {
   var tabContent = document.getElementById('tab-content').children;
 
-  //div names and data names to pair data with the right section when iterating
-  var tabIndex = [['list-android','Android'],['list-human','Human'],['list-kasatha','Kasatha'],
-  ['list-lashunta','Lashunta'],['list-shirren','Shirren'],['list-vesk','Vesk'],['list-ysoki','Ysoki']];
-
-  for (i=0;i<tabIndex.length;i++) {
-    var thisRaceData = raceTabData.find((race) => {return race.raceName == tabIndex[i][1]});
+  for (i=0;i<tabContent.length;i++) {
+    var thisRaceData = raceTabData[i];
     
-    var thisTabContent = tabContent[tabIndex[i][0]].children;
+    var thisTabContent = tabContent['list-'+thisRaceData.raceName].children;
     var raceInfoDiv = thisTabContent['race-info'];
     var raceAbilitiesDiv = thisTabContent['race-abilities'];
 
@@ -50,8 +46,15 @@ function populateRaceTab(raceTabData) {
       let raceAbilityBox = createRaceAbilityBox(thisAbility.name,thisAbility.description);
       raceAbilitiesDiv.appendChild(raceAbilityBox);
     }
+
+    if (thisRaceData.subdecisions) {
+      let raceSelectPane = thisTabContent['race-select-pane'];
+      raceSelectPane.appendChild(createSubdecisionDiv(thisRaceData.subdecisions));
+    }
+
   }
 }
+
 
 function createRaceStatBlock(raceInfoSection,raceData) {
   var raceInfo = raceInfoSection;
@@ -72,6 +75,7 @@ function createRaceStatBlock(raceInfoSection,raceData) {
   stats.appendChild(AS); stats.appendChild(HP); stats.appendChild(sizeType); 
 }
 
+
 function createRaceAbilityBox(abilityName,abilityDesc) {
   let raceAbilityBox = document.createElement('div');
   raceAbilityBox.className = "race-ability-box";
@@ -88,6 +92,44 @@ function createRaceAbilityBox(abilityName,abilityDesc) {
   raceAbilityBox.appendChild(abilityText);
 
   return raceAbilityBox;
+}
+
+
+function createSubdecisionDiv(subdecisionData) {
+  let subdecisionDiv = document.createElement('div');
+  subdecisionDiv.className = subdecisionDiv.id = 'subdecisions';
+  subdecisionDiv.setAttribute('hidden','');
+
+  let label = document.createElement('label');
+  label.setAttribute('for','subdecisionSelect');
+  label.innerHTML = subdecisionData.selectLabel;
+
+  var select = document.createElement('select');
+  select.className = "browser-default custom-select";
+  select.id = "subdecisionSelect";
+  select.setAttribute('oninput','subdecisionSelect(this)');
+  select.innerHTML = '<option hidden disabled selected></option>';
+  
+  var decisionDetail = document.createElement('div');
+  decisionDetail.className = 'subdecision-detail';
+  decisionDetail.id = 'subdecisionDetail';
+
+  for (s=0;s<subdecisionData.selectOptions.length;s++) {
+    let option = document.createElement('option');
+    option.innerHTML = subdecisionData.selectOptions[s].name;
+    select.appendChild(option);
+
+    let span = document.createElement('span');
+    span.setAttribute('hidden',''); 
+    span.id = subdecisionData.selectOptions[s].name;
+    span.innerHTML = subdecisionData.selectOptions[s].detail;
+    decisionDetail.appendChild(span);
+  }
+
+  subdecisionDiv.appendChild(label); subdecisionDiv.appendChild(select);
+  subdecisionDiv.appendChild(decisionDetail);
+
+  return subdecisionDiv;
 }
 
 

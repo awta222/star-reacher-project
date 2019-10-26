@@ -29,27 +29,13 @@ var isTabLocked = [
     [tabs.skills, true], [tabs.feats, true], [tabs.equipment, true]
 ];
 
-//will hold subdecision info for all tabs to use...?
-var subdecisions = {
-    race: [
-        {
-            raceName: "Lashunta",
-            selectLabel: "Select Dimorph:",
-            options: [
-                {text: "Damaya", desc: "+2 Int, -2 Con"},
-                {text: "Korasha", desc: "+2 Str, -2 Wis"}
-            ]
-        }
-    ]
-};
-
 //array of race list items from race-list div
 var raceList = Array.from(document.getElementById("race-list").getElementsByTagName('*'));
 
 //holds character selections
 var charInput = {
     name() {return document.getElementById('char-name-entry').value},
-    race: ""
+    race: {name: "", subdecisions: ""}
 };
 
 
@@ -78,32 +64,73 @@ function tabSelect(tabName) {
     } 
 }
 
+function getCurrentTab() {
+    for (var section in sections) {
+        if (sections[section].classList.contains("active-section")) {
+            var sectionName = sections[section].id;
+            sectionName = sectionName.replace('-section','');
+        }
+    }
+    return sectionName;
+}
+
+function updateNextPrev() {
+
+}
+
+function nextTab() {
+
+}
+
+function previousTab() {
+
+}
+
 
 // --- race tab stuff --- //
 
 function selectRace(buttonElement) {
-    if (charInput.race != buttonElement.id) {
+    if (charInput.race.name != buttonElement.id) {
         var checkIcon = '<i class="fas fa-check"></i>';
-        if (charInput.race) {
-            let previousRaceButton = document.getElementById(charInput.race);
-            let previousListItem = raceList.find((item) => {return item.innerHTML.includes(charInput.race)});
+        if (charInput.race.name) {
+            let previousRaceButton = document.getElementById(charInput.race.name);
+            let previousListItem = raceList.find((item) => {return item.innerHTML.includes(charInput.race.name)});
             previousRaceButton.innerHTML = "Select This Race";
             previousListItem.innerHTML = previousListItem.innerHTML.replace(checkIcon,'');
         }
-        charInput.race = buttonElement.id; 
+        charInput.race.name = buttonElement.id; 
         buttonElement.innerHTML = "Selected  "+checkIcon;
         let newRaceListItem = raceList.find((e) => {return e.innerHTML == buttonElement.id})
         newRaceListItem.innerHTML += checkIcon;
     }
-    
-    lockController(tabs.race.id,true);
+
+    if (buttonElement.parentElement.children['subdecisions']) {
+        buttonElement.parentElement.children['subdecisions'].removeAttribute('hidden');
+        charInput.race.subdecisions = "";
+    } else {
+        charInput.race.subdecisions = "";
+        document.querySelectorAll("#subdecisions").forEach(e => e.setAttribute('hidden',''));
+    }
+
+    raceTabValidate();
 }
 
-function getRaceSubdecisions(raceName) {
-    var decisions = subdecisions.race.filter(decision => decision.raceName == raceName);
-    if (!decisions.length) {return}
-        else {return decisions}
+function subdecisionSelect(dropdown) {
+    var spanArray = dropdown.parentElement.getElementsByTagName('span'); //array of all spans in this section
+    var selectedSpan = spanArray[dropdown.options[dropdown.selectedIndex].text]; //span whose id matches selected option innerHTML
+    if (selectedSpan.hasAttribute('hidden')) {
+        selectedSpan.removeAttribute('hidden');
+        for (i=0;i<spanArray.length;i++) {
+            if (spanArray[i] != selectedSpan && !spanArray[i].hasAttribute('hidden')) {
+                spanArray[i].setAttribute('hidden','');
+            }
+        }
+    }
+    charInput.race.subdecision = dropdown.options[dropdown.selectedIndex].text;
+    raceTabValidate();
 }
+
+
 
 // --- validation stuff --- //
 
@@ -126,7 +153,8 @@ function updateTabLock(tabId,isLocked) {
         }    
 }
 
-//when a tab is complete, unlocks next tab. When incomplete, locks all subsequent tabs
+//validation functions tell this function when their given tab is complete
+//when a tab is complete, unlock next tab. When incomplete, lock all subsequent tabs
 function lockController(tabId,isComplete) {
     let tabOrder = ["preferences-tab","race-tab","theme-tab","class-tab","ability-scores-tab",
     "class-choices-tab","skills-tab","feats-tab","equipment-tab"];
@@ -151,6 +179,16 @@ function prefTabValidate() {
         else {lockController(tabs.preferences.id,false)}
 }
 
-
+function raceTabValidate() {
+    if (charInput.race.name) {
+        let raceSelectPane = document.getElementById('list-'+charInput.race.name).children['race-select-pane'];
+        if (raceSelectPane.children['subdecisions']) {
+            let subdecisionsSection = raceSelectPane.children['subdecisions'];
+            if (subdecisionsSection.children['subdecisionSelect'].selectedIndex) 
+                {lockController(tabs.race.id,true)}
+                else {lockController(tabs.race.id,false)}
+        } else {lockController(tabs.race.id,true)}
+    }
+}
 
 
