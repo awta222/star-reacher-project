@@ -61,7 +61,8 @@ function tabSelect(tabName) {
         section.classList.add("active-section");
         clearPrimaryTab();
         tab.classList.add("btn-primary");
-    } 
+    }
+    updateNextPrev();
 }
 
 function getCurrentTab() {
@@ -74,16 +75,47 @@ function getCurrentTab() {
     return sectionName;
 }
 
-function updateNextPrev() {
+function currentTabLockIndex() {
+    if (getCurrentTab() == 'preferences') {return -1}
+        else {
+            let currentTabId = getCurrentTab()+"-tab";
+            let tabLockItem = isTabLocked.find((e) => {return e[0].id == currentTabId});
+            return isTabLocked.indexOf(tabLockItem);
+        }
+}
 
+function updateNextPrev() {
+    let currentTabName = getCurrentTab();
+
+    let nextTabIsLocked = isTabLocked[currentTabLockIndex() + 1][1];
+
+    if (currentTabName == 'preferences') {disableElement('previous',true)}
+        else {disableElement('previous',false)}
+
+    if (nextTabIsLocked) {disableElement('next',true)}
+        else {disableElement('next',false)}
+}
+
+function disableElement(elementId,toDisable) {
+    let e = document.getElementById(elementId);
+    if (e.hasAttribute('disabled') != toDisable) {
+        if (toDisable) {e.setAttribute('disabled','disabled')}
+            else {e.removeAttribute('disabled')}
+    }
 }
 
 function nextTab() {
-
+    let nextTabName = isTabLocked[currentTabLockIndex() + 1][0].id;
+    nextTabName = nextTabName.replace('-tab','');
+    tabSelect(nextTabName);
 }
 
 function previousTab() {
-
+    if (getCurrentTab() != 'race') {
+        let previousTabName = isTabLocked[currentTabLockIndex() - 1][0].id;
+        previousTabName = previousTabName.replace('-tab','');
+        tabSelect(previousTabName);
+    } else {tabSelect('preferences')}
 }
 
 
@@ -150,7 +182,8 @@ function updateTabLock(tabId,isLocked) {
                 tab[0].classList.remove("disabled");
                 tab[0].innerHTML = tab[0].innerHTML.replace(lockIcon,'');
             }
-        }    
+        }
+    updateNextPrev();    
 }
 
 //validation functions tell this function when their given tab is complete
