@@ -119,7 +119,7 @@ function previousTab() {
 }
 
 
-// --- race tab stuff --- //
+// --- race tab stuff --- //t
 
 function selectRace(buttonElement) {
     if (charInput.race.name != buttonElement.id) {
@@ -137,11 +137,22 @@ function selectRace(buttonElement) {
     }
 
     if (buttonElement.parentElement.children['subdecisions']) {
-        buttonElement.parentElement.children['subdecisions'].removeAttribute('hidden');
         charInput.race.subdecisions = "";
+        
+        let raceSelectPane = buttonElement.parentElement;
+        let subdecisions = raceSelectPane.children['subdecisions'];
+        var tabPane = raceSelectPane.parentElement;
+
+        tabPane.setAttribute('style','height:675px');
+        raceSelectPane.setAttribute('style','background-color: #c8daff;');
+        subdecisions.removeAttribute('hidden');  
     } else {
         charInput.race.subdecisions = "";
-        document.querySelectorAll("#subdecisions").forEach(e => e.setAttribute('hidden',''));
+        document.querySelectorAll("#subdecisions").forEach((e) => {
+            e.setAttribute('hidden',''); 
+            e.parentElement.removeAttribute('style');
+        });
+        Array.from(document.getElementsByClassName('tab-pane')).forEach(e => e.removeAttribute('style'));
     }
 
     raceTabValidate();
