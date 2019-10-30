@@ -141,11 +141,13 @@ function selectRace(buttonElement) {
         
         let raceSelectPane = buttonElement.parentElement;
         let subdecisions = raceSelectPane.children['subdecisions'];
-        var tabPane = raceSelectPane.parentElement;
+        let tabPane = raceSelectPane.parentElement;
+        
+        subdecisions.removeAttribute('hidden');
 
-        tabPane.setAttribute('style','height:675px');
+        let newTabPaneHeight = 775 - (raceSelectPane.offsetHeight - 75);
+        tabPane.setAttribute('style','height:'+newTabPaneHeight+'px');
         raceSelectPane.setAttribute('style','background-color: #c8daff;');
-        subdecisions.removeAttribute('hidden');  
     } else {
         charInput.race.subdecisions = "";
         document.querySelectorAll("#subdecisions").forEach((e) => {

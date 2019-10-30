@@ -1,5 +1,7 @@
 body {margin: 0% 2%;}
 
+.modal-content {min-height: 1044px}
+
 .col-4 {height: 50%;}
 
 .col-8 {height: 800px;}
@@ -62,6 +64,8 @@ header {
 .tab-content {height: 790px;}
 
 .tab-pane {height: 790px; overflow: auto;}
+
+.preferences-section {margin-top: 5%}
 
 /* --- RACE TAB CONTENT --- */
 
@@ -533,6 +537,10 @@ hr {display: block; clear: both;}
     margin-left: auto;
     text-align: center;
     width: 30%;
+}
+
+.top-spacing-90 {
+    padding-top: 90px;
 }
 
 .top-spacing-60 {
