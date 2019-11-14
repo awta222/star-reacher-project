@@ -39,97 +39,56 @@ function populateRaceTab(raceTabData) {
     var raceInfoDiv = thisTabContent['race-info'];
     var raceAbilitiesDiv = thisTabContent['race-abilities'];
 
-    createRaceStatBlock(raceInfoDiv,thisRaceData);
+    raceInfoDiv.innerHTML += createRaceInfo(thisRaceData);
     
     for (raceAb=0; raceAb<thisRaceData.racialAbilities.length; raceAb++) {
       let thisAbility = thisRaceData.racialAbilities[raceAb];
-      let raceAbilityBox = createRaceAbilityBox(thisAbility.name,thisAbility.description);
-      raceAbilitiesDiv.appendChild(raceAbilityBox);
+      raceAbilitiesDiv.innerHTML += createRaceAbilityBox(thisAbility);
     }
 
     if (thisRaceData.subdecisions) {
       let raceSelectPane = thisTabContent['race-select-pane'];
-      raceSelectPane.appendChild(createSubdecisionDiv(thisRaceData.subdecisions));
+      raceSelectPane.innerHTML += createSubdecisionDiv(thisRaceData.subdecisions);
     }
-
   }
 }
 
+function createRaceInfo(raceData) {
+  return `<div id="race-raceName" class="race-raceName">${raceData.raceName}</div>
+          <div id="race-description" class="race-description">${raceData.description}</div>
+          <div id="race-stats" class="race-stats">
+            <div id="race-AS" class="race-AS">${raceData.AS}</div>
+            <div id="race-HP" class="race-HP">${raceData.HP}</div>
+            <div id="race-sizeType" class="race-sizeType">${raceData.sizeType}</div>
+          </div>`;
+}
 
-function createRaceStatBlock(raceInfoSection,raceData) {
-  var raceInfo = raceInfoSection;
-
-  function addDiv(name) {
-    let div = document.createElement('div');
-    div.className = div.id = 'race-'+name;
-    if (raceData[name]) {div.innerHTML = raceData[name]}
-    return div;
-  } 
-
-  let raceName = addDiv('raceName'), 
-  description = addDiv('description'),
-  stats = addDiv('stats'), AS = addDiv('AS'),
-  HP = addDiv('HP'), sizeType = addDiv('sizeType'); 
-
-  raceInfo.appendChild(raceName); raceInfo.appendChild(description); raceInfo.appendChild(stats);
-  stats.appendChild(AS); stats.appendChild(HP); stats.appendChild(sizeType); 
+function createRaceAbilityBox(ability) {
+  return `<div class="race-ability-box">
+	          <div class="label-bar">${ability.name}</div>
+	          <div class="ability-text">${ability.description}</div>
+          </div>`;
 }
 
 
-function createRaceAbilityBox(abilityName,abilityDesc) {
-  let raceAbilityBox = document.createElement('div');
-  raceAbilityBox.className = "race-ability-box";
+function createSubdecisionDiv(data) {
+  var options = `<option hidden="" disabled="" selected=""></option>`;
+  var detail = ``;
 
-  let labelBar = document.createElement('div');
-  labelBar.className = "label-bar";
-  labelBar.innerHTML = abilityName;
-
-  let abilityText = document.createElement('div');
-  abilityText.className = "ability-text";
-  abilityText.innerHTML = abilityDesc;
-
-  raceAbilityBox.appendChild(labelBar);
-  raceAbilityBox.appendChild(abilityText);
-
-  return raceAbilityBox;
-}
-
-
-function createSubdecisionDiv(subdecisionData) {
-  let subdecisionDiv = document.createElement('div');
-  subdecisionDiv.className = subdecisionDiv.id = 'subdecisions';
-  subdecisionDiv.setAttribute('hidden','');
-
-  let label = document.createElement('label');
-  label.setAttribute('for','subdecisionSelect');
-  label.innerHTML = subdecisionData.selectLabel;
-
-  var select = document.createElement('select');
-  select.className = "browser-default custom-select";
-  select.id = "subdecisionSelect";
-  select.setAttribute('oninput','subdecisionSelect(this)');
-  select.innerHTML = '<option hidden disabled selected></option>';
-  
-  var decisionDetail = document.createElement('div');
-  decisionDetail.className = 'subdecision-detail';
-  decisionDetail.id = 'subdecisionDetail';
-
-  for (s=0;s<subdecisionData.selectOptions.length;s++) {
-    let option = document.createElement('option');
-    option.innerHTML = subdecisionData.selectOptions[s].name;
-    select.appendChild(option);
-
-    let span = document.createElement('span');
-    span.setAttribute('hidden',''); 
-    span.id = subdecisionData.selectOptions[s].name;
-    span.innerHTML = subdecisionData.selectOptions[s].detail;
-    decisionDetail.appendChild(span);
+  for (opt=0;opt<data.selectOptions.length;opt++) {
+    options += `<option>${data.selectOptions[opt].name}</option>`;
+    detail += `<span hidden id="${data.selectOptions[opt].name}">${data.selectOptions[opt].detail}</span>`;
   }
 
-  subdecisionDiv.appendChild(label); subdecisionDiv.appendChild(select);
-  subdecisionDiv.appendChild(decisionDetail);
-
-  return subdecisionDiv;
+  return `<div hidden class="subdecisions" id="subdecisions">
+            <label for="subdecisionSelect">${data.selectLabel}</label>
+            <select class="browser-default custom-select" id="subdecisionSelect" oninput="subdecisionSelect(this)">
+              ${options}
+            </select>
+            <div class="subdecision-detail" id="subdecisionDetail">
+              ${detail}
+            </div>
+          </div>`;
 }
 
 

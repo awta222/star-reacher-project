@@ -215,9 +215,9 @@ hr {display: block; clear: both;}
 .subdecision-detail {
     border: 1px solid black;
     border-radius: 10px;
-    padding: 7px;
+    padding: 5px;
     background-color: #f1f1f1;
-    font-weight: bold;
+    font-size: 14px; font-style: italic;
     min-height: 40px;
 }
 

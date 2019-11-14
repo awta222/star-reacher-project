@@ -29,8 +29,6 @@ var isTabLocked = [
     [tabs.skills, true], [tabs.feats, true], [tabs.equipment, true]
 ];
 
-//array of race list items from race-list div
-var raceList = Array.from(document.getElementById("race-list").getElementsByTagName('*'));
 
 //holds character selections
 var charInput = {
@@ -86,7 +84,6 @@ function currentTabLockIndex() {
 
 function updateNextPrev() {
     let currentTabName = getCurrentTab();
-
     let nextTabIsLocked = isTabLocked[currentTabLockIndex() + 1][1];
 
     if (currentTabName == 'preferences') {disableElement('previous',true)}
@@ -119,10 +116,11 @@ function previousTab() {
 }
 
 
-// --- race tab stuff --- //t
+// --- race tab stuff --- //
 
 function selectRace(buttonElement) {
     if (charInput.race.name != buttonElement.id) {
+        var raceList = Array.from(document.getElementById("race-list").getElementsByTagName('*'));
         var checkIcon = '<i class="fas fa-check"></i>';
         if (charInput.race.name) {
             let previousRaceButton = document.getElementById(charInput.race.name);
@@ -154,18 +152,22 @@ function selectRace(buttonElement) {
             e.setAttribute('hidden',''); 
             e.parentElement.removeAttribute('style');
         });
-        Array.from(document.getElementsByClassName('tab-pane')).forEach(e => e.removeAttribute('style'));
+
+        Array.from(document.getElementsByClassName('tab-pane'))
+            .forEach(e => e.removeAttribute('style'));
     }
 
     raceTabValidate();
 }
 
-function subdecisionSelect(dropdown) {
+// shows/hides the appropriate subdecision detail in the gray div
+// subdecision details are placed in spans since they are meant to be inline text
+function subdecisionSelect(dropdown) { 
     var spanArray = dropdown.parentElement.getElementsByTagName('span'); //array of all spans in this section
     var selectedSpan = spanArray[dropdown.options[dropdown.selectedIndex].text]; //span whose id matches selected option innerHTML
     if (selectedSpan.hasAttribute('hidden')) {
         selectedSpan.removeAttribute('hidden');
-        for (i=0;i<spanArray.length;i++) {
+        for (i=0;i<spanArray.length;i++) { // hide all other spans except the selected one
             if (spanArray[i] != selectedSpan && !spanArray[i].hasAttribute('hidden')) {
                 spanArray[i].setAttribute('hidden','');
             }
