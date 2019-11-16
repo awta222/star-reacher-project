@@ -1,6 +1,8 @@
 body {margin: 0% 2%;}
 
-.modal-content {min-height: 1044px}
+.modal-content {min-height: 1089px}
+
+.modal-dialog {min-height: 1089px;}
 
 .col-4 {height: 50%;}
 
@@ -225,7 +227,6 @@ hr {clear: both;}
 .modal-footer {
     display: flex;
     justify-content: space-evenly;
-    
 }
 
 .page-title {

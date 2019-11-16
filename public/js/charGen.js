@@ -56,7 +56,7 @@ function createRaceInfo(raceData) {
           <div id="race-description" class="race-description">${raceData.description}</div>
           <div id="race-stats" class="race-stats">
             <div id="race-AS" class="race-AS">${raceData.AS}</div>
-            <div id="race-HP" class="race-HP">${raceData.HP}</div>
+            <div id="race-HP" class="race-HP">HP: ${raceData.HP}</div>
             <div id="race-sizeType" class="race-sizeType">${raceData.sizeType}</div>
           </div>`;
 }
@@ -83,7 +83,7 @@ function createSubdecisionDiv(data) {
             <select class="browser-default custom-select" id="subdecisionSelect" oninput="subdecisionSelect(this)">
               ${options}
             </select>
-            <div class="subdecision-detail" id="subdecisionDetail">
+            <div hidden class="subdecision-detail" id="subdecisionDetail">
               ${detail}
             </div>
           </div>`;

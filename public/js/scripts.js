@@ -120,39 +120,44 @@ function previousTab() {
 
 function selectRace(buttonElement) {
     if (charInput.race.name != buttonElement.id) {
-        var raceList = Array.from(document.getElementById("race-list").getElementsByTagName('*'));
-        var checkIcon = '<i class="fas fa-check"></i>';
-        if (charInput.race.name) {
-            let previousRaceButton = document.getElementById(charInput.race.name);
-            let previousListItem = raceList.find((item) => {return item.innerHTML.includes(charInput.race.name)});
-            previousRaceButton.innerHTML = "Select This Race";
+        var raceListGroup = Array.from(document.getElementById("race-list").getElementsByTagName('*')); 
+        var genderSelect = document.getElementById('genderSelect');
+        var checkIcon = '<i class="fas fa-check"></i>', host = '<option>Host</option>';
+
+        if (charInput.race.name) { //if a race was previously selected, clear stuff that indicates it's selected
+            document.getElementById(charInput.race.name).innerHTML = "Select This Race";
+            let previousListItem = raceListGroup.find((item) => {return item.innerHTML.includes(charInput.race.name)});
             previousListItem.innerHTML = previousListItem.innerHTML.replace(checkIcon,'');
         }
+
         charInput.race.name = buttonElement.id; 
         buttonElement.innerHTML = "Selected  "+checkIcon;
-        let newRaceListItem = raceList.find((e) => {return e.innerHTML == buttonElement.id});
-        newRaceListItem.innerHTML += checkIcon;
+        raceListGroup.find((e) => {return e.innerHTML == buttonElement.id}).innerHTML += checkIcon;
+
+        if (charInput.race.name == 'Shirren') {genderSelect.innerHTML += host}
+            else {genderSelect.innerHTML = genderSelect.innerHTML.replace(host,'')}
     }
 
     //if this race's race-select-pane has a hidden subdecision section...
     if (buttonElement.parentElement.children['subdecisions']) {
         charInput.race.subdecisions = "";
-        
+
         let raceSelectPane = buttonElement.parentElement;
         let subdecisions = raceSelectPane.children['subdecisions'];
         let tabPane = raceSelectPane.parentElement;
         
         subdecisions.removeAttribute('hidden');
 
-        //tabPane height = 775
-        let newTabPaneHeight = 775 - (raceSelectPane.offsetHeight - 75); console.log(newTabPaneHeight);
+        let newTabPaneHeight = 775 - (raceSelectPane.offsetHeight - 75);
         tabPane.setAttribute('style','height:'+newTabPaneHeight+'px');
         raceSelectPane.setAttribute('style','background-color: #c8daff;');
     } else {
         charInput.race.subdecisions = "";
         document.querySelectorAll("#subdecisions").forEach((e) => {
-            e.setAttribute('hidden',''); 
+            e.setAttribute('hidden','');
             e.parentElement.removeAttribute('style');
+            e.children['subdecisionDetail'].setAttribute('hidden','');
+            e.children['subdecisionSelect'].selectedIndex = 0;
         });
 
         Array.from(document.getElementsByClassName('tab-pane'))
@@ -163,9 +168,11 @@ function selectRace(buttonElement) {
 }
 
 // shows/hides the appropriate subdecision detail in the gray div
-// subdecision details are placed in spans since they are meant to be inline text
-function subdecisionSelect(dropdown) { 
-    var spanArray = dropdown.parentElement.getElementsByTagName('span'); //array of all spans in this section
+// subdecision details are placed in spans since they're meant to be inline text
+function subdecisionSelect(dropdown) {
+    let parentSection = dropdown.closest('#subdecisions');
+    parentSection.children['subdecisionDetail'].removeAttribute('hidden');
+    var spanArray = parentSection.getElementsByTagName('span'); //array of all spans in this section
     var selectedSpan = spanArray[dropdown.options[dropdown.selectedIndex].text]; //span whose id matches selected option innerHTML
     if (selectedSpan.hasAttribute('hidden')) {
         selectedSpan.removeAttribute('hidden');
@@ -178,7 +185,6 @@ function subdecisionSelect(dropdown) {
     charInput.race.subdecision = dropdown.options[dropdown.selectedIndex].text;
     raceTabValidate();
 }
-
 
 
 // --- validation stuff --- //
