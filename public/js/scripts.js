@@ -130,10 +130,11 @@ function selectRace(buttonElement) {
         }
         charInput.race.name = buttonElement.id; 
         buttonElement.innerHTML = "Selected  "+checkIcon;
-        let newRaceListItem = raceList.find((e) => {return e.innerHTML == buttonElement.id})
+        let newRaceListItem = raceList.find((e) => {return e.innerHTML == buttonElement.id});
         newRaceListItem.innerHTML += checkIcon;
     }
 
+    //if this race's race-select-pane has a hidden subdecision section...
     if (buttonElement.parentElement.children['subdecisions']) {
         charInput.race.subdecisions = "";
         
@@ -143,7 +144,8 @@ function selectRace(buttonElement) {
         
         subdecisions.removeAttribute('hidden');
 
-        let newTabPaneHeight = 775 - (raceSelectPane.offsetHeight - 75);
+        //tabPane height = 775
+        let newTabPaneHeight = 775 - (raceSelectPane.offsetHeight - 75); console.log(newTabPaneHeight);
         tabPane.setAttribute('style','height:'+newTabPaneHeight+'px');
         raceSelectPane.setAttribute('style','background-color: #c8daff;');
     } else {

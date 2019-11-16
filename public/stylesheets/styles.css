@@ -67,6 +67,7 @@ header {
 
 .preferences-section {margin-top: 5%}
 
+
 /* --- RACE TAB CONTENT --- */
 
 .homeworld-gender {
@@ -85,7 +86,7 @@ header {
     width: 75%;
 }
 
-hr {display: block; clear: both;}
+hr {clear: both;}
 
 .race-image {
     width: 40%;
@@ -192,10 +193,7 @@ hr {display: block; clear: both;}
 
 .fa-check {margin-left: 6px;}
 
-.subdecisions {
-    text-align: center;
-    width: 100%
-}
+.subdecisions {text-align: center; width: 100%}
 
 .subdecisions label {
     font-weight: bold;
@@ -222,6 +220,7 @@ hr {display: block; clear: both;}
 }
 
 /* --- END RACE TAB CONTENT --- */
+
 
 .modal-footer {
     display: flex;

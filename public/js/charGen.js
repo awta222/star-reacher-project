@@ -18,11 +18,9 @@ function populateAllDropdowns(listCollection) {
   function populateDropdown(listName,elementId) {
     var listArray = listCollection.find((list) => {return list.listName == listName}).list;
     var dropdown = document.getElementById(elementId);
-    for (i=0;i<listArray.length;i++) {
-      let option = document.createElement('option');
-      option.innerHTML = listArray[i];
-      dropdown.appendChild(option);
-    }
+    var options = ``;
+    for (i=0;i<listArray.length;i++) {options += `<option>${listArray[i]}</option>`}
+    dropdown.innerHTML += options;
   }
 }
 
