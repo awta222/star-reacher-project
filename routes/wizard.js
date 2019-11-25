@@ -2,7 +2,21 @@ const express = require('express');
 const routes = express.Router();
 
 let Race = require('../models/races.model'),
-Theme = require('../models/themes.model');
+Theme = require('../models/themes.model'),
+Lists = require('../models/lists.model'),
+RaceDesc = require('../models/raceDesc.model');
+
+routes.route('/lists').get((req,res) => {
+    Lists.find().then((lists) => {
+        res.status(200).send(lists);
+    }).catch((e) => {response.status(400).send(e)});
+});
+
+routes.route('/raceDesc').get((req,res) => {
+    RaceDesc.find().then((raceDesc) => {
+        res.status(200).send(raceDesc);
+    }).catch((e) => {response.status(400).send(e)});
+});
 
 //baseAS builder
 routes.route('/baseAS/:raceId-:themeId').get((req,res) => {

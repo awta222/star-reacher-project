@@ -26,36 +26,36 @@
       <div class="modal-body">
         <ul class="nav nav-pills nav-justified">
           <li class="nav-item">
-            <button type="button" class="btn-tab btn btn-primary" id="preferences-tab" onclick="preferencesTabSelect()">Preferences</button>
+            <button type="button" class="btn-tab btn btn-primary" id="preferences-tab" onclick="tabSelect('preferences')">Preferences</button>
           </li> 
           <li class="nav-item">
-            <button type="button" class="btn-tab btn disabled" id="race-tab" onclick="raceTabSelect()" disabled><i class="fas fa-lock"></i> Race</button>
+            <button type="button" class="btn-tab btn disabled" id="race-tab" onclick="tabSelect('race')" disabled><i class="fas fa-lock"></i> Race</button>
           </li>
           <li class="nav-item">
-            <button type="button" class="btn-tab btn disabled" id="theme-tab" onclick="themeTabSelect()" disabled><i class="fas fa-lock"></i> Theme</a>
+            <button type="button" class="btn-tab btn disabled" id="theme-tab" onclick="tabSelect('theme')" disabled><i class="fas fa-lock"></i> Theme</a>
           </li>
           <li class="nav-item">
-            <button type="button" class="btn-tab btn disabled" id="class-tab" onclick="classTabSelect()" disabled><i class="fas fa-lock"></i> Class</a>
+            <button type="button" class="btn-tab btn disabled" id="class-tab" onclick="tabSelect('class')" disabled><i class="fas fa-lock"></i> Class</a>
           </li>
           <li class="nav-item">
-            <button type="button" class="btn-tab btn disabled" id="ability-scores-tab" onclick="abilityScoresTabSelect()" disabled><i class="fas fa-lock"></i> Ability Scores</a>
+            <button type="button" class="btn-tab btn disabled" id="ability-scores-tab" onclick="tabSelect('abilityScores')" disabled><i class="fas fa-lock"></i> Ability Scores</a>
           </li>
           <li class="nav-item">
-            <button type="button" class="btn-tab btn disabled" id="class-choices-tab" onclick="classChoicesTabSelect()" disabled><i class="fas fa-lock"></i> Class Choices</a>
+            <button type="button" class="btn-tab btn disabled" id="class-choices-tab" onclick="tabSelect('classChoices')" disabled><i class="fas fa-lock"></i> Class Choices</a>
           </li>
           <li class="nav-item">
-            <button type="button" class="btn-tab btn disabled" id="skills-tab" onclick="skillsTabSelect()" disabled><i class="fas fa-lock"></i> Skills</a>
+            <button type="button" class="btn-tab btn disabled" id="skills-tab" onclick="tabSelect('skills')" disabled><i class="fas fa-lock"></i> Skills</a>
           </li>
           <li class="nav-item">
-            <button type="button" class="btn-tab btn disabled" id="feats-tab" onclick="featsTabSelect()" disabled><i class="fas fa-lock"></i> Feats</a>
+            <button type="button" class="btn-tab btn disabled" id="feats-tab" onclick="tabSelect('feats')" disabled><i class="fas fa-lock"></i> Feats</a>
           </li>
           <li class="nav-item">
-            <button type="button" class="btn-tab btn disabled" id="equipment-tab" onclick="equipmentTabSelect()" disabled><i class="fas fa-lock"></i> Equipment</a>
+            <button type="button" class="btn-tab btn disabled" id="equipment-tab" onclick="tabSelect('equipment')" disabled><i class="fas fa-lock"></i> Equipment</a>
           </li>
         </ul>
         <hr>
-        <section class="wizard-section active-section" id="preferences-section">
-          <div class="top-spacing-60">
+        <section class="wizard-section preferences-section active-section" id="preferences-section">
+          <div class="top-spacing-90">
             <input class="block-center" id="char-name-entry" oninput="prefTabValidate()">
           </div>
           <div class="block-center">
@@ -103,312 +103,124 @@
           </div>
         </section>
         <section class="wizard-section" id="race-section">
-          <label>Homeworld: </label>
-          <select id="homeworld-entry" oninput="homeworldEntry()">
-            <option>Unknown</option>
-            <option>Aballon</option>
-            <option>Absalom Station</option>
-            <option>Akiton</option>
-            <option>Apostae</option>
-            <option>Arquand</option>
-            <option>Arshalin</option>
-            <option>Aucturn</option>
-            <option>Azlanti Star Empire</option>
-            <option>Barrow</option>
-            <option>Bretheda</option>
-            <option>Castrovel</option>
-            <option>Daegox 4</option>
-            <option>Daimalko</option>
-            <option>Elytrio</option>
-            <option>Eox</option>
-            <option>Heicoron IV</option>
-            <option>Idari</option>
-            <option>Jedarat</option>
-            <option>Liavara</option>
-            <option>Lothun</option>
-            <option>Nakondis</option>
-            <option>Nejeor VI</option>
-            <option>New Thespera</option>
-            <option>Orikolai</option>
-            <option>Orry</option>
-            <option>Outpost Zed</option>
-            <option>Preluria</option>
-            <option>Primoria</option>
-            <option>Ratheren</option>
-            <option>Riven Shroud</option>
-            <option>Sepres VI</option>
-            <option>Shadari</option>
-            <option>Shimrinsara</option>
-            <option>Silselrik</option>
-            <option>Tabori Cluster</option>
-            <option>The Diaspora</option>
-            <option>The Drift</option>
-            <option>The Sun</option>
-            <option>The Veskarium</option>
-            <option>Triaxus</option>
-            <option>Urrakar</option>
-          </select>
-          <label for="gender-id">Gender: </label>
-          <select id="gender-entry" oninput="genderEntry()">
-            <option></option>
-            <option>Male</option>
-            <option>Female</option>
-          </select>
           <div class="row">
-            <div class="col-4" onclick="raceTabValidate()">
+            <div class="col-4">
               <div class="list-group" id="race-list" role="tablist">
-                <a class="list-group-item list-group-item-action active" id="list-android-list" data-toggle="list" href="#list-android" role="tab" aria-controls="android">Android</a>
+                <a class="list-group-item list-group-item-action active" id="list-android-list" data-toggle="list" href="#list-Android" role="tab" aria-controls="android">Android</a>
 
-                <a class="list-group-item list-group-item-action" id="list-human-list" data-toggle="list" href="#list-human" role="tab" aria-controls="human">Human</a>
+                <a class="list-group-item list-group-item-action" id="list-human-list" data-toggle="list" href="#list-Human" role="tab" aria-controls="human">Human</a>
 
-                <a class="list-group-item list-group-item-action" id="list-kasatha-list" data-toggle="list" href="#list-kasatha" role="tab" aria-controls="kasatha">Kasatha</a>
+                <a class="list-group-item list-group-item-action" id="list-kasatha-list" data-toggle="list" href="#list-Kasatha" role="tab" aria-controls="kasatha">Kasatha</a>
 
-                <a class="list-group-item list-group-item-action" id="list-lashunta-list" data-toggle="list" href="#list-lashunta" role="tab" aria-controls="lashunta">Lashunta</a>
+                <a class="list-group-item list-group-item-action" id="list-lashunta-list" data-toggle="list" href="#list-Lashunta" role="tab" aria-controls="lashunta">Lashunta</a>
 
-                <a class="list-group-item list-group-item-action" id="list-shirren-list" data-toggle="list" href="#list-shirren" role="tab" aria-controls="shirren">Shirren</a>
+                <a class="list-group-item list-group-item-action" id="list-shirren-list" data-toggle="list" href="#list-Shirren" role="tab" aria-controls="shirren">Shirren</a>
 
-                <a class="list-group-item list-group-item-action" id="list-vesk-list" data-toggle="list" href="#list-vesk" role="tab" aria-controls="vesk">Vesk</a>
+                <a class="list-group-item list-group-item-action" id="list-vesk-list" data-toggle="list" href="#list-Vesk" role="tab" aria-controls="vesk">Vesk</a>
 
-                <a class="list-group-item list-group-item-action" id="list-ysoki-list" data-toggle="list" href="#list-ysoki" role="tab" aria-controls="ysoki">Ysoki</a>
+                <a class="list-group-item list-group-item-action" id="list-ysoki-list" data-toggle="list" href="#list-Ysoki" role="tab" aria-controls="ysoki">Ysoki</a>
 
+              </div>
+              <div class="homeworld-gender">
+                <select class="browser-default custom-select genderSelect" id="genderSelect">
+                  <option hidden disabled selected>Gender</option>
+                  <option>Male</option>
+                  <option>Female</option>
+                </select>  
+                <select class="browser-default custom-select homeworldSelect" id="homeworldSelect">
+                  <option hidden disabled selected>Homeworld</option>
+                </select>  
               </div>
             </div>
             <div class="col-8">
-              <div class="tab-content">
+              <div class="tab-content" id="tab-content">
 
-                <div class="tab-pane fade show active" id="list-android" role="tabpanel" aria-labelledby="list-android-list">
-
-                  <div class="class-description">
-                    <div class="class-image">
-                      <img src="images/Android.png" alt="">
-                    </div>
-                    <p>
-                      Complex technological creations crafted to resemble humans, androids were originally a servitor race, but they have since broken free to form their own society. Unlike ordinary robots or ship AIs, androids do not simply respond according to their programming; rather, they have independent consciousnesses and are animated by souls—a distinction crucial to their generally accepted status as people rather than property.
-                      <ul class="race-info-list">
-                        <li>Ability Scores: +2 Dex, +2 Int, -2 Cha</li>
-                        <li>HP: 4</li>
-                        <li>Size: Medium</li>
-                        <li>Type/Subtype: humanoid/android</li>
-                      </ul>
-                    </p>
-                    <p>
-                        <h5>Constructed</h5>
-                        <p>For effects targeting creatures by type,androids count as both humanoids and constructs (whichever effect is worse). They receive a +2 racial bonus to saving throws against disease, mind-affecting effects,poison, and sleep, unless those effects specifically target constructs. In addition, androids do not breathe or suffer the normal environmental effects of being in a vacuum.</p>
-                        <h5>Exceptional Vision</h5>
-                        <p>Androids can see in dim light as if it were normal light, and they can see with no light source at all for 60 ft in black and white only.</p>
-                        <h5>Flat Affect</h5>
-                        <p>Androids find emotions confusing and keep them bottled up. They take a –2 penalty to Sense Motive, and the DCs of Sense Motive checks against them is increased by 2.</p> 
-                        <h5>Upgrade Slot</h5>
-                        <p>Androids have a single light armor upgrade slot on their bodies.</p>
-                    </p>
+                <div class="tab-pane fade show active" id="list-Android" role="tabpanel" aria-labelledby="list-android-list">
+                  <div class="race-image">
+                    <img src="images/Android.png" alt="">
                   </div>
-
+                  <div class="race-info" id="race-info"></div>
+                  <hr> 
+                  <div class="race-abilities" id="race-abilities"></div>
+                  <div class="race-select-pane" id="race-select-pane">
+                    <button type="button" class="btn btn-primary btn-lg btn-block race-select-button" id="Android" onclick="selectRace(this)">Select This Race</button>   
+                  </div>
                 </div>
-                
-                <div class="tab-pane fade" id="list-human" role="tabpanel" aria-labelledby="list-human-list">
 
-                  <div class="class-description">
-                    <div class="class-image">
-                      <img src="images/Human.png" alt="">
-                    </div>
-                    <p>
-                      Ambitious, creative, and endlessly curious, humans have shown more drive to explore their system and the universe beyond than any of their neighbor races—for better and for worse. They’ve helped usher in a new era of system-wide communication and organization and are admired for their passion and tenacity, but their tendency to shoot first and think about the consequences later can make them a liability for those races otherwise inclined to work with them.
-                      <ul class="race-info-list">
-                        <li>Ability Scores: +2 to any 1 ability</li>
-                        <li>HP: 4</li>
-                        <li>Size: Medium</li>
-                        <li>Type/Subtype: humanoid/human</li>
-                      </ul>
-                    </p>
-                    <p>
-                      <h5>Bonus Feat</h5>
-                      <p>Humans select one extra feat at first level.</p>
-                      <h5>Skilled</h5>
-                      <p>Humans gains an additional skill rank at 1st level and each level thereafter.</p>
-                    </p>
+                <div class="tab-pane fade" id="list-Human" role="tabpanel" aria-labelledby="list-human-list">
+                  <div class="race-image">
+                    <img src="images/Human.png" alt="">
+                  </div>
+                  <div class="race-info" id="race-info"></div>
+                  <hr> 
+                  <div class="race-abilities" id="race-abilities"></div>
+                  <div class="race-select-pane" id="race-select-pane">
+                    <button type="button" class="btn btn-primary btn-lg btn-block race-select-button" id="Human" onclick="selectRace(this)">Select This Race</button>
                   </div>
                 </div>
                 
-                <div class="tab-pane fade" id="list-kasatha" role="tabpanel" aria-labelledby="list-kasatha-list">
-
-                  <div class="class-description">
-                    <div class="class-image">
-                      <img src="images/Kasatha.png" alt="">
-                    </div>
-                    <p>
-                      Originally from a planet orbiting a dying star far beyond the Pact Worlds, the four-armed kasathas maintain a reputation as a noble and mysterious people. They are famous for their anachronistic warriors, ancient wisdom, and strange traditions. 
-                      <ul class="race-info-list">
-                        <li>Ability Scores: +2 Str, +2 Wis, -2 Int</li>
-                        <li>HP: 4</li>
-                        <li>Size: Medium</li>
-                        <li>Type/Subtype: humanoid/kasatha</li>
-                      </ul>
-                    </p>
-                    <p>
-                      <h5>Desert Stride</h5>
-                      <p>Kasathas can move through nonmagical difficult terrain in deserts, hills, and mountains at their normal speed. FOUR-ARMED Kasathas have four arms, which allows them to wield and hold up to four hands’ worth of weapons and equipment. This increases the number of items they can have at the ready, but doesn't increase the number of attacks they can make during combat.</p>
-                      <h5>Historian</h5>
-                      <p>Due to their in-depth historical training and the wide-ranging academic background knowledge they possess, kasathas receive a +2 racial bonus to Culture checks.</p>
-                      <h5>Natural Grace</h5>
-                      <p>Kasathas receive a +2 racial bonus to Acrobatics and Athletics checks.</p>
-                    </p>
+                <div class="tab-pane fade" id="list-Kasatha" role="tabpanel" aria-labelledby="list-kasatha-list">
+                  <div class="race-image">
+                    <img src="images/Kasatha.png" alt="">
                   </div>
-
+                  <div class="race-info" id="race-info"></div>
+                  <hr>
+                  <div class="race-abilities" id="race-abilities"></div>
+                  <div class="race-select-pane" id="race-select-pane">
+                    <button type="button" class="btn btn-primary btn-lg btn-block race-select-button" id="Kasatha" onclick="selectRace(this)">Select This Race</button>
+                  </div>
                 </div>
                 
-                <div class="tab-pane fade" id="list-lashunta" role="tabpanel" aria-labelledby="list-lashunta-list">
-
-                  <div class="class-description">
-                    <div class="class-image">
-                      <img src="images/Lashunta Damaya.png" alt="">
-                    </div>
-                    <p>
-                      Idealized by many other humanoid races and gifted with innate psychic abilities, lashuntas are at once consummate scholars and enlightened warriors, naturally divided into two specialized subraces with different abilities and societal roles. 
-                      <ul class="race-info-list">
-                        <li>Ability Scores: +2 Cha, -2 Con, +2 Int</li>
-                        <li>HP: 4</li>
-                        <li>Size: Medium</li>
-                        <li>Type/Subtype: humanoid/lashunta</li>
-                      </ul>
-                    </p>
-                    <p>
-                      <h5>Lashunta Magic</h5>
-                      <p>Lashuntas gain the following spell-like abilities:
-                        <ul class="race-info-list">
-                          <li>At will: Daze, Psychokinetic Hand</li>
-                          <li>Once per day: Detect Thoughts</li>
-                        </ul>
-                      </p>
-                      <h5>Limited Telepathy</h5>
-                      <p>Lashuntas can mentally communicate with any creatures within 30 feet with whom they share a language. Conversing telepathically with multiple creatures simultaneously is just as difficult as listening to multiple people speaking.</p>
-                      <h5>Student</h5>
-                      <p>Lashuntas love to learn, and they receive a +2 racial bonus to any two skills of their choice.</p>
-                    </p>
+                <div class="tab-pane fade" id="list-Lashunta" role="tabpanel" aria-labelledby="list-lashunta-list">
+                  <div class="race-image">
+                    <img src="images/Lashunta Damaya.png" alt="">
                   </div>
-
+                  <div class="race-info" id="race-info"></div>
+                  <hr> 
+                  <div class="race-abilities" id="race-abilities"></div>
+                  <div class="race-select-pane" id="race-select-pane">
+                    <button type="button" class="btn btn-primary btn-lg btn-block race-select-button" id="Lashunta" onclick="selectRace(this)">Select This Race</button>
+                  </div>
                 </div>
 
-                <div class="tab-pane fade" id="list-lashunta-k" role="tabpanel" aria-labelledby="list-lashunta-k-list">
 
-                  <div class="class-description">
-                    <div class="class-image">
-                      <img src="images/Lashunta K.PNG" alt="">
-                    </div>
-                    <p>
-                      Idealized by many other humanoid races and gifted with innate psychic abilities, lashuntas are at once consummate scholars and enlightened warriors, naturally divided into two specialized subraces with different abilities and societal roles. 
-                      <ul class="race-info-list">
-                        <li>Ability Scores: +2 Cha, -2 Wis, +2 Str</li>
-                        <li>HP: 4</li>
-                        <li>Size: Medium</li>
-                        <li>Type/Subtype: humanoid/lashunta</li>
-                      </ul>
-                    </p>
-                    <p>
-                      <h5>Lashunta Magic</h5>
-                      <p>Lashuntas gain the following spell-like abilities:
-                        <ul class="race-info-list">
-                          <li>At will: Daze, Psychokinetic Hand</li>
-                          <li>Once per day: Detect Thoughts</li>
-                        </ul>
-                      </p>
-                      <h5>Limited Telepathy</h5>
-                      <p>Lashuntas can mentally communicate with any creatures within 30 feet with whom they share a language. Conversing telepathically with multiple creatures simultaneously is just as difficult as listening to multiple people speaking.</p>
-                      <h5>Student</h5>
-                      <p>Lashuntas love to learn, and they receive a +2 racial bonus to any two skills of their choice.</p>
-                    </p>
+                <div class="tab-pane fade" id="list-Shirren" role="tabpanel" aria-labelledby="list-shirren-list">
+                  <div class="race-image">
+                    <img src="images/Shirren.png" alt="">
                   </div>
-
+                  <div class="race-info" id="race-info"></div>
+                  <hr> 
+                  <div class="race-abilities" id="race-abilities"></div>
+                  <div class="race-select-pane" id="race-select-pane">
+                    <button type="button" class="btn btn-primary btn-lg btn-block race-select-button" id="Shirren" onclick="selectRace(this)">Select This Race</button>
+                  </div>
                 </div>
 
-                <div class="tab-pane fade" id="list-shirren" role="tabpanel" aria-labelledby="list-shirren-list">
-
-                  <div class="class-description">
-                    <div class="class-image">
-                      <img src="images/Shirren.png" alt="">
-                    </div>
-                    <p>
-                      Once part of a ravenous hive of locust-like predators, the insectile shirrens only recently broke with their hive mind to become a race of telepaths physically addicted to their own individualism,yet dedicated to the idea of community and harmony with other races. 
-                      <ul class="race-info-list">
-                        <li>Ability Scores: +2 Con, +2 Wis, -2 Cha</li>
-                        <li>HP: 6</li>
-                        <li>Size: Medium</li>
-                        <li>Type/Subtype: humanoid/shirren</li>
-                      </ul>
-                    </p>
-                    <p>
-                      <h5>Blindsense</h5>
-                      <p>Shirrens’ sensitive antennae grant them blindsense (vibration)—the ability to sense vibrations in the air—out to 30 feet. A shirren ignores the Stealth bonuses from any form of visual camouflage, invisibility, and the like when attempting a Perception check opposed by a creature’s Stealth check. Even on a successful Perception check, any foe that can’t be seen still has total concealment (50% miss chance) against a shirren, and the shirren still has the normal miss chance when attacking foes that have concealment. A shirren is still flatfooted against attacks from creatures it can’t see.</p>
-                      <h5>Communalism</h5>
-                      <p>Shirrens are used to working with others as part of a team. Once per day, as long as an ally is within 10 feet, a shirren can roll a single attack roll or skill check twice and take the higher result.</p>
-                      <h5>Cultural Fascination</h5>
-                      <p>Shirrens are eager to learn about new cultures and societies. Shirrens receive a +2 racial bonus to Culture and Diplomacy checks.</p>
-                      <h5>Limited Telepathy</h5>
-                      <p>Shirrens can communicate telepathically with any creatures within 30 feet with whom they share a language. Conversing telepathically with multiple creatures simultaneously is just as difficult as listening to multiple people speak.</p>
-                    </p>
+                <div class="tab-pane fade" id="list-Vesk" role="tabpanel" aria-labelledby="list-vesk-list">
+                  <div class="race-image">
+                    <img src="images/Vesk.png" alt="">
                   </div>
-
+                  <div class="race-info" id="race-info"></div>
+                  <hr> 
+                  <div class="race-abilities" id="race-abilities"></div>
+                  <div class="race-select-pane" id="race-select-pane">
+                    <button type="button" class="btn btn-primary btn-lg btn-block race-select-button" id="Vesk" onclick="selectRace(this)">Select This Race</button>
+                  </div>
                 </div>
 
-                <div class="tab-pane fade" id="list-vesk" role="tabpanel" aria-labelledby="list-vesk-list">
-
-                  <div class="class-description">
-                    <div class="class-image">
-                      <img src="images/Vesk.png" alt="">
-                    </div>
-                    <p>
-                      Heavily muscled and covered with thick scales and short, sharp horns, the reptilian vesk are exactly as predatory and warlike as they appear. Originally hailing from a star system near the Pact Worlds, they sought to conquer and subdue their stellar neighbors, as they had all the other intelligent races in their own system, until an overwhelming threat forced them into a grudging alliance with the Pact Worlds—for now. 
-                      <ul class="race-info-list">
-                        <li>Ability Scores: +2 Str, +2 Con, -2 Int</li>
-                        <li>HP: 6</li>
-                        <li>Size: Medium</li>
-                        <li>Type/Subtype: humanoid/vesk</li>
-                      </ul>
-                    </p>
-                    <p>
-                      <h5>Armor Savant</h5>
-                      <p>Vesk use armor in a way that complements their uniquely sturdy physiology. When wearing armor, they gain a +1 racial bonus to AC. When they’re wearing heavy armor, their armor check penalty is 1 less severe than normal.</p>
-                      <h5>Fearless</h5>
-                      <p>Vesk receive a +2 racial bonus to saving throws against fear effects.</p>
-                      <h5>Low-Light Vision</h5>
-                      <p>Vesk can see in dim light as if it were normal light. For more details, see page 264.</p>
-                      <h5>Natural Weapons</h5>
-                      <p>Vesk are always considered armed. They can deal 1d3 lethal damage with unarmed strikes and the attack doesn’t count as archaic. Vesk gain a unique weapon specialization with their natural weapons at 3rd level, allowing them to add 1–1/2 × their character level to their damage rolls for their natural weapons (instead of just adding their character level, as usual).</p>
-                    </p>
+                <div class="tab-pane fade" id="list-Ysoki" role="tabpanel" aria-labelledby="list-ysoki-list">
+                  <div class="race-image">
+                    <img src="images/Ysoki.png" alt="">
                   </div>
-
-                </div>
-
-                <div class="tab-pane fade" id="list-ysoki" role="tabpanel" aria-labelledby="list-ysoki-list">
-
-                  <div class="class-description">
-                    <div class="class-image">
-                      <img src="images/Ysoki.png" alt="">
-                    </div>
-                    <p>
-                      Small and furtive, the ysoki are often overlooked by larger races. Yet through wit and technological prowess, they’ve spread throughout the solar system, giving truth to the old adage that every starship needs a few rats. 
-                      <ul class="race-info-list">
-                        <li>Ability Scores: +2 Dex, +2 Int, -2 Str</li>
-                        <li>HP: 2</li>
-                        <li>Size: Small</li>
-                        <li>Type/Subtype: humanoid/ysoki</li>
-                      </ul>
-                    </p>
-                    <p>
-                      <h5>Cheek Pouches</h5>
-                      <p>Ysoki can store up to 1 cubic foot of items weighing up to 1 bulk in total in their cheek pouches, and they can transfer a single object between hand and cheek as a swift action. A ysoki can disgorge the entire contents of his pouch onto the ground in his square as a move action that does not provoke an attack of opportunity.</p>
-                      <h5>Darkvision</h5>
-                      <p>Ysoki can see up to 60 feet in the dark.</p>
-                      <h5>Moxie</h5>
-                      <p>Ysoki are scrappy and nimble even when the odds are against them. A ysoki can stand from prone as a swift action. Additionally, when off-kilter, a ysoki does not take the usual penalties to attacks or gain the flat-footed condition. When attempting an Acrobatics check to tumble through the space of an opponent at least one size category larger than himself, a ysoki receive a +5 racial bonus to the check.</p>
-                      <h5>Scrounger</h5>
-                      <p>Ysoki receive a +2 racial bonus to Engineering, Stealth, and Survival checks.</p>
-                    </p>
+                  <div class="race-info" id="race-info"></div>
+                  <hr> 
+                  <div class="race-abilities" id="race-abilities"></div>
+                  <div class="race-select-pane" id="race-select-pane">
+                    <button type="button" class="btn btn-primary btn-lg btn-block race-select-button" id="Ysoki" onclick="selectRace(this)">Select This Race</button>
                   </div>
-
                 </div>
-
-              </div>
-            </div>
+              </div>  
+            </div> <!--end of col-8; the sidebar where the race list is-->
           </div>
 
           
@@ -620,8 +432,8 @@
         </section>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button disabled type="button" class="btn btn-primary" id="previous" onclick="previousTab()">Previous</button>
+        <button disabled type="button" class="btn btn-primary" id="next" onclick="nextTab()">Next</button>
       </div>
       </div>
     </div>

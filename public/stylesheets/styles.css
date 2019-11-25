@@ -1,16 +1,16 @@
-body {
-    margin: 0% 2%;
+body {margin: 0% 2%;}
 
-}
+.modal-content {min-height: 1089px}
 
+.modal-dialog {min-height: 1089px;}
 
-.wizard-section {
-    display: none;
-}
+.col-4 {height: 50%;}
 
-.active-section {
-    display: block;
-}
+.col-8 {height: 800px;}
+
+.wizard-section {display: none;}
+
+.active-section {display: block;}
 
 .nav-item .btn {
     width: 100%;
@@ -29,9 +29,7 @@ body {
     padding: 0 20px 0 0;
 }
 
-.list-group-item {
-    align-items: center; 
-}
+.list-group-item {align-items: center;}
 
 .char-edit-button {
     position: fixed;
@@ -59,15 +57,177 @@ header {
     width: 90%;
 }
 
-.race-info-list {
-    list-style-position:inside; margin-left:-35px;
+.list-group {
+    height: 400px;
+    font-weight: bold; 
+    overflow: auto;
+}
+
+.tab-content {height: 790px;}
+
+.tab-pane {height: 790px; overflow: auto;}
+
+.preferences-section {margin-top: 5%}
+
+
+/* --- RACE TAB CONTENT --- */
+
+.homeworld-gender {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 450px;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.homeworld-gender * {
+    margin: 16px;
+    border: 2px solid black;
+    font-weight: bold;
+    width: 75%;
+}
+
+hr {clear: both;}
+
+.race-image {
+    width: 40%;
+    height: 400px;
+    float: left;
+    text-align: center;
+    object-fit: cover;
+}
+
+.race-image img {
+    width: auto;
+    max-height: 400px;
+    padding: 0 20px 0 0;
 }
 
 
+.race-info-list {
+    list-style-position:inside; 
+    margin-left:-35px;
+}
+
+.race-info {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.race-raceName {
+    font-weight: bold;
+    font-size: 30px;
+    margin-bottom: 16px;
+}
+
+.race-description {font-size: 15px; margin-bottom: 16px;}
+
+.race-stats {
+    border: 3px solid black;
+    border-radius: 15px;
+    background-color: #0071ed;
+    color: white;
+    width: 250px;
+    justify-content: center;
+    padding: 5px;
+    margin-top: 16px;
+}
+
+.race-AS, .race-HP {font-weight: bold; font-size: 17px;}
+
+.race-sizeType {font-size: 13px;}
+
+.race-abilities {
+    clear: both;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 16px;
+    margin-top: 8px;
+}
+
+.race-abilities ul {margin: 0;}
+.race-abilities li {margin-left: 5%;}
+
+.race-ability-box {
+    align-self: center;
+    border: 4px solid black;
+    border-radius: 15px;
+    width: 95%;
+    margin-bottom: 16px;
+}
+
+.race-ability-box * {padding: 3px;}
+
+.race-ability-box .label-bar {
+    background-color: #0071ed;
+    color: white;
+    border-bottom: 2px solid black;
+    border-radius: 10px 10px 0 0;
+    font-weight: bold;
+}
+
+.race-ability-box .ability-text {
+    font-size: 14px;
+    background-color: #ededed;
+    border-radius: 0 0 10px 10px;
+    padding-left: 5px;
+}
 
 
+.race-select-pane {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    align-content: center;
+    position: absolute;
+    left: 0%; bottom: -7%;
+    background-color: white;
+    padding: 10px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.race-select-button {font-weight: bold;}
+
+.fa-check {margin-left: 6px;}
+
+.subdecisions {text-align: center; width: 100%}
+
+.subdecisions label {
+    font-weight: bold;
+    position: absolute;
+    margin-top: 22px;
+    left: 100px;
+}
+
+.subdecisions select {
+    margin: 16px;
+    border: 2px solid black;
+    font-weight: bold;
+    width: 250px;
+    justify-self: center;
+}
+
+.subdecision-detail {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: #f1f1f1;
+    font-size: 14px; font-style: italic;
+    min-height: 40px;
+}
+
+/* --- END RACE TAB CONTENT --- */
 
 
+.modal-footer {
+    display: flex;
+    justify-content: space-evenly;
+}
 
 .page-title {
     text-align: center;
@@ -85,6 +245,7 @@ header {
     border-width: 5px;
     text-align: center;
 }
+
 .grey-card {
     display: inline-block;
     background-color: #e6e6e6;
@@ -376,6 +537,10 @@ header {
     margin-left: auto;
     text-align: center;
     width: 30%;
+}
+
+.top-spacing-90 {
+    padding-top: 90px;
 }
 
 .top-spacing-60 {

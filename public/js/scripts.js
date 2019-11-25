@@ -22,28 +22,172 @@ var tabs = {
     equipment: document.getElementById("equipment-tab")
 };
 
-//all relevant inputs stored as functions that get the value live
-var charInput = {
-    name() {return document.getElementById('char-name-entry').value},
-    race() {return getSelectedRace()}
-};
-
-//array of all clickable race options in the race tab; find active one to get selected race
-var raceList = document.getElementById("race-list").getElementsByTagName('*');
-
-//returns selected race as string
-function getSelectedRace() {
-    for (i=0; i<raceList.length; i++) {
-        if (raceList[i].classList.contains('active')) {return raceList[i].innerHTML}
-    }
-}
-
-//bucket to hold current tab statuses
+//contains tab locked/unlocked statuses
 var isTabLocked = [
     [tabs.race, true], [tabs.theme, true], [tabs.class, true], 
     [tabs.abilityScores, true], [tabs.classChoices, true], 
     [tabs.skills, true], [tabs.feats, true], [tabs.equipment, true]
 ];
+
+
+//holds character selections
+var charInput = {
+    name() {return document.getElementById('char-name-entry').value},
+    race: {name: "", subdecisions: ""}
+};
+
+
+// --- tab switching stuff --- //
+function clearSections() {
+    let wizardSections = document.querySelectorAll(".wizard-section");
+    for (i=0; i < wizardSections.length; i++) {
+        wizardSections[i].classList.remove("active-section");
+    }
+}
+
+function clearPrimaryTab() {
+    let wizardTabs = document.querySelectorAll(".btn-tab");
+    for (i=0; i < wizardTabs.length; i++) {
+        wizardTabs[i].classList.remove("btn-primary");
+    }
+}
+
+function tabSelect(tabName) {
+    var section = sections[tabName], tab = tabs[tabName];
+    if (!section.classList.contains("active-section")) {
+        clearSections();
+        section.classList.add("active-section");
+        clearPrimaryTab();
+        tab.classList.add("btn-primary");
+    }
+    updateNextPrev();
+}
+
+function getCurrentTab() {
+    for (var section in sections) {
+        if (sections[section].classList.contains("active-section")) {
+            var sectionName = sections[section].id;
+            sectionName = sectionName.replace('-section','');
+        }
+    }
+    return sectionName;
+}
+
+function currentTabLockIndex() {
+    if (getCurrentTab() == 'preferences') {return -1}
+        else {
+            let currentTabId = getCurrentTab()+"-tab";
+            let tabLockItem = isTabLocked.find((e) => {return e[0].id == currentTabId});
+            return isTabLocked.indexOf(tabLockItem);
+        }
+}
+
+function updateNextPrev() {
+    let currentTabName = getCurrentTab();
+    let nextTabIsLocked = isTabLocked[currentTabLockIndex() + 1][1];
+
+    if (currentTabName == 'preferences') {disableElement('previous',true)}
+        else {disableElement('previous',false)}
+
+    if (nextTabIsLocked) {disableElement('next',true)}
+        else {disableElement('next',false)}
+}
+
+function disableElement(elementId,toDisable) {
+    let e = document.getElementById(elementId);
+    if (e.hasAttribute('disabled') != toDisable) {
+        if (toDisable) {e.setAttribute('disabled','disabled')}
+            else {e.removeAttribute('disabled')}
+    }
+}
+
+function nextTab() {
+    let nextTabName = isTabLocked[currentTabLockIndex() + 1][0].id;
+    nextTabName = nextTabName.replace('-tab','');
+    tabSelect(nextTabName);
+}
+
+function previousTab() {
+    if (getCurrentTab() != 'race') {
+        let previousTabName = isTabLocked[currentTabLockIndex() - 1][0].id;
+        previousTabName = previousTabName.replace('-tab','');
+        tabSelect(previousTabName);
+    } else {tabSelect('preferences')}
+}
+
+
+// --- race tab stuff --- //
+
+function selectRace(buttonElement) {
+    if (charInput.race.name != buttonElement.id) {
+        var raceListGroup = Array.from(document.getElementById("race-list").getElementsByTagName('*')); 
+        var genderSelect = document.getElementById('genderSelect');
+        var checkIcon = '<i class="fas fa-check"></i>', host = '<option>Host</option>';
+
+        if (charInput.race.name) { //if a race was previously selected, clear stuff that indicates it's selected
+            document.getElementById(charInput.race.name).innerHTML = "Select This Race";
+            let previousListItem = raceListGroup.find((item) => {return item.innerHTML.includes(charInput.race.name)});
+            previousListItem.innerHTML = previousListItem.innerHTML.replace(checkIcon,'');
+        }
+
+        charInput.race.name = buttonElement.id; 
+        buttonElement.innerHTML = "Selected  "+checkIcon;
+        raceListGroup.find((e) => {return e.innerHTML == buttonElement.id}).innerHTML += checkIcon;
+
+        if (charInput.race.name == 'Shirren') {genderSelect.innerHTML += host}
+            else {genderSelect.innerHTML = genderSelect.innerHTML.replace(host,'')}
+    }
+
+    //if this race's race-select-pane has a hidden subdecision section...
+    if (buttonElement.parentElement.children['subdecisions']) {
+        charInput.race.subdecisions = "";
+
+        let raceSelectPane = buttonElement.parentElement;
+        let subdecisions = raceSelectPane.children['subdecisions'];
+        let tabPane = raceSelectPane.parentElement;
+        
+        subdecisions.removeAttribute('hidden');
+
+        let newTabPaneHeight = 775 - (raceSelectPane.offsetHeight - 75);
+        tabPane.setAttribute('style','height:'+newTabPaneHeight+'px');
+        raceSelectPane.setAttribute('style','background-color: #c8daff;');
+    } else {
+        charInput.race.subdecisions = "";
+        document.querySelectorAll("#subdecisions").forEach((e) => {
+            e.setAttribute('hidden','');
+            e.parentElement.removeAttribute('style');
+            e.children['subdecisionDetail'].setAttribute('hidden','');
+            e.children['subdecisionSelect'].selectedIndex = 0;
+        });
+
+        Array.from(document.getElementsByClassName('tab-pane'))
+            .forEach(e => e.removeAttribute('style'));
+    }
+
+    raceTabValidate();
+}
+
+// shows/hides the appropriate subdecision detail in the gray div
+// subdecision details are placed in spans since they're meant to be inline text
+function subdecisionSelect(dropdown) {
+    let parentSection = dropdown.closest('#subdecisions');
+    parentSection.children['subdecisionDetail'].removeAttribute('hidden');
+    var spanArray = parentSection.getElementsByTagName('span'); //array of all spans in this section
+    var selectedSpan = spanArray[dropdown.options[dropdown.selectedIndex].text]; //span whose id matches selected option innerHTML
+    if (selectedSpan.hasAttribute('hidden')) {
+        selectedSpan.removeAttribute('hidden');
+        for (i=0;i<spanArray.length;i++) { // hide all other spans except the selected one
+            if (spanArray[i] != selectedSpan && !spanArray[i].hasAttribute('hidden')) {
+                spanArray[i].setAttribute('hidden','');
+            }
+        }
+    }
+    charInput.race.subdecision = dropdown.options[dropdown.selectedIndex].text;
+    raceTabValidate();
+}
+
+
+// --- validation stuff --- //
 
 //locks/unlocks the desired tab
 function updateTabLock(tabId,isLocked) {
@@ -51,19 +195,22 @@ function updateTabLock(tabId,isLocked) {
     if (tab[1] === isLocked) {return} 
         else {
             tab[1] = isLocked;
+            var lockIcon = '<i class="fas fa-lock"></i>';
             if (isLocked) {
                 tab[0].setAttribute("disabled","disabled");
                 tab[0].classList.add("disabled");
-                tab[0].innerHTML = '<i class="fas fa-lock"></i>' + tab[0].innerHTML; 
+                tab[0].innerHTML = lockIcon + tab[0].innerHTML; 
             } else {
                 tab[0].removeAttribute("disabled");
                 tab[0].classList.remove("disabled");
-                tab[0].innerHTML = tab[0].innerHTML.replace('<i class="fas fa-lock"></i>','');
+                tab[0].innerHTML = tab[0].innerHTML.replace(lockIcon,'');
             }
-        }    
+        }
+    updateNextPrev();    
 }
 
-//when a tab is complete, unlocks next tab. When incomplete, locks all subsequent tabs
+//validation functions tell this function when their given tab is complete
+//when a tab is complete, unlock next tab. When incomplete, lock all subsequent tabs
 function lockController(tabId,isComplete) {
     let tabOrder = ["preferences-tab","race-tab","theme-tab","class-tab","ability-scores-tab",
     "class-choices-tab","skills-tab","feats-tab","equipment-tab"];
@@ -80,7 +227,8 @@ function unlockAllTabs() {for (i=0;i<isTabLocked.length;i++) {updateTabLock(isTa
 //returns boolean for whether all required fields are present
 function tabComplete(requiredFields) {return !requiredFields.some(x => !x)}
 
-//tab validation functions
+
+//tab validation
 function prefTabValidate() {
     let requiredFields = [charInput.name()];
     if (tabComplete(requiredFields)) {lockController(tabs.preferences.id,true)}
@@ -88,111 +236,15 @@ function prefTabValidate() {
 }
 
 function raceTabValidate() {
-    let requiredFields = [charInput.race()];
-    if (tabComplete(requiredFields)) {lockController(tabs.race.id,true)}
-        else {lockController(tabs.race.id,false)}
-}
-
-function clearSections() {
-    let wizardSections = document.querySelectorAll(".wizard-section");
-    for (i=0; i < wizardSections.length; i++) {
-        wizardSections[i].classList.remove("active-section");
+    if (charInput.race.name) {
+        let raceSelectPane = document.getElementById('list-'+charInput.race.name).children['race-select-pane'];
+        if (raceSelectPane.children['subdecisions']) {
+            let subdecisionsSection = raceSelectPane.children['subdecisions'];
+            if (subdecisionsSection.children['subdecisionSelect'].selectedIndex) 
+                {lockController(tabs.race.id,true)}
+                else {lockController(tabs.race.id,false)}
+        } else {lockController(tabs.race.id,true)}
     }
 }
 
-function clearPrimaryTab () {
-    let wizardTabs = document.querySelectorAll(".btn-tab");
-    for (i=0; i < wizardTabs.length; i++) {
-        wizardTabs[i].classList.remove("btn-primary");
-    }
-}
-
-function preferencesTabSelect () {
-    if (sections.preferences.classList.contains("active-section")) {
-    } else {
-        clearSections();
-        sections.preferences.classList.add("active-section");
-        clearPrimaryTab();
-        tabs.preferences.classList.add("btn-primary");
-    } 
-}
-
-function raceTabSelect() {
-    if (sections.race.classList.contains("active-section")) {
-    } else {
-        clearSections();
-        sections.race.classList.add("active-section");
-        clearPrimaryTab();
-        tabs.race.classList.add("btn-primary");
-    } 
-}
-
-function themeTabSelect () {
-    if (sections.theme.classList.contains("active-section")) {
-    } else {
-        clearSections();
-        sections.theme.classList.add("active-section");
-        clearPrimaryTab();
-        tabs.theme.classList.add("btn-primary");
-    } 
-}
-
-function classTabSelect () {
-    if (sections.class.classList.contains("active-section")) {
-    } else {
-        clearSections();
-        sections.class.classList.add("active-section");
-        clearPrimaryTab();
-        tabs.class.classList.add("btn-primary");
-    } 
-}
-
-function abilityScoresTabSelect () {
-    if (sections.abilityScores.classList.contains("active-section")) {
-    } else {
-        clearSections();
-        sections.abilityScores.classList.add("active-section");
-        clearPrimaryTab();
-        tabs.abilityScores.classList.add("btn-primary");
-    } 
-}
-
-function classChoicesTabSelect () {
-    if (sections.classChoices.classList.contains("active-section")) {
-    } else {
-        clearSections();
-        sections.classChoices.classList.add("active-section");
-        clearPrimaryTab();
-        tabs.classChoices.classList.add("btn-primary");
-    } 
-}
-
-function skillsTabSelect () {
-    if (sections.skills.classList.contains("active-section")) {
-    } else {
-        clearSections();
-        sections.skills.classList.add("active-section");
-        clearPrimaryTab();
-        tabs.skills.classList.add("btn-primary");
-    } 
-}
-function featsTabSelect () {
-    if (sections.feats.classList.contains("active-section")) {
-    } else {
-        clearSections();
-        sections.feats.classList.add("active-section");
-        clearPrimaryTab();
-        tabs.feats.classList.add("btn-primary");
-    } 
-}
-
-function equipmentTabSelect () {
-    if (sections.equipment.classList.contains("active-section")) {
-    } else {
-        clearSections();
-        sections.equipment.classList.add("active-section");
-        clearPrimaryTab();
-        tabs.equipment.classList.add("btn-primary");
-    } 
-}
 
