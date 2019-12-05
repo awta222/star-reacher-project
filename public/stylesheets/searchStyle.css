@@ -11,6 +11,11 @@
     justify-content: left;
 }
 
+.back-redirect {
+    margin: 10px;
+    border-radius: 5px;
+}
+
 #fullSearch, #quickSearch, .framedSection {height: 900px;}
 
 #fullSearch {min-width: 578px;}

@@ -4,6 +4,10 @@ const mongoose = require('mongoose');
 
 const Equipment = require('../models/equipment.model');
 
+routes.route('/').get((req,res) => {
+    res.status(200).send
+});
+
 routes.route('/quickSearch/:searchString').get((req,res) => {
     let searchString = req.params.searchString;
     Equipment.find({"itemName": { $regex: searchString, $options: 'gim'}})

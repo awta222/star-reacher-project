@@ -31,6 +31,14 @@ body {margin: 0% 2%;}
 
 .list-group-item {align-items: center;}
 
+.equipment-search-redirect {
+    position: fixed;
+    left: 0;
+    top: 0;
+    margin: 10px;
+    border-radius: 5px;
+}
+
 .char-edit-button {
     position: fixed;
     right: 0;
