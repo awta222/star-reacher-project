@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="stylesheets/bootstrapDark.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous" SameSite=none secure>
+        <link rel="stylesheet" href="stylesheets/searchStyle.css">
+        <title>Starfinder Equipment Search</title>
+    </head>
+    <body>
+        <div class="container mt-3 ml-0">
+            <div class="h3 mb-3">Equipment Search</div>
+            <div class="btn-group mb-3">
+                <button class="btn btn-primary" id="full" onclick="searchTypeChange(this.id)">Full Search</button>
+                <button class="btn btn-primary active" id="quick" onclick="searchTypeChange(this.id)">Quick Search</button>               
+            </div>
+            <div class="row">
+                <div hidden class="col-md-4 search-section" id="quickSearch">                    
+                    <div class="form-group">
+                        <input type="text" id="quickSearchInput" class="form-control form-control-lg" placeholder="Type a piece of equipment..." oninput="quickSearchEquipment(this.value)">
+                    </div>
+                    <div class="matchList" id="match-list-quick"></div>
+                </div>
+                <div class="col-md-5 search-section" id="fullSearch">
+                    <div class="filters-section">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="categoryDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Category
+                            </button>
+                            <ul class="dropdown-menu filter-menu" id="category" aria-labelledby="categoryDropdown">
+                                <li class='dropdown-item' id="allCategories"><div class="check-container"><i class="fas fa-check"></i></div>All</li>
+                                <li class='dropdown-item'><div class="check-container"></div>Weapon</li>
+                                <li class='dropdown-item'><div class="check-container"></div>Ammunition</li>
+                                <li class='dropdown-item'><div class="check-container"></div>Grenade</li>
+                                <li class='dropdown-item'><div class="check-container"></div>Weapon Accessory</li>
+                                <li class='dropdown-item'><div class="check-container"></div>Weapon Fusion</li>
+                                <li class='dropdown-item'><div class="check-container"></div>Armor</li>
+                                <li class='dropdown-item'><div class="check-container"></div>Powered Armor</li>
+                                <li class='dropdown-item'><div class="check-container"></div>Armor Upgrade</li>
+                                <li class='dropdown-item'><div class="check-container"></div>Technological Item</li>
+                                <li class='dropdown-item'><div class="check-container"></div>Augmentation</li>
+                                <li class='dropdown-item'><div class="check-container"></div>Magic Item</li>
+                                <li class='dropdown-item'><div class="check-container"></div>Hybrid Item</li>
+                                <li class='dropdown-item'><div class="check-container"></div>Personal Item</li>
+                                <li class='dropdown-item'><div class="check-container"></div>Controlled Substance</li>
+                                <li class='dropdown-item'><div class="check-container"></div>Solarian Weapon Crystal</li>             
+                            </ul>
+                        </div>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="subfiltersDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Subfilters <span class="badge badge-primary" id="subfilterCount">0</span>
+                            </button>
+                            <ul class="dropdown-menu filter-menu" id="subfilter" aria-labelledby="subfiltersDropdown">
+                                <h5 class="dropdown-header">select a category...</h5>
+                            </ul>
+                        </div>
+                        <div class="filter price-filter">
+                            Price ≤ <input type="number" id="priceFilterInput" oninput="priceFilterUpdate(this.value)">
+                        </div>
+                        <div class="filter level-filter">
+                            Level: <input type="number" class="smallInput" oninput="levelFilterUpdate('min',this.value)"> - <input type="number" class="smallInput" oninput="levelFilterUpdate('max',this.value)">
+                        </div>                  
+                    </div>
+                    <div class="form-group fullSearchBar">
+                        <input type="text" id="fullSearchInput" class="form-control form-control-lg fullSearchInput" placeholder="Exact string match..."></input>
+                        <button type="button" class="btn btn-primary btn-lg fullSearchButton" onclick="fullSearchEquipment()">Search</button>
+                    </div>
+                    <div class="matchList" id="match-list-full"></div>
+                    <div class="results-count" id="resultsCount"></div>
+                </div>
+                <div class="col-md-4 framedSection">
+                    <div class="h3 text-center mb-3">Selected Items</div>
+                    <div class="selected-list" id="selectedList"></div>
+                    <button type="button" class="btn btn-secondary clearAll" onclick="removeAllSelected()">Clear All</button>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="js/equipSearch.js"></script>
+</html>
