@@ -119,7 +119,7 @@ small {font-size: 85%; color: #cccccc;}
 }
 
 .matchList {
-    max-height: 800px;
+    max-height: 775px;
     overflow: auto;
 }
 

@@ -5,11 +5,6 @@ const port = process.env.PORT || 3000;
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
-/* var saslprep;
-try {
-  saslprep = require('saslprep');
-} catch (e) {console.log(e)} */
-
 const auth = process.env.PROD_MONGODB ? undefined : require('./config');
 
 const dbUrl = process.env.PROD_MONGODB ? process.env.PROD_MONGODB : auth.db;
@@ -26,7 +21,11 @@ app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.get('/search', (req,res) => {
+  res.sendFile(__dirname + '/public/search.html');
+});
+
 app.use('/wizard', require('./routes/wizard'));
-app.use('/search.html', require('./routes/search'));
+app.use('/search', require('./routes/search'));
 
 app.listen(port, () => console.log(`Listening on port ${port}!!`));
