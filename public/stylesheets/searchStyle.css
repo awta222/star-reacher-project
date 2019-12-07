@@ -1,0 +1,225 @@
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.row {
+    width: 100%; min-width: 100%;
+    justify-content: left;
+}
+
+.back-redirect {
+    margin: 10px;
+    border-radius: 5px;
+}
+
+#fullSearch, #quickSearch, .framedSection {height: 900px;}
+
+#fullSearch {min-width: 578px;}
+
+#quickSearch {min-width: 462px;}
+
+.selected-list {
+    max-height: 835px;
+    overflow: auto;
+}
+
+.search-section {
+    height: 900px;
+}
+
+.framedSection {
+    border: 1px solid gray;
+    border-radius: 10px;
+    min-width: 462px;
+}
+
+.focus {background-color: #525252;}
+
+.filters-section {
+    border: 1px solid gray;
+    border-radius: 10px;
+    padding: 5px;
+    margin-bottom: 7px;
+    display: flex; 
+    justify-content: space-evenly;
+}
+
+.filters-section button {margin: 3px; width: 120px;}
+
+.fullSearchBar {display: flex;}
+
+.filter {
+    height: 36px;
+    margin: 3px; 
+    padding: 6px; 
+    background-color: #444444; color: white;
+    border-radius: 5px;
+}
+
+.price-filter > input {
+    height: 24px; width: 60px;
+    background-color: #555555; color: white;
+    border-radius: 3px;
+    align-content: center;
+}
+
+#categoryDropdown {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.dropdown > ul {
+    max-height: 200px;
+    overflow: auto;
+}
+
+.dropdown-item {
+    display: flex; 
+    justify-content: flex-start;
+}
+
+.dropdown-header {margin-left: -10px;}
+
+.check-container {
+    width: 20px;
+    margin-left: -15px;
+}
+
+.smallInput {
+    height: 24px; width: 30px;
+    background-color: #555555; color: white;
+    border-radius: 3px;
+}
+
+/* hides the increment buttons on number-type inputs */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
+
+small {font-size: 85%; color: #cccccc;}
+
+.fullSearchInput {flex-grow: 3; margin-right: 5px;}
+
+.fullSearchButton {flex-grow: 1;}
+
+.results-count {
+    position: absolute;
+    bottom: -30px; left: 15px;
+    color: gray;
+    font-size: 90%;
+}
+
+.matchList {
+    max-height: 775px;
+    overflow: auto;
+}
+
+#fullSearch > .matchList > .card {
+    height: 40px;
+    display: flex; align-content: center;
+} 
+
+#fullSearch > .matchList > .card-body {padding: 10px;} 
+
+
+
+.clearAll {
+    position: absolute;
+    bottom: -41px; right: 5px;
+}
+
+.buttonBar {
+    float: right;
+    height: 46px;
+}
+
+.card-body {padding: 15px;}
+
+.selectedList > .card > .itemInfo {width: 90%;}
+
+.cardHeader {
+    font-size: 150%;
+    width: 60%;
+    overflow-wrap: normal;
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.category, .selCategory {
+    color: #526bde; 
+    margin-left: 1em;
+    position: absolute;
+    right: 20px;
+}
+
+#quickSearch > .matchList > .card > .category, .selCategory {top: 20px;}
+#fullSearch > .matchList > .card > .category {top: 8px;}
+
+#itemLevel {
+    color: gray; 
+    font-size: 90%; 
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.selCategory {
+    font-size: 75%;
+    right: 20px;
+}
+
+.item-properties {
+    border: 1px solid black;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    flex-basis: auto;
+    justify-content: space-around;
+}
+
+.item-prop {
+    display: flex; flex-direction: column;
+    align-items: center;
+    border: 1.5px solid black;
+    flex: 1;
+}
+
+.item-prop-value, .item-prop-name {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+    padding: 5px;
+}
+
+.item-prop-value {
+    background-color: #555555;
+    color: lightgray;
+    font-size: 90%; font-weight: bold;
+    flex: 2;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.item-prop-name {
+    height: 35px;
+    font-size: 75%;
+    color: darkgray;
+    background: black;
+    flex: 1;
+    padding: 2px;
+}
+
+.fa-minus-circle {
+    margin-right: 7px;
+    color: #a15252;
+}
