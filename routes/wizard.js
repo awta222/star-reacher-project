@@ -1,10 +1,12 @@
 const express = require('express');
 const routes = express.Router();
 
-let Race = require('../models/races.model'),
+const Race = require('../models/races.model'),
 Theme = require('../models/themes.model'),
 Lists = require('../models/lists.model'),
 RaceDesc = require('../models/raceDesc.model');
+
+const raceTabTemplates = require('../templates/raceTabContent');
 
 routes.route('/lists').get((req,res) => {
     Lists.find().then((lists) => {
@@ -12,9 +14,16 @@ routes.route('/lists').get((req,res) => {
     }).catch((e) => {response.status(400).send(e)});
 });
 
-routes.route('/raceDesc').get((req,res) => {
-    RaceDesc.find().then((raceDesc) => {
-        res.status(200).send(raceDesc);
+routes.route('/raceDesc').post((req,res) => {
+    let query = {'Source': {$in: req.body}};
+
+    RaceDesc.find().lean().then((raceDesc) => {
+        let raceNames = raceDesc.map(race => race.raceName);
+        let content = {
+            listItems: raceTabTemplates.raceList(raceNames),
+            tabContent: raceTabTemplates.raceTabContents(raceDesc)
+        };
+        res.status(200).send(content);
     }).catch((e) => {response.status(400).send(e)});
 });
 

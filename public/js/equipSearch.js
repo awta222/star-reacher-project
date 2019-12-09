@@ -71,14 +71,13 @@ async function quickSearchEquipment(searchText) {
 
 async function fullSearchEquipment() {
     if (fullMatchList.children.length) {clearFocus()}
-    var searchText = document.getElementById('fullSearchInput').value;
-    if (searchText) {fullSearchQuery.itemName = searchText} 
-        else {fullSearchQuery.itemName = ''}
+
     const res = await fetch(url+'fullSearch/', {
         method: 'POST',
         headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
         body: JSON.stringify(fullSearchQuery)
     });
+
     const list = await res.json();
     outputFullSearch(list);
 }
@@ -99,6 +98,16 @@ async function getSubfilters(category) {
     const res = await fetch(url+'getSubfilters/'+category);
     const categoryProps = await res.json();
     return categoryProps;
+}
+
+async function ejsTest() {
+    const res = await fetch(url+'ejsTest/', {
+        method: 'POST',
+        headers: {'Accept': 'text/html', 'Content-Type': 'application/json'},
+        body: JSON.stringify(fullSearchQuery)
+    });
+
+    return res.text();
 }
 
 

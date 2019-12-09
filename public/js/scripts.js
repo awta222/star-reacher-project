@@ -132,7 +132,7 @@ function selectRace(buttonElement) {
 
         charInput.race.name = buttonElement.id; 
         buttonElement.innerHTML = "Selected  "+checkIcon;
-        raceListGroup.find((e) => {return e.innerHTML == buttonElement.id}).innerHTML += checkIcon;
+        raceListGroup.find((e) => {return e.innerText == buttonElement.id}).innerHTML += checkIcon;
 
         if (charInput.race.name == 'Shirren') {genderSelect.innerHTML += host}
             else {genderSelect.innerHTML = genderSelect.innerHTML.replace(host,'')}
