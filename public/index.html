@@ -106,9 +106,7 @@
         <section class="wizard-section" id="race-section">
           <div class="row">
             <div class="col-4">
-              <div class="list-group" id="race-list" role="tablist">
-
-              </div>
+              <div class="list-group" id="race-list" role="tablist"></div>
               <div class="homeworld-gender">
                 <select class="browser-default custom-select genderSelect" id="genderSelect">
                   <option hidden disabled selected>Gender</option>
@@ -121,89 +119,26 @@
               </div>
             </div>
             <div class="col-8">
-              <div class="tab-content" id="tab-content">
-
-                
-              </div>  
-            </div> <!--end of col-8; the sidebar where the race list is-->
-          </div>
-
-          
+              <div class="tab-content" id="race-content"></div>
+            </div>
+          </div>        
         </section>
         <section class="wizard-section" id="theme-section">
-          <label>Theme: </label> 
-          <select id="theme-entry" oninput="themeEntry()">
-            <option></option>
-            <option>Ace Pilot</option>
-            <option>Bounty Hunter</option>
-            <option>Icon</option>
-            <option>Mercenary</option>
-            <option>Outlaw</option>
-            <option>Priest</option>
-            <option>Scholar</option>
-            <option>Spacefarer</option>
-            <option>Xenoseeker</option>
-            <option>Solar Disciple</option>
-            <option>Roboticist</option>
-            <option>Wild Warden</option>
-            <option>Corporate Agent</option>
-            <option>Gladiator</option>
-            <option>Cyberborn</option>
-            <option>Tempered Pilgrim</option>
-            <option>Space Pirate</option>
-            <option>Death-Touched</option>
-            <option>Dragonblood</option>
-            <option>Dream Prophet</option>
-            <option>Biotechnician</option>
-            <option>Xenoarchaeologist</option>
-            <option>Cultist</option>
-            <option>Themeless</option>
-          </select>
-          <label>Alignment: </label>
-          <select id="alignment-entry" oninput="alignmentEntry()">
-            <option></option>
-            <option>Chaotic Evil</option>
-            <option>Chaotic Neutral</option>
-            <option>Chaotic Good</option>
-            <option>Neutral Evil</option>
-            <option>True Neutral</option>
-            <option>Neutral Good</option>
-            <option>Lawful Evil</option>
-            <option>Lawful Neutral</option>
-            <option>Lawful Good</option>
-          </select>
-          <label>Deity: </label> 
-          <select id="deity-entry" oninput="deityEntry()">
-            <option>None</option>
-            <option>Abadar</option>
-            <option>Angradd</option>
-            <option>Arshea</option>
-            <option>Asmodeus</option>
-            <option>Besmara</option>
-            <option>Black Butterfly</option>
-            <option>Calistria</option>
-            <option>Damoritosh</option>
-            <option>Desna</option>
-            <option>Eldest</option>
-            <option>Eloritu</option>
-            <option>Groetus</option>
-            <option>Hylax</option>
-            <option>Ibra</option>
-            <option>Iomedae</option>
-            <option>Lamashtu</option>
-            <option>Lao Shu Po</option>
-            <option>Lissala</option>
-            <option>Nyarlathotep</option>
-            <option>Pharasma</option>
-            <option>Sarenrae</option>
-            <option>Talavet</option>
-            <option>The Devourer</option>
-            <option>Triune</option>
-            <option>Urgathoa</option>
-            <option>Weydan</option>
-            <option>Yaraesa</option>
-            <option>Zon-Kuthon</option>
-          </select>
+          <div class="row">
+            <div class="col-4">
+              <div class="list-group" id="theme-list" role="tablist"></div>
+              <div class="homeworld-gender">
+                <select class="browser-default custom-select" id="deitySelect">
+                  <option hidden disabled selected>Deity</option>
+                </select> 
+              </div>
+            </div>
+            <div class="col-8">
+              <div class="tab-content" id="theme-content"></div>
+            </div>
+          </div>   
+
+          
         </section>
         <section class="wizard-section" id="class-section">
           <label>Class: </label>

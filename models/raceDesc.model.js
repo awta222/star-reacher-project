@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const raceDescSchema = new Schema({
     raceName: String,
+    Source: String,
     description: String,
     AS: String,
     HP: String,

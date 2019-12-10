@@ -118,22 +118,22 @@ hr {clear: both;}
     margin-left:-35px;
 }
 
-.race-info {
+.info-section {
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.race-raceName {
+.selection-name {
     font-weight: bold;
     font-size: 30px;
     margin-bottom: 16px;
 }
 
-.race-description {font-size: 15px; margin-bottom: 16px;}
+.selection-description {font-size: 15px; margin-bottom: 16px;}
 
-.race-stats {
+.stat-block {
     border: 3px solid black;
     border-radius: 15px;
     background-color: #0071ed;
@@ -148,7 +148,7 @@ hr {clear: both;}
 
 .race-sizeType {font-size: 13px;}
 
-.race-abilities {
+.ability-cards {
     clear: both;
     display: flex;
     flex-direction: column;
@@ -160,7 +160,7 @@ hr {clear: both;}
 .race-abilities ul {margin: 0;}
 .race-abilities li {margin-left: 5%;}
 
-.race-ability-box {
+.ability-box {
     align-self: center;
     border: 4px solid black;
     border-radius: 15px;
@@ -168,9 +168,9 @@ hr {clear: both;}
     margin-bottom: 16px;
 }
 
-.race-ability-box * {padding: 3px;}
+.ability-box * {padding: 3px;}
 
-.race-ability-box .label-bar {
+.ability-box .label-bar {
     background-color: #0071ed;
     color: white;
     border-bottom: 2px solid black;
@@ -178,7 +178,7 @@ hr {clear: both;}
     font-weight: bold;
 }
 
-.race-ability-box .ability-text {
+.ability-box .ability-text {
     font-size: 14px;
     background-color: #ededed;
     border-radius: 0 0 10px 10px;

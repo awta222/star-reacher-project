@@ -1,6 +1,6 @@
 module.exports = exports = {};
 
-exports.raceList = (racenameArray) => racenameArray.map(raceName => `
+exports.raceList = (raceNameArray) => raceNameArray.map(raceName => `
     <a class="list-group-item list-group-item-action" id="list-${raceName}-list" data-toggle="list" href="#list-${raceName}" role="tab">
     ${raceName}
     </a>
@@ -11,20 +11,20 @@ exports.raceTabContents = (races) => races.map(race => `
         <div class="race-image">
             <img src="images/${race.raceName}.png" alt="">
         </div>
-        <div class="race-info" id="race-info">
-            <div id="race-raceName" class="race-raceName">${race.raceName}</div>
-            <div id="race-description" class="race-description">${race.description}</div>
-            <div id="race-stats" class="race-stats">
-                <div id="race-AS" class="race-AS">${race.AS}</div>
-                <div id="race-HP" class="race-HP">HP: ${race.HP}</div>
-                <div id="race-sizeType" class="race-sizeType">${race.sizeType}</div>
+        <div class="info-section">
+            <div class="selection-name">${race.raceName}</div>
+            <div class="selection-description">${race.description}</div>
+            <div class="stat-block">
+                <div class="race-AS">${race.AS}</div>
+                <div class="race-HP">HP: ${race.HP}</div>
+                <div class="race-sizeType">${race.sizeType}</div>
             </div>
         </div>
         <hr> 
-        <div class="race-abilities" id="race-abilities">
+        <div class="ability-cards">
             ${
                 race.racialAbilities.map(ability => `
-                    <div class="race-ability-box">
+                    <div class="ability-box">
                         <div class="label-bar">${ability.name}</div>
                         <div class="ability-text">${ability.description}</div>
                     </div>
@@ -33,7 +33,7 @@ exports.raceTabContents = (races) => races.map(race => `
         </div>
         <div class="race-select-pane" id="race-select-pane">
             <button type="button" class="btn btn-primary btn-lg btn-block race-select-button" id="${race.raceName}" onclick="selectRace(this)">Select This Race</button>
-            ${(race.subdecisions) ? `
+            ${(!race.subdecisions) ? '' : `
                 <div hidden class="subdecisions" id="subdecisions">
                     <label for="subdecisionSelect">${race.subdecisions.selectLabel}</label>
                     <select class="browser-default custom-select" id="subdecisionSelect" oninput="subdecisionSelect(this)">
@@ -51,8 +51,7 @@ exports.raceTabContents = (races) => races.map(race => `
                             `).join('')
                         }
                     </div>
-                </div>
-            ` : ''
+                </div>`
             }
         </div>
     </div>

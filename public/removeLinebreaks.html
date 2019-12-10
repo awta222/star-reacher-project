@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Line Break Remover</title>
+  </head>
+  <body>
+  	<button style="height: 40px;" onclick="removeBreaks()">Convert Clipboard Item</button>
+  	<script>
+  		async function removeBreaks() {
+            let clipboardItem = await navigator.clipboard.readText()
+                .then((text) => {return text})
+                .catch(e => console.log(e));
+  			
+            clipboardItem = clipboardItem.replace(/(\r\n|\n|\r)/gm,"<1br />");
+
+            let re1 = /<1br \/><1br \/>/gi;
+            let re1a = /<1br \/><1br \/><1br \/>/gi;
+
+            
+            clipboardItem = clipboardItem.replace(re1a,"<1br /><2br />");
+            clipboardItem = clipboardItem.replace(re1,"<2br />");
+            
+
+            re2 = /\<1br \/>/gi;
+            clipboardItem = clipboardItem.replace(re2, " ");
+
+            re3 = /\s+/g;
+            clipboardItem = clipboardItem.replace(re3," ");
+
+            re4 = /<2br \/>/gi;
+            clipboardItem = clipboardItem.replace(re4,"\n\n");
+
+            navigator.clipboard.writeText(clipboardItem);
+            console.log(clipboardItem);
+            document.getElementById("copyConfirm").innerHTML = clipboardItem;
+  		}
+  	</script>
+  <p>The following text is now copied to your clipboard:</p>
+  <div style="width: 900px; overflow-wrap: normal; border: 1px solid black;" id="copyConfirm"></div>
+  </body>
+</html>

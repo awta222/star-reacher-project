@@ -4,9 +4,11 @@ const routes = express.Router();
 const Race = require('../models/races.model'),
 Theme = require('../models/themes.model'),
 Lists = require('../models/lists.model'),
-RaceDesc = require('../models/raceDesc.model');
+RaceDesc = require('../models/raceDesc.model'),
+ThemeDesc = require('../models/themeDesc.model');
 
-const raceTabTemplates = require('../templates/raceTabContent');
+const raceTabTemplates = require('../templates/raceTab');
+const themeTabTemplates = require('../templates/themeTab');
 
 routes.route('/lists').get((req,res) => {
     Lists.find().then((lists) => {
@@ -19,12 +21,23 @@ routes.route('/raceDesc').post((req,res) => {
 
     RaceDesc.find().lean().then((raceDesc) => {
         let raceNames = raceDesc.map(race => race.raceName);
-        let content = {
+        res.status(200).send({
             listItems: raceTabTemplates.raceList(raceNames),
             tabContent: raceTabTemplates.raceTabContents(raceDesc)
-        };
-        res.status(200).send(content);
-    }).catch((e) => {response.status(400).send(e)});
+        });
+    }).catch((e) => {res.status(400).send(e)});
+});
+
+routes.route('/themeDesc').post((req,res) => {
+    let query = {'Source': {$in: req.body}};
+
+    ThemeDesc.find().lean().then((themeDesc) => {
+        let themeNames = themeDesc.map(theme => theme.themeName);
+        res.status(200).send({
+            listItems: themeTabTemplates.themeList(themeNames),
+            tabContent: themeTabTemplates.themeTabContents(themeDesc)
+        });
+    }).catch((e) => {res.status(400).send(e)});
 });
 
 //baseAS builder
