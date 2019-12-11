@@ -1,0 +1,9 @@
+.add-char {
+    height: 100px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.add-char > i {
+    color: gray;
+}

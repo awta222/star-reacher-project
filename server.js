@@ -19,16 +19,14 @@ mongoose.connect(dbUrl, {useNewUrlParser: true,  useUnifiedTopology: true})
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-app.set('view engine', 'ejs');
-
-/* app.get('/ejsTest', (req,res) => {
-  res.render('test.ejs');
-}) */
-
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/search', (req,res) => {
   res.sendFile(__dirname + '/public/search.html');
+});
+
+app.get('/inventory', (req,res) => {
+  res.sendFile(__dirname + '/public/inventory.html');
 });
 
 app.use('/wizard', require('./routes/wizard'));

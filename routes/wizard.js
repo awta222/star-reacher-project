@@ -17,8 +17,6 @@ routes.route('/lists').get((req,res) => {
 });
 
 routes.route('/raceDesc').post((req,res) => {
-    let query = {'Source': {$in: req.body}};
-
     RaceDesc.find().lean().then((raceDesc) => {
         let raceNames = raceDesc.map(race => race.raceName);
         res.status(200).send({
@@ -28,9 +26,7 @@ routes.route('/raceDesc').post((req,res) => {
     }).catch((e) => {res.status(400).send(e)});
 });
 
-routes.route('/themeDesc').post((req,res) => {
-    let query = {'Source': {$in: req.body}};
-
+routes.route('/themeDesc').post((req,res) => {   
     ThemeDesc.find().lean().then((themeDesc) => {
         let themeNames = themeDesc.map(theme => theme.themeName);
         res.status(200).send({

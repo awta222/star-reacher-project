@@ -64,8 +64,8 @@ $('.dropdown-menu#subfilter').on('click', (e) => {
 async function quickSearchEquipment(searchText) {
     if (searchText.length > 2) {
         const res = await fetch(url+'/quickSearch/'+searchText);
-        const list = await res.json();
-        outputQuickSearch(list);
+        const list = await res.text();
+        quickMatchList.innerHTML = list;
     } else {quickMatchList.innerHTML = '';}
 }
 
@@ -74,18 +74,22 @@ async function fullSearchEquipment() {
 
     const res = await fetch(url+'fullSearch/', {
         method: 'POST',
-        headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
+        headers: {'Accept': 'text/html', 'Content-Type': 'application/json'},
         body: JSON.stringify(fullSearchQuery)
     });
 
-    const list = await res.json();
-    outputFullSearch(list);
+    const list = await res.text();
+    fullMatchList.innerHTML = list;
+    document.getElementById('resultsCount').innerHTML = fullMatchList.children.length + ' results';
 }
 
 async function getSelectedItem(id) {
-    const res = await fetch(url+'/getItem/'+id);
-    const item = await res.json();
-    addSelectedItem(item);
+    if (!selectedItems.map(e=>e._id).includes(id)) {
+        const res = await fetch(url+'/getItem/'+id);
+        const item = await res.json();
+        selectedList.innerHTML += item.html;    
+        selectedItems.push(item.json);
+    }
 }
 
 async function getItemList(idString) {
@@ -98,16 +102,6 @@ async function getSubfilters(category) {
     const res = await fetch(url+'getSubfilters/'+category);
     const categoryProps = await res.json();
     return categoryProps;
-}
-
-async function ejsTest() {
-    const res = await fetch(url+'ejsTest/', {
-        method: 'POST',
-        headers: {'Accept': 'text/html', 'Content-Type': 'application/json'},
-        body: JSON.stringify(fullSearchQuery)
-    });
-
-    return res.text();
 }
 
 
@@ -137,34 +131,21 @@ function setCategoryFilter(clickedElement) {
     setCheckmark(clickedElement,true);
 
     if (fullSearchQuery.category != [category]) {
-        var subfilter = document.getElementById('subfilter');
+        var subfilterElement = document.getElementById('subfilter');
         document.getElementById('subfilterCount').innerHTML = 0;
         fullSearchQuery.subfilters = [];
         
         if (category != 'All') {
             getSubfilters(category)
-                .then((propArray) => {
-                    let html = `<div class="dropdown-item" id="filterAll">
-                                    <div class="check-container"><i class="fas fa-check"></i></div>
-                                    All
-                                </div>`;
-                    
-                    for (i=0;i<propArray.length;i++) {
-                        let options = propArray[i].uniqueArray.map((item) => `
-                            <li class="dropdown-item"><div class="check-container"></div>${item}</li>
-                        `).join('');
-
-                        html += `<h5 class="dropdown-header">${propArray[i].propName}</h5>
-                            <div id="${'filter'+propArray[i].propName}">${options}</div>`;
-                        
-                        fullSearchQuery.subfilters.push({propName: propArray[i].propName, values: []});
-                    }
-                    subfilter.innerHTML = html;
+                .then((subfilters) => {
+                    subfilterElement.innerHTML = subfilters.html;
                     fullSearchQuery.category = [category];
-                })
-            .catch(e => console.log(e));
+                    fullSearchQuery.subfilters = subfilters.propNames.map(propName => {
+                        return {propName: propName, values: []}
+                    }); 
+                }).catch(e => console.log(e));
         } else {
-            subfilter.innerHTML = `<h5 class="dropdown-header">select a category...</h5>`;
+            subfilterElement.innerHTML = `<h5 class="dropdown-header">select a category...</h5>`;
             subfilterCount.innerText = 0;
             fullSearchQuery.category = [];
             button.innerText = 'Category';
@@ -226,74 +207,6 @@ function setCheckmark(listElement,isChecked) {
 }
 
 
-
-function outputQuickSearch(listArray) {
-    const html = listArray.map(listItem => `
-        <div class="card card-body mb-1" id="${listItem._id}" 
-            onmouseover="highlightOption(this)" onclick="itemSelect()">
-            <div class="cardHeader">
-                <span id="itemName">${listItem.itemName}</span>               
-            </div>
-            <span class="category">${listItem.category}</span>
-            <small>Level ${listItem.Level}</small><small>${listItem.Price} credits</small>
-        </div>
-    `).join('');
-    quickMatchList.innerHTML = html;
-}
-
-function outputFullSearch(listArray) {
-    const html = listArray.map(listItem => `
-        <div class="card card-body mb-1" id="${listItem._id}" 
-            onmouseover="highlightOption(this)" onclick="itemSelect()">
-            <div id="itemInfo">
-                <span id="itemName">${listItem.itemName}</span>
-                <span id="itemLevel">Lvl ${listItem.Level}</span>
-            </div>         
-            <div class="category">${listItem.category}</div>
-        </div>
-    `).join('');
-    fullMatchList.innerHTML = html;
-    document.getElementById('resultsCount').innerHTML = listArray.length + ' results';
-}
-
-
-
-function addSelectedItem(item) {
-    const itemHeaders = (({itemName,category,_id,Level,Price}) => 
-        ({itemName,category,_id,Level,Price}))(item);
-
-    var itemDetails = Object.assign({}, item);
-
-    let propsToRemove = ['itemName','category','_id','Level','Price','Source'];
-    for (i=0;i<propsToRemove.length;i++) {delete itemDetails[propsToRemove[i]]}
-
-    let properties = ``;
-    for (let prop in itemDetails) {
-        properties += `<div class="item-prop">
-                            <div class="item-prop-value">${itemDetails[prop]}</div>
-                            <div class="item-prop-name">${prop}</div>                           
-                        </div>`
-    }
-
-    const html = `
-        <div class="card card-body mb-1" id="${itemHeaders._id}">
-                <div class="cardHeader">
-                    <i class="fas fa-minus-circle" 
-                        onclick="removeSelectedItem(this.closest('.card'))"></i>
-                    <span id="itemName">${itemHeaders.itemName}</span>
-                    <span class="selCategory">${itemHeaders.category}</span>
-                </div>
-                <small>Level ${itemHeaders.Level}</small>
-                <small>${itemHeaders.Price} credits</small>
-                <div class="item-properties mt-2" id="properties">
-                    ${properties}
-                </div>
-        </div>
-    `;
-
-    selectedList.innerHTML += html;
-    if (!selectedItems.includes(item)) {selectedItems.push(item);}
-}
 
 function itemSelect() {
     let index = highlightedOptionIndex();

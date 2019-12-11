@@ -1,9 +1,0 @@
-<% for (i=0;i<results.length;i++) { %>
-<div class="card card-body mb-1" id="<%= results[i]._id %>" onmouseover="highlightOption(this)" onclick="itemSelect()">
-    <div id="itemInfo">
-        <span id="itemName"><%= results[i].itemName %></span>
-        <span id="itemLevel">Lvl <%= results[i].Level %></span>
-    </div>         
-    <div class="category"><%= results[i].category %></div>
-</div>
-<% } %>
