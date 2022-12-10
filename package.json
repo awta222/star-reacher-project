@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/awta222/star-reacher-project#readme",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "mongoose": "^5.6.4",
     "saslprep": "^1.0.3"
   },
